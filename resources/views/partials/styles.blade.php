@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/magnific-popup.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/meanmenu.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/odometer.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/swiper-bundle.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/nice-select.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}">
