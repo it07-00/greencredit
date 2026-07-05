@@ -43,16 +43,14 @@
                                 <span class="wow fadeInUp">Chào mừng đến Green Credit</span>
                                 <h2 class="char-animation">Kết nối cộng đồng<br>bằng hành động xanh</h2>
                             </div>
-                            <p class="about-text wow fadeInUp" data-wow-delay=".2s">Chào mừng đến Green Credit your trusted partner
-                                for comprehensive Green Credit and tiêu dùng bền vững solutions with our proven expertise</p>
+                            <p class="about-text wow fadeInUp" data-wow-delay=".2s">Green Credit tự hào là nền tảng tiên phong đồng hành cùng bạn trong hành trình kiến tạo lối sống bền vững, giảm thiểu phát thải và tích lũy điểm thưởng từ thói quen tiêu dùng có trách nhiệm hàng ngày.</p>
                             <div class="icon-box wow fadeInUp" data-wow-delay=".6s">
                                 <div class="icon">
                                     <i class="flaticon-research"></i>
                                 </div>
                                 <div class="content">
                                     <h3>Đo lường tác động xanh</h3>
-                                    <p>Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and tiêu dùng bền vững
-                                        solutions.</p>
+                                    <p>Hệ thống tự động quy đổi lượng rác thải nhựa giảm thiểu và lượng CO2 cắt giảm từ hành động của bạn thành số liệu báo cáo trực quan.</p>
                                 </div>
                             </div>
                             <div class="icon-box wow fadeInUp" data-wow-delay=".8s">
@@ -60,9 +58,8 @@
                                     <i class="flaticon-online-service"></i>
                                 </div>
                                 <div class="content">
-                                    <h3>Đo lường tác động xanh</h3>
-                                    <p>Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and tiêu dùng bền vững
-                                        solutions.</p>
+                                    <h3>Tích lũy Green Points</h3>
+                                    <p>Điểm thưởng Green Points tích lũy trong ví có thể dùng để đổi lấy các ưu đãi giá trị từ mạng lưới hàng trăm cửa hàng đối tác.</p>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +73,7 @@
                     </div>
                     <div class="about-content">
                         <h3>Phân tích dữ liệu xanh</h3>
-                        <p>Mauris sem ante, iaculis eget nisl placerat hendrerit. Suspendisse velit for</p>
+                        <p>Cung cấp báo cáo cá nhân hóa giúp bạn thấu hiểu xu hướng tiêu dùng xanh của bản thân qua từng tháng.</p>
                     </div>
                 </div>
                 <div class="about-feature-box wow fadeInUp" data-wow-delay=".5s">
@@ -85,7 +82,7 @@
                     </div>
                     <div class="about-content">
                         <h3>Xác thực minh bạch</h3>
-                        <p>Mauris sem ante, iaculis eget nisl placerat hendrerit. Suspendisse velit for</p>
+                        <p>Mọi giao dịch tích điểm đều được đối soát qua QR hóa đơn, đảm bảo tính trung thực và ngăn chặn gian lận.</p>
                     </div>
                 </div>
                 <div class="about-feature-box wow fadeInUp" data-wow-delay=".7s">
@@ -94,7 +91,7 @@
                     </div>
                     <div class="about-content">
                         <h3>Tăng trưởng bền vững</h3>
-                        <p>Mauris sem ante, iaculis eget nisl placerat hendrerit. Suspendisse velit for</p>
+                        <p>Đồng hành cùng cộng đồng xây dựng lối sống xanh lâu dài, tạo giá trị thực cho môi trường sống.</p>
                     </div>
                 </div>
             </div>
@@ -117,8 +114,7 @@
                             <div class="content">
                                 <h3><a href="project-details.html">Green Score</a></h3>
                                 <p>
-                                    A progressive automatic dialer makes one call after another with a predefined time
-                                    gap in between each, so the agent can easily manage calls
+                                    Đánh giá chính xác mức độ sống xanh của bạn dựa trên 5 khía cạnh khoa học để mở khóa các đặc quyền tài chính xanh.
                                 </p>
                                 <a href="service-details.html" class="link-btn">Xem chi tiết
                                     <i class="far fa-arrow-right"></i>
@@ -134,7 +130,7 @@
                             <div class="content">
                                 <h3><a href="project-details.html">Hành động xanh đa dạng </a></h3>
                                 <p>
-                                    We pride ourselves on delivering a value proposition that goes beyond expectations.
+                                    Ghi nhận đa dạng các hoạt động bảo vệ môi trường hàng ngày: không dùng ly nhựa, mang bình cá nhân, đi bộ hoặc xe đạp.
                                 </p>
                                 <a href="service-details.html" class="link-btn">Xem chi tiết
                                     <i class="far fa-arrow-right"></i>
@@ -150,8 +146,7 @@
                             <div class="content">
                                 <h3><a href="project-details.html">Kết nối cửa hàng đối tác</a></h3>
                                 <p>
-                                    A progressive automatic dialer makes one call after another with a predefined time
-                                    gap in between each, so the agent can easily manage calls
+                                    Mạng lưới liên kết rộng khắp với các thương hiệu cà phê, siêu thị, nhà hàng thân thiện với môi trường.
                                 </p>
                                 <a href="service-details.html" class="link-btn">Xem chi tiết
                                     <i class="far fa-arrow-right"></i>
@@ -181,8 +176,7 @@
                                 </h2>
                             </div>
                             <p class="about-text wow fadeInUp" data-wow-delay=".2s">
-                                Walleye poolfish sand goby butterfly ray stream catfish jewfish spanish. Stream catfish
-                                jewfish spanish ballan wrasse climbing gourami amu.
+                                Green Credit cam kết mang lại sự minh bạch tuyệt đối trong việc ghi nhận và báo cáo các chỉ số bảo vệ môi trường cá nhân cũng như doanh nghiệp đối tác, thúc đẩy tiến trình giảm phát thải ròng Carbon.
                             </p>
                             <div class="about-list wow fadeInUp" data-wow-delay=".4s">
                                 <ul>
@@ -192,17 +186,17 @@
                                     </li>
                                     <li>
                                         <i class="flaticon-check"></i>
-                                        Location based market
+                                        Đối tác xanh tin cậy
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <i class="flaticon-check"></i>
-                                        Monthly Reports
+                                        Báo cáo tác động tháng
                                     </li>
                                     <li>
                                         <i class="flaticon-check"></i>
-                                        24/7 Customer Tính năng
+                                        Hỗ trợ cộng đồng 24/7
                                     </li>
                                 </ul>
                             </div>
@@ -220,8 +214,8 @@
                                         <i class="far fa-phone-alt"></i>
                                     </div>
                                     <div class="content">
-                                        <p>Mail Us</p>
-                                        <h5>(704) 555-0127</h5>
+                                        <p>Email liên hệ</p>
+                                        <h5>support@greencredit.vn</h5>
                                     </div>
                                 </div>
                             </div>
@@ -231,8 +225,8 @@
                         <div class="about-image">
                             <img src="{{ asset('frontend/assets/img/about/about-05.png') }}" alt="img">
                             <div class="content">
-                                <h2><span class="odometer" data-count="26">00</span>+</h2>
-                                <p>Years Experience</p>
+                                <h2><span class="odometer" data-count="15">00</span>+</h2>
+                                <p>Chiến dịch xanh</p>
                                 <div class="star">
                                     <img src="{{ asset('frontend/assets/img/about/star-box.png') }}" alt="img">
                                 </div>
@@ -612,12 +606,10 @@
             </div>
             <div class="section-title-area text-center text-lg-start">
                 <div class="section-title">
-                    <span class="wow fadeInUp">Our Testimonial</span>
+                    <span class="wow fadeInUp">Ý kiến cộng đồng</span>
                     <h2 class="char-animation">Cảm nhận từ cộng đồng<br>Green Credit</h2>
                 </div>
-                <p class="wow fadeInUp" data-wow-delay=".2s">Walleye poolfish sand goby butterfly ray stream catfish
-                    jewfish spanish.<br> Stream catfish jewfish spanish ballan wrasse climbing gourami amur pike <br>
-                    arctic char steelhead sprat sea lamprey grunion.</p>
+                <p class="wow fadeInUp" data-wow-delay=".2s">Lắng nghe những chia sẻ thực tế từ các thành viên tích cực, các đối tác cửa hàng đã và đang đồng hành cùng Green Credit trên hành trình phủ xanh Việt Nam.</p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -630,14 +622,11 @@
                                     </div>
                                     <div class="testimonial-content">
                                         <h4>
-                                            “Etiam viverra purus sed aliquet tincidunt diam auctor nibhe eget eget
-                                            elementum lobortis ante massa quis dui suspendisse massa. Curabitur
-                                            condimentum accumsan risus et porta nam ut nisi metus. Praesent orci ante
-                                            cursus.”
+                                            “Việc tích lũy điểm xanh từ thói quen mang túi vải khi đi siêu thị giúp em ý thức hơn về lượng rác thải nhựa phát sinh ra môi trường mỗi ngày.”
                                         </h4>
                                         <div class="clinet-info">
                                             <h3>Trần Thanh Hà</h3>
-                                            <p>Digital Marketer</p>
+                                            <p>Học sinh</p>
                                         </div>
                                     </div>
                                 </div>
@@ -649,14 +638,11 @@
                                     </div>
                                     <div class="testimonial-content">
                                         <h4>
-                                            “Etiam viverra purus sed aliquet tincidunt diam auctor nibhe eget eget
-                                            elementum lobortis ante massa quis dui suspendisse massa. Curabitur
-                                            condimentum accumsan risus et porta nam ut nisi metus. Praesent orci ante
-                                            cursus.”
+                                            “Giao diện thân thiện, quét QR nhanh chóng và các thử thách sống xanh được cập nhật liên tục rất thu hút và tạo động lực lớn cho tôi.”
                                         </h4>
                                         <div class="clinet-info">
-                                            <h3>Trần Thanh Hà</h3>
-                                            <p>Digital Marketer</p>
+                                            <h3>Lê Hoài Nam</h3>
+                                            <p>Kỹ sư phần mềm</p>
                                         </div>
                                     </div>
                                 </div>
@@ -668,14 +654,11 @@
                                     </div>
                                     <div class="testimonial-content">
                                         <h4>
-                                            “Etiam viverra purus sed aliquet tincidunt diam auctor nibhe eget eget
-                                            elementum lobortis ante massa quis dui suspendisse massa. Curabitur
-                                            condimentum accumsan risus et porta nam ut nisi metus. Praesent orci ante
-                                            cursus.”
+                                            “Green Credit là cầu nối tuyệt vời giúp tôi vừa bảo vệ môi trường vừa tiết kiệm được khá nhiều chi phí tiêu dùng nhờ hệ thống voucher giảm giá.”
                                         </h4>
                                         <div class="clinet-info">
-                                            <h3>Trần Thanh Hà</h3>
-                                            <p>Digital Marketer</p>
+                                            <h3>Nguyễn Hoàng Dung</h3>
+                                            <p>Kinh doanh tự do</p>
                                         </div>
                                     </div>
                                 </div>
@@ -691,7 +674,7 @@
     <section class="news-section-2 section-padding section-bg-2 fix">
         <div class="container">
             <div class="section-title text-center">
-                <span class="wow fadeInUp">Our News</span>
+                <span class="wow fadeInUp">Tin tức sống xanh</span>
                 <h2 class="char-animation">Kiến thức và cảm hứng sống xanh</h2>
             </div>
             <div class="row">
@@ -703,10 +686,9 @@
                         <div class="news-content">
                             <span class="data-list">
                                 <i class="fas fa-calendar"></i>
-                                12 JANUARY, 2026
+                                12 Tháng 1, 2026
                             </span>
-                            <h3><a href="news-details.html">Getting Ready to Chase Google Sitelinks for This Next
-                                    Code</a></h3>
+                            <h3><a href="news-details.html">Cách thiết lập mục tiêu giảm phát thải cá nhân hiệu quả</a></h3>
                         </div>
                     </div>
                 </div>
@@ -718,7 +700,7 @@
                         <div class="news-content">
                             <span class="data-list">
                                 <i class="fas fa-calendar"></i>
-                                12 JANUARY, 2026
+                                15 Tháng 1, 2026
                             </span>
                             <h3><a href="news-details.html">Những công cụ giúp duy trì thói quen sống xanh trong năm 2026</a></h3>
                         </div>
@@ -732,7 +714,7 @@
                         <div class="news-content">
                             <span class="data-list">
                                 <i class="fas fa-calendar"></i>
-                                12 JANUARY, 2026
+                                18 Tháng 1, 2026
                             </span>
                             <h3><a href="news-details.html">Vai trò của dữ liệu xanh trong hành trình hướng tới Net Zero</a>
                             </h3>
@@ -762,16 +744,13 @@
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse" data-bs-target="#faq1"
                                                     aria-expanded="true" aria-controls="faq1">
-                                                    How do I book a trip?
+                                                    1. Làm thế nào để tôi có thể bắt đầu tích lũy Green Points?
                                                 </button>
                                             </h5>
                                             <div id="faq1" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordion">
                                                 <div class="accordion-body">
-                                                    The time it will take for your website's search engine rankings to
-                                                    begin improving depends on several of its characteristics prior to
-                                                    optimization. Older websites, with diverse backlink portfolios and
-                                                    more trust from search engines
+                                                    Bạn chỉ cần mua sắm tại các cửa hàng đối tác liên kết của Green Credit, thực hiện các hành động sống xanh (như mang bình nước cá nhân, không dùng ly nhựa/ống hút) và quét mã QR in trên hóa đơn để nhận điểm vào ví.
                                                 </div>
                                             </div>
                                         </div>
@@ -780,16 +759,13 @@
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse" data-bs-target="#faq2"
                                                     aria-expanded="false" aria-controls="faq2">
-                                                    Can I customize my itinerary?
+                                                    2. Green Score là gì và được tính toán như thế nào?
                                                 </button>
                                             </h5>
                                             <div id="faq2" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordion">
                                                 <div class="accordion-body">
-                                                    The time it will take for your website's search engine rankings to
-                                                    begin improving depends on several of its characteristics prior to
-                                                    optimization. Older websites, with diverse backlink portfolios and
-                                                    more trust from search engines
+                                                    Green Score là chỉ số sống xanh cá nhân được chấm dựa trên 5 khía cạnh cốt lõi: tần suất hành động sống xanh, tính nhất quán hàng tháng, sự đa dạng của các hoạt động bảo vệ môi trường, tính xác thực của hóa đơn đã quét và đóng góp chia sẻ cho cộng đồng.
                                                 </div>
                                             </div>
                                         </div>
@@ -798,16 +774,13 @@
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse" data-bs-target="#faq3"
                                                     aria-expanded="false" aria-controls="faq3">
-                                                    Is travel insurance included in the package?
+                                                    3. Làm cách nào để đổi voucher từ điểm xanh tích lũy?
                                                 </button>
                                             </h5>
                                             <div id="faq3" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordion">
                                                 <div class="accordion-body">
-                                                    The time it will take for your website's search engine rankings to
-                                                    begin improving depends on several of its characteristics prior to
-                                                    optimization. Older websites, with diverse backlink portfolios and
-                                                    more trust from search engines
+                                                    Bạn có thể truy cập vào Chợ Voucher (Voucher Marketplace) trong ứng dụng, lựa chọn voucher phù hợp với nhu cầu từ các danh mục như Ẩm thực, Di chuyển xanh, Ví điện tử hoặc Ưu đãi tài chính, sau đó nhấn "Đổi ngay" bằng số điểm tương ứng.
                                                 </div>
                                             </div>
                                         </div>
@@ -816,16 +789,13 @@
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse" data-bs-target="#faq4"
                                                     aria-expanded="false" aria-controls="faq4">
-                                                    How do I make changes to my booking?
+                                                    4. Tôi là chủ cửa hàng, làm cách nào để liên kết với Green Credit?
                                                 </button>
                                             </h5>
                                             <div id="faq4" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordion">
                                                 <div class="accordion-body">
-                                                    The time it will take for your website's search engine rankings to
-                                                    begin improving depends on several of its characteristics prior to
-                                                    optimization. Older websites, with diverse backlink portfolios and
-                                                    more trust from search engines
+                                                    Hãy gửi thông tin đăng ký liên kết thông qua trang Liên hệ của chúng tôi. Đội ngũ Green Credit sẽ liên hệ hỗ trợ bạn thiết lập tài khoản chủ cửa hàng, tạo chi nhánh và cấp quyền cho nhân viên để bắt đầu phát hành hóa đơn xanh chứa QR Code tích điểm.
                                                 </div>
                                             </div>
                                         </div>
@@ -834,16 +804,13 @@
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse" data-bs-target="#faq5"
                                                     aria-expanded="false" aria-controls="faq5">
-                                                    What’s included in my travel package?
+                                                    5. Có những cấp độ xanh nào trên nền tảng?
                                                 </button>
                                             </h5>
                                             <div id="faq5" class="accordion-collapse collapse"
                                                 data-bs-parent="#accordion">
                                                 <div class="accordion-body">
-                                                    The time it will take for your website's search engine rankings to
-                                                    begin improving depends on several of its characteristics prior to
-                                                    optimization. Older websites, with diverse backlink portfolios and
-                                                    more trust from search engines
+                                                    Green Credit có 5 cấp độ tiến trình sống xanh bao gồm: Cấp Seed (Mầm non), Cấp Leaf (Lá xanh), Cấp Tree (Cây xanh), Cấp Forest (Rừng xanh) và cấp cao nhất là Net Zero Hero. Mỗi cấp độ sẽ được mở khóa khi bạn đạt được số điểm Green Score tương ứng.
                                                 </div>
                                             </div>
                                         </div>
@@ -868,17 +835,17 @@
         <div class="container">
             <div class="cta-call-wrapper style-padding">
                 <div class="section-title text-center mb-0">
-                    <span class="text-white wow fadeInUp">No time to wait ? Call us </span>
+                    <span class="text-white wow fadeInUp">Bắt đầu ngay hôm nay</span>
                     <h2 class="text-white char-animation">
                         Cùng Green Credit<br>kiến tạo tương lai bền vững
                     </h2>
                 </div>
                 <div class="cta-button wow fadeInUp" data-wow-delay=".9s">
-                    <a href="faq.html" class="theme-btn">
-                        Request a Demo
+                    <a href="{{ route('contact') }}" class="theme-btn">
+                        Liên hệ ngay
                         <i class="far fa-arrow-right"></i>
                     </a>
-                    <a href="pricing.html" class="pricing-text">Cấp độ xanh <i class="far fa-arrow-right"></i></a>
+                    <a href="{{ route('green-score.public') }}" class="pricing-text">Cấp độ xanh <i class="far fa-arrow-right"></i></a>
                 </div>
                 <div class="carton-shape float-bob-x">
                     <img src="{{ asset('frontend/assets/img/cta/carton.png') }}" alt="img">
@@ -900,7 +867,7 @@
                     </div>
                     <div class="content">
                         <h3>TP. Hồ Chí Minh</h3>
-                        <p>27 Division 10002 Main road</p>
+                        <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
                     </div>
                 </div>
                 <div class="icon-items wow fadeInUp" data-wow-delay=".5s">
@@ -908,8 +875,8 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div class="content">
-                        <h3>Hotline</h3>
-                        <p><a href="tel:+00479394888">+00 (47) 939 4888</a></p>
+                        <h3>Hotline hỗ trợ</h3>
+                        <p><a href="tel:19001000">1900 1000</a></p>
                     </div>
                 </div>
                 <div class="icon-items wow fadeInUp" data-wow-delay=".7s">
@@ -917,8 +884,8 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="content">
-                        <h3>Hotline</h3>
-                        <p>27 Division 10002 Main road</p>
+                        <h3>Email liên hệ</h3>
+                        <p><a href="mailto:support@greencredit.vn">support@greencredit.vn</a></p>
                     </div>
                 </div>
             </div>

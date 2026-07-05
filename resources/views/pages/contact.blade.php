@@ -11,7 +11,7 @@
             <div class="page-heading">
                 <ul class="breadcrumb-list wow fadeInUp" data-wow-delay=".5s">
                     <li>
-                        <a href="{{ route('home') }}">Home</a>
+                        <a href="{{ route('home') }}">Trang chủ</a>
                     </li>
                     <li>
                         <i class="fal fa-long-arrow-right"></i>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Địa chỉ</h5>
-                                    <p>27 Division St, NY 10002, USA</p>
+                                    <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
                                 </div>
                             </li>
                             <li>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Điện thoại</h5>
-                                    <p>+1 800 123 456 789</p>
+                                    <p>1900 1000</p>
                                 </div>
                             </li>
                         </ul>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Địa chỉ</h5>
-                                    <p>27 Division St, NY 10002, USA</p>
+                                    <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
                                 </div>
                             </li>
                             <li>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Điện thoại</h5>
-                                    <p>+1 800 123 456 789</p>
+                                    <p>1900 1000</p>
                                 </div>
                             </li>
                         </ul>
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Địa chỉ</h5>
-                                    <p>27 Division St, NY 10002, USA</p>
+                                    <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
                                 </div>
                             </li>
                             <li>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Điện thoại</h5>
-                                    <p>+1 800 123 456 789</p>
+                                    <p>1900 1000</p>
                                 </div>
                             </li>
                         </ul>
@@ -155,33 +155,33 @@
                     <div class="row g-4 align-items-center justify-content-center">
                         <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
                             <div class="form-clt">
-                                <input type="text" name="name" id="name" placeholder="Name">
+                                <input type="text" name="name" id="name" placeholder="Họ và tên">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
                             <div class="form-clt">
-                                <input type="text" name="email" id="email2" placeholder="Email address">
+                                <input type="text" name="email" id="email2" placeholder="Địa chỉ email">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
                             <div class="form-clt">
-                                <input type="text" name="phone" id="phone" placeholder="Phone number">
+                                <input type="text" name="phone" id="phone" placeholder="Số điện thoại">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
                             <div class="form-clt">
-                                <input type="text" name="subject" id="subject" placeholder="Your subject">
+                                <input type="text" name="subject" id="subject" placeholder="Tiêu đề">
                             </div>
                         </div>
                         <div class="col-lg-12 wow fadeInUp" data-wow-delay=".8s">
                             <div class="form-clt">
-                                <textarea name="message" id="message" placeholder="Write a message..."></textarea>
+                                <textarea name="message" id="message" placeholder="Nội dung tin nhắn..."></textarea>
                             </div>
                         </div>
                         <div class="col-lg-12 wow fadeInUp" data-wow-delay=".9s">
                             <div class="contact-button text-center">
                                 <button type="submit" class="theme-btn">
-                                    Send Your Message
+                                    Gửi tin nhắn
                                     <i class="far fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -206,17 +206,17 @@
         <div class="container">
             <div class="cta-call-wrapper style-padding">
                 <div class="section-title text-center mb-0">
-                    <span class="text-white wow fadeInUp">No time to wait ? Call us </span>
+                    <span class="text-white wow fadeInUp">Bắt đầu ngay hôm nay</span>
                     <h2 class="text-white wow fadeInUp" data-wow-delay=".2s">
                         Cùng Green Credit<br>kiến tạo tương lai bền vững
                     </h2>
                 </div>
                 <div class="cta-button wow fadeInUp" data-wow-delay=".9s">
-                    <a href="faq.html" class="theme-btn">
-                        Request a Demo
+                    <a href="{{ route('contact') }}" class="theme-btn">
+                        Liên hệ ngay
                         <i class="far fa-arrow-right"></i>
                     </a>
-                    <a href="pricing.html" class="pricing-text">Cấp độ xanh <i class="far fa-arrow-right"></i></a>
+                    <a href="{{ route('green-score.public') }}" class="pricing-text">Cấp độ xanh <i class="far fa-arrow-right"></i></a>
                 </div>
                 <div class="carton-shape float-bob-x">
                     <img src="{{ asset('frontend/assets/img/cta/carton.png') }}" alt="img">
@@ -238,7 +238,7 @@
                     </div>
                     <div class="content">
                         <h3>TP. Hồ Chí Minh</h3>
-                        <p>27 Division 10002 Main road</p>
+                        <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
                     </div>
                 </div>
                 <div class="icon-items wow fadeInUp" data-wow-delay=".5s">
@@ -246,8 +246,8 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div class="content">
-                        <h3>Hotline</h3>
-                        <p><a href="tel:+00479394888">+00 (47) 939 4888</a></p>
+                        <h3>Hotline hỗ trợ</h3>
+                        <p><a href="tel:19001000">1900 1000</a></p>
                     </div>
                 </div>
                 <div class="icon-items wow fadeInUp" data-wow-delay=".7s">
@@ -255,8 +255,8 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="content">
-                        <h3>Hotline</h3>
-                        <p><a href="mailto:info@example.com" class="link">info@example.com</a></p>
+                        <h3>Email liên hệ</h3>
+                        <p><a href="mailto:support@greencredit.vn" class="link">support@greencredit.vn</a></p>
                     </div>
                 </div>
             </div>
