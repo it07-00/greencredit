@@ -2,20 +2,91 @@
 
 namespace App\Livewire\Store\Branches;
 
-use App\Livewire\SimplePage;
+use App\Models\ActivityLog;
 use App\Models\Store;
-use App\Models\StoreStaff;
+use App\Models\StoreBranch;
+use Livewire\Component;
 
-class Index extends SimplePage
+class Index extends Component
 {
-    public function mount(): void
+    public ?int $editingId = null;
+
+    public string $name = '';
+
+    public string $address = '';
+
+    public string $city = 'TP. Hồ Chí Minh';
+
+    public string $district = '';
+
+    public string $phone = '';
+
+    public string $manager_name = '';
+
+    public bool $is_active = true;
+
+    private function store(): Store
     {
-        $store = Store::where('owner_id', auth()->id())->first() ?? StoreStaff::where('user_id', auth()->id())->first()?->store;
-        abort_unless($store, 403);
-        $branches = $store->branches;
-        $this->title = 'Chi nhanh cua hang';
-        $this->description = 'Quan ly chi nhanh va dia diem tao hoa don xanh.';
-        $this->cards = [['Chi nhanh', $branches->count()], ['Dang hoat dong', $branches->where('is_active', true)->count()], ['Store', $store->name]];
-        $this->rows = $branches->map(fn ($b) => [$b->name, $b->address, $b->is_active ? 'active' : 'inactive'])->all();
+        return Store::where('owner_id', auth()->id())->firstOrFail();
+    }
+
+    public function edit(int $id): void
+    {
+        $branch = $this->store()->branches()->findOrFail($id);
+        $this->editingId = $branch->id;
+        $this->fill($branch->only(['name', 'address', 'city', 'district', 'phone', 'manager_name', 'is_active']));
+    }
+
+    public function save(): void
+    {
+        $data = $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:100'],
+            'district' => ['nullable', 'string', 'max:100'],
+            'phone' => ['nullable', 'string', 'max:30'],
+            'manager_name' => ['nullable', 'string', 'max:255'],
+            'is_active' => ['boolean'],
+        ]);
+
+        $branch = $this->editingId
+            ? $this->store()->branches()->findOrFail($this->editingId)
+            : new StoreBranch(['store_id' => $this->store()->id]);
+        $branch->fill($data)->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => $this->editingId ? 'update_branch' : 'create_branch',
+            'description' => "Cập nhật chi nhánh {$branch->name}",
+            'subject_type' => StoreBranch::class,
+            'subject_id' => $branch->id,
+        ]);
+
+        session()->flash('success', 'Đã lưu chi nhánh.');
+        $this->cancel();
+    }
+
+    public function toggle(int $id): void
+    {
+        $branch = $this->store()->branches()->findOrFail($id);
+        $branch->update(['is_active' => ! $branch->is_active]);
+    }
+
+    public function cancel(): void
+    {
+        $this->reset(['editingId', 'name', 'address', 'district', 'phone', 'manager_name']);
+        $this->city = 'TP. Hồ Chí Minh';
+        $this->is_active = true;
+        $this->resetValidation();
+    }
+
+    public function render()
+    {
+        $store = $this->store();
+
+        return view('livewire.store.branches.index', [
+            'store' => $store,
+            'branches' => $store->branches()->latest()->get(),
+        ]);
     }
 }

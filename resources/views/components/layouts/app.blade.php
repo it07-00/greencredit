@@ -48,8 +48,7 @@
                 @auth
                     <a class="gc-pill px-5 py-3 text-sm font-bold" href="{{ match(auth()->user()->role) {
                         'admin', 'super_admin' => url('/admin'),
-                        'store_owner', 'store_staff' => route('store.dashboard'),
-                        'partner' => route('partner.dashboard'),
+                        'store_owner', 'store_staff', 'partner' => url('/partner'),
                         default => route('dashboard'),
                     } }}">Dashboard</a>
                     <form method="post" action="{{ route('logout') }}">@csrf<button class="rounded-xl border border-emerald-200 px-4 py-3 text-sm font-bold text-emerald-800">Thoat</button></form>

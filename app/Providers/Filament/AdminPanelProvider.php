@@ -2,11 +2,17 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\AdminStatsOverview;
+use App\Filament\Widgets\GreenImpactWidget;
+use App\Filament\Widgets\RecentFraudAlerts;
+use App\Filament\Widgets\TopGreenStores;
+use App\Filament\Widgets\TopGreenUsers;
+use App\Filament\Widgets\TransactionChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
+use App\Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -29,16 +35,24 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->brandName('Green Credit Admin')
             ->colors([
-                'primary' => Color::Green,
+                'primary' => Color::Emerald,
+                'danger'  => Color::Rose,
+                'warning' => Color::Amber,
+                'info'    => Color::Sky,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
+                AdminStatsOverview::class,
+                GreenImpactWidget::class,
+                RecentFraudAlerts::class,
+                TopGreenStores::class,
+                TopGreenUsers::class,
+                TransactionChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,

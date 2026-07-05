@@ -69,7 +69,7 @@
             <div class="about-feature-wrapper-1 section-padding pb-0">
                 <div class="about-feature-box wow fadeInUp" data-wow-delay=".3s">
                     <div class="about-icon">
-                        <i class="flaticon-video-tiêu dùng xanh-1"></i>
+                        <i class="flaticon-video-marketing-1"></i>
                     </div>
                     <div class="about-content">
                         <h3>Phân tích dữ liệu xanh</h3>

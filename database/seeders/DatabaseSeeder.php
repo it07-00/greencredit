@@ -24,6 +24,7 @@ use App\Models\VoucherRedemption;
 use App\Services\GreenPointService;
 use App\Services\GreenScoreService;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -37,14 +38,14 @@ class DatabaseSeeder extends Seeder
         $demoUsers = [
             ['Super Admin', 'superadmin@greencredit.test', 'super_admin'],
             ['Admin Green', 'admin@greencredit.test', 'admin'],
-            ['Store Owner', 'storeowner@greencredit.test', 'store_owner'],
+            ['Store Owner 1', 'storeowner1@greencredit.test', 'store_owner'],
             ['Store Owner 2', 'storeowner2@greencredit.test', 'store_owner'],
-            ['Staff Green', 'staff@greencredit.test', 'store_staff'],
+            ['Staff Green 1', 'staff1@greencredit.test', 'store_staff'],
             ['Staff Green 2', 'staff2@greencredit.test', 'store_staff'],
             ['Staff Green 3', 'staff3@greencredit.test', 'store_staff'],
             ['Staff Green 4', 'staff4@greencredit.test', 'store_staff'],
-            ['Partner Demo', 'partner@greencredit.test', 'partner'],
-            ['Partner Finance', 'partner2@greencredit.test', 'partner'],
+            ['Partner Demo 1', 'partner1@greencredit.test', 'partner'],
+            ['Partner Demo 2', 'partner2@greencredit.test', 'partner'],
             ['User Demo', 'user@greencredit.test', 'user'],
         ];
 
@@ -69,14 +70,14 @@ class DatabaseSeeder extends Seeder
         }
 
         $rules = [
-            ['NO_PLASTIC_CUP', 'Khong dung ly nhua', 10, 20, 0.04, 'plastic_reduction'],
-            ['NO_STRAW', 'Khong dung ong hut', 5, 5, 0.01, 'plastic_reduction'],
-            ['PERSONAL_BOTTLE', 'Mang binh ca nhan', 20, 40, 0.08, 'plastic_reduction'],
-            ['ECO_PACKAGING', 'Dung bao bi sinh hoc', 10, 15, 0.03, 'plastic_reduction'],
-            ['REUSABLE_BAG', 'Dung tui tai su dung', 15, 25, 0.05, 'plastic_reduction'],
-            ['GREEN_TRANSPORT', 'Di chuyen xanh', 20, 0, 0.8, 'transport'],
-            ['RECYCLE_WASTE', 'Tai che rac thai', 15, 60, 0.1, 'recycling'],
-            ['SAVE_ENERGY', 'Tiet kiem nang luong', 10, 0, 0.3, 'energy'],
+            ['NO_PLASTIC_CUP', 'Không dùng ly nhựa', 10, 12, 0.04, 'plastic_reduction'],
+            ['NO_STRAW', 'Không dùng ống hút', 5, 1, 0.01, 'plastic_reduction'],
+            ['PERSONAL_BOTTLE', 'Mang bình cá nhân', 20, 15, 0.08, 'plastic_reduction'],
+            ['ECO_PACKAGING', 'Dùng bao bì sinh học', 10, 8, 0.03, 'plastic_reduction'],
+            ['REUSABLE_BAG', 'Dùng túi tái sử dụng', 15, 10, 0.05, 'plastic_reduction'],
+            ['GREEN_TRANSPORT', 'Di chuyển xanh', 20, 0, 0.5, 'transport'],
+            ['RECYCLE_WASTE', 'Tái chế rác thải', 15, 0, 0.1, 'recycling'],
+            ['SAVE_ENERGY', 'Tiết kiệm năng lượng', 10, 0, 0.3, 'energy'],
         ];
         foreach ($rules as [$code, $name, $points, $plastic, $co2, $category]) {
             GreenActionRule::create(compact('code', 'name', 'points', 'category') + ['plastic_saved_grams' => $plastic, 'co2_saved_kg' => $co2, 'is_active' => true]);
@@ -86,9 +87,9 @@ class DatabaseSeeder extends Seeder
             GreenLevel::create(['code' => $code, 'name' => $name, 'min_score' => $min, 'max_score' => $max, 'sort_order' => $i + 1, 'description' => 'Cap do '.$name, 'benefits' => ['badge' => $name]]);
         }
 
-        $stores = collect(['La Xanh Coffee', 'The Green House', 'EcoShop', 'Leafy Cafe', 'Organic Food Store'])->map(function ($name, $i) use ($users) {
+        $stores = collect(['Lá Xanh Coffee', 'Eco Milk Tea', 'Green Mart', 'Organic Food Corner', 'The Green House'])->map(function ($name, $i) use ($users) {
             return Store::create([
-                'owner_id' => $i < 3 ? $users['storeowner@greencredit.test']->id : $users['storeowner2@greencredit.test']->id,
+                'owner_id' => $i < 3 ? $users['storeowner1@greencredit.test']->id : $users['storeowner2@greencredit.test']->id,
                 'name' => $name,
                 'brand' => $name,
                 'type' => ['cafe', 'restaurant', 'supermarket', 'milk_tea', 'other'][$i],
@@ -109,14 +110,15 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $staffEmails = ['staff@greencredit.test', 'staff2@greencredit.test', 'staff3@greencredit.test', 'staff4@greencredit.test'];
+        $staffEmails = ['staff1@greencredit.test', 'staff2@greencredit.test', 'staff3@greencredit.test', 'staff4@greencredit.test'];
         foreach ($staffEmails as $i => $email) {
             StoreStaff::create(['store_id' => $stores[$i % $stores->count()]->id, 'branch_id' => $branches[$i]->id, 'user_id' => $users[$email]->id, 'position' => 'Nhan vien xanh']);
         }
 
         $partners = collect([
-            Partner::create(['user_id' => $users['partner@greencredit.test']->id, 'name' => 'Eco Rewards', 'type' => 'voucher', 'contact_email' => 'partner@greencredit.test', 'status' => 'active']),
-            Partner::create(['user_id' => $users['partner2@greencredit.test']->id, 'name' => 'Green Finance', 'type' => 'financial', 'contact_email' => 'partner2@greencredit.test', 'status' => 'active']),
+            Partner::create(['user_id' => $users['partner1@greencredit.test']->id, 'name' => 'Eco Voucher Partner', 'type' => 'voucher', 'contact_email' => 'partner1@greencredit.test', 'status' => 'active']),
+            Partner::create(['user_id' => $users['partner2@greencredit.test']->id, 'name' => 'Green Finance Partner', 'type' => 'financial', 'contact_email' => 'partner2@greencredit.test', 'status' => 'active']),
+            Partner::create(['name' => 'Eco Wallet Simulation Partner', 'type' => 'wallet', 'contact_email' => 'wallet@greencredit.test', 'status' => 'active']),
         ]);
 
         $pointService = app(GreenPointService::class);
@@ -129,11 +131,11 @@ class DatabaseSeeder extends Seeder
             $branch = $store->branches->random();
             $selected = collect($actionCodes)->random(rand(1, 3))->all();
             $rulesForInvoice = GreenActionRule::whereIn('code', $selected)->get();
-            $status = $i <= 12 ? 'used' : ($i <= 22 ? 'pending' : 'expired');
+            $status = $i <= 20 ? 'used' : ($i <= 25 ? 'pending' : 'expired');
             $invoice = GreenInvoice::create([
                 'store_id' => $store->id,
                 'branch_id' => $branch->id,
-                'staff_id' => $users['staff@greencredit.test']->id,
+                'staff_id' => $users['staff1@greencredit.test']->id,
                 'invoice_code' => 'GCI-'.now()->format('Ymd').'-'.Str::upper(Str::random(6)),
                 'qr_token' => Str::upper(Str::random(32)),
                 'amount' => rand(35000, 250000),
@@ -170,19 +172,33 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        foreach ($regularUsers as $user) {
+        foreach ($regularUsers->take(5) as $user) {
             NetZeroGoal::create(['user_id' => $user->id, 'month' => now()->month, 'year' => now()->year, 'plastic_target_grams' => 700, 'co2_target_kg' => 8, 'points_target' => 300, 'action_target' => 20]);
-            PersonalRecommendation::create(['user_id' => $user->id, 'title' => 'Mang binh ca nhan 3 lan tuan nay', 'description' => 'Giam nhua va nhan them Green Points.', 'category' => 'plastic', 'estimated_points' => 60]);
+            PersonalRecommendation::create(['user_id' => $user->id, 'title' => 'Mang bình cá nhân 3 lần tuần này', 'description' => 'Giảm nhựa và nhận thêm Green Points.', 'category' => 'plastic', 'estimated_points' => 60]);
+            PersonalRecommendation::create(['user_id' => $user->id, 'title' => 'Đi bộ cho quãng đường dưới 2 km', 'description' => 'Giảm phát thải CO₂ và duy trì chuỗi ngày xanh.', 'category' => 'transport', 'estimated_points' => 40]);
             $scoreService->saveScoreHistory($user, 'seed');
         }
+
+        $voucherTitles = [
+            'Giảm 20% tại Lá Xanh Coffee',
+            'Giảm 15% tại Eco Milk Tea',
+            'Giảm 50.000đ tại Green Mart',
+            'Hoàn 20.000đ Eco Wallet mô phỏng',
+            'Ưu đãi tài chính Green Finance mô phỏng',
+            'Tặng đồ uống xanh',
+            'Ưu đãi túi tái sử dụng',
+            'Giảm giá thực phẩm hữu cơ',
+            'Voucher di chuyển xanh',
+            'Quà tặng Net Zero Hero',
+        ];
 
         for ($i = 1; $i <= 10; $i++) {
             Voucher::create([
                 'partner_id' => $partners->random()->id,
                 'store_id' => $i <= 4 ? $stores->random()->id : null,
-                'title' => 'Voucher xanh '.$i,
+                'title' => $voucherTitles[$i - 1],
                 'code' => 'GREEN'.$i,
-                'description' => 'Uu dai danh cho nguoi dung co hanh vi tieu dung xanh.',
+                'description' => 'Ưu đãi giả lập dành cho người dùng có hành vi tiêu dùng xanh.',
                 'category' => ['cafe', 'milk_tea', 'supermarket', 'wallet', 'finance'][($i - 1) % 5],
                 'required_points' => 30 + $i * 20,
                 'discount_type' => $i % 2 ? 'fixed' : 'percent',
@@ -205,11 +221,51 @@ class DatabaseSeeder extends Seeder
         foreach ([['TOO_MANY_SCANS', 'Qua nhieu lan quet', 60, '10'], ['DUPLICATE_SCAN', 'Quet trung QR', 80, '1'], ['EXPIRED_INVOICE', 'Quet hoa don het han', 70, 'expired']] as [$code, $name, $risk, $threshold]) {
             FraudRule::create(['code' => $code, 'name' => $name, 'risk_points' => $risk, 'threshold_value' => $threshold]);
         }
-        FraudAlert::create(['user_id' => $users['user@greencredit.test']->id, 'green_invoice_id' => GreenInvoice::where('status', 'expired')->first()?->id, 'store_id' => $stores->first()->id, 'alert_type' => 'expired_invoice_attempt', 'description' => 'Demo canh bao quet hoa don het han.', 'risk_score' => 70]);
+        foreach (['expired_invoice_attempt', 'duplicate_scan', 'too_many_scans_per_day', 'same_store_repeated', 'suspicious_pattern'] as $index => $type) {
+            FraudAlert::create([
+                'user_id' => $regularUsers[$index]->id,
+                'green_invoice_id' => GreenInvoice::where('status', 'expired')->skip($index)->first()?->id,
+                'store_id' => $stores[$index]->id,
+                'alert_type' => $type,
+                'description' => 'Cảnh báo gian lận giả lập phục vụ trình bày đồ án.',
+                'risk_score' => 40 + $index * 10,
+            ]);
+        }
 
         Campaign::create(['partner_id' => $partners->first()->id, 'title' => 'Tuan le khong ong hut', 'description' => 'Tang diem khi khong dung ong hut.', 'type' => 'challenge', 'started_at' => now(), 'ended_at' => now()->addMonth(), 'status' => 'active', 'budget' => 5000000]);
-        FinancialOffer::create(['partner_id' => $partners->last()->id, 'title' => 'Vay xanh lai suat uu dai', 'description' => 'Mo phong giam lai suat theo Green Score.', 'min_green_score' => 500, 'base_interest_rate' => 12, 'discounted_interest_rate' => 9.5, 'max_amount' => 50000000, 'required_points' => 200, 'status' => 'active']);
+        for ($i = 1; $i <= 5; $i++) {
+            FinancialOffer::create([
+                'partner_id' => $partners[1]->id,
+                'title' => "Gói tài chính xanh mô phỏng {$i}",
+                'description' => 'Ưu đãi giả lập dựa trên Green Score, không kết nối ngân hàng thật.',
+                'min_green_score' => 300 + $i * 80,
+                'base_interest_rate' => 12,
+                'discounted_interest_rate' => 11 - $i * 0.3,
+                'max_amount' => 10000000 * $i,
+                'required_points' => 50 * $i,
+                'status' => 'active',
+            ]);
+        }
         SystemSetting::create(['key' => 'point_exchange_rate', 'value' => '100 diem = 1000 VND', 'type' => 'string', 'group' => 'wallet']);
-        ActivityLog::create(['user_id' => $users['superadmin@greencredit.test']->id, 'action' => 'seed_database', 'description' => 'Tao du lieu demo Green Credit Platform.']);
+        foreach (range(1, 10) as $index) {
+            ActivityLog::create([
+                'user_id' => $users['superadmin@greencredit.test']->id,
+                'action' => $index === 1 ? 'seed_database' : 'demo_activity',
+                'description' => "Nhật ký hoạt động giả lập số {$index}.",
+                'metadata' => ['simulation' => true],
+            ]);
+        }
+
+        foreach ($regularUsers->take(5) as $index => $user) {
+            DB::table('notifications')->insert([
+                'user_id' => $user->id,
+                'title' => 'Thử thách xanh mới',
+                'message' => 'Bạn có một gợi ý hành động xanh mới trong Net Zero Planner.',
+                'type' => $index % 2 === 0 ? 'success' : 'info',
+                'data' => json_encode(['simulation' => true]),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

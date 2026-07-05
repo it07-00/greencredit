@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\Store\Branches\Index;
 use App\Models\FraudAlert;
 use App\Models\GreenActionRule;
 use App\Models\GreenInvoice;
 use App\Models\GreenLevel;
+use App\Models\Partner;
 use App\Models\Store;
 use App\Models\StoreBranch;
 use App\Models\StoreStaff;
@@ -17,6 +19,7 @@ use App\Services\QrInvoiceService;
 use App\Services\VoucherService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class GreenCreditFlowTest extends TestCase
@@ -26,6 +29,8 @@ class GreenCreditFlowTest extends TestCase
     private User $user;
 
     private User $staff;
+
+    private User $owner;
 
     private Store $store;
 
@@ -43,9 +48,9 @@ class GreenCreditFlowTest extends TestCase
         }
 
         $this->user = User::create(['name' => 'User', 'email' => 'user@test.local', 'password' => Hash::make('password'), 'role' => 'user']);
-        $owner = User::create(['name' => 'Owner', 'email' => 'owner@test.local', 'password' => Hash::make('password'), 'role' => 'store_owner']);
+        $this->owner = User::create(['name' => 'Owner', 'email' => 'owner@test.local', 'password' => Hash::make('password'), 'role' => 'store_owner']);
         $this->staff = User::create(['name' => 'Staff', 'email' => 'staff@test.local', 'password' => Hash::make('password'), 'role' => 'store_staff']);
-        $this->store = Store::create(['owner_id' => $owner->id, 'name' => 'Test Store', 'type' => 'cafe', 'status' => 'active']);
+        $this->store = Store::create(['owner_id' => $this->owner->id, 'name' => 'Test Store', 'type' => 'cafe', 'status' => 'active']);
         $this->branch = StoreBranch::create(['store_id' => $this->store->id, 'name' => 'CN 1', 'address' => '1 Test']);
         StoreStaff::create(['store_id' => $this->store->id, 'branch_id' => $this->branch->id, 'user_id' => $this->staff->id]);
     }
@@ -176,6 +181,47 @@ class GreenCreditFlowTest extends TestCase
     public function test_store_staff_cannot_manage_store_staff(): void
     {
         $this->actingAs($this->staff)->get(route('store.staff'))->assertForbidden();
+    }
+
+    public function test_store_owner_can_create_branch_for_own_store(): void
+    {
+        $this->actingAs($this->owner);
+
+        Livewire::test(Index::class)
+            ->set('name', 'Chi nhánh xanh')
+            ->set('address', '10 Đường Lá Xanh')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('store_branches', [
+            'store_id' => $this->store->id,
+            'name' => 'Chi nhánh xanh',
+        ]);
+    }
+
+    public function test_partner_creates_voucher_for_own_tenant(): void
+    {
+        $partnerUser = User::create([
+            'name' => 'Partner',
+            'email' => 'partner@test.local',
+            'password' => Hash::make('password'),
+            'role' => 'partner',
+        ]);
+        $partner = Partner::create(['user_id' => $partnerUser->id, 'name' => 'Eco Partner', 'status' => 'active']);
+        $this->actingAs($partnerUser);
+
+        Livewire::test(\App\Livewire\Partner\Vouchers\Index::class)
+            ->set('title', 'Voucher xanh demo')
+            ->set('code', 'DEMO-GREEN')
+            ->set('required_points', 100)
+            ->set('discount_value', 20000)
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('vouchers', [
+            'partner_id' => $partner->id,
+            'code' => 'DEMO-GREEN',
+        ]);
     }
 
     public function test_green_score_is_between_zero_and_one_thousand(): void

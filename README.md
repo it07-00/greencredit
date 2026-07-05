@@ -1,6 +1,8 @@
 # Green Credit Platform
 
-Green Credit Platform la web app Laravel + Livewire mo phong nen tang tich diem, cham diem va phan tich hanh vi tieu dung xanh dua tren QR Code. Cua hang tao hoa don xanh, nguoi dung quet QR de nhan Green Points, theo doi Green Wallet, Green Score, Net Zero Planner va doi voucher.
+Green Credit Platform là đồ án mô phỏng nền tảng tích điểm, chấm điểm và phân tích hành vi tiêu dùng xanh dựa trên QR Code. Cửa hàng tạo hóa đơn xanh, người dùng quét QR để nhận Green Points, theo dõi Green Wallet, Green Score, Net Zero Planner và đổi voucher.
+
+> Do phạm vi đồ án, các cửa hàng, voucher, ví điện tử và đối tác tài chính trong hệ thống được xây dựng bằng dữ liệu giả lập để minh họa đầy đủ luồng nghiệp vụ. Hệ thống chưa tích hợp API thật từ ngân hàng, ví điện tử hoặc thương hiệu thương mại.
 
 ## Stack
 
@@ -49,16 +51,17 @@ Tat ca dung mat khau: `password`
 
 - `superadmin@greencredit.test` / super_admin
 - `admin@greencredit.test` / admin
-- `storeowner@greencredit.test` / store_owner
-- `staff@greencredit.test` / store_staff
-- `partner@greencredit.test` / partner
+- `storeowner1@greencredit.test` / store_owner
+- `storeowner2@greencredit.test` / store_owner
+- `staff1@greencredit.test` / store_staff
+- `staff2@greencredit.test` / store_staff
+- `partner1@greencredit.test` / partner voucher
 - `partner2@greencredit.test` / partner tài chính
-- `user@greencredit.test` / user
 - `user1@greencredit.test` den `user5@greencredit.test` / user
 
 ## Luong nghiep vu chinh
 
-1. Dang nhap `staff@greencredit.test`.
+1. Đăng nhập `staff1@greencredit.test`.
 2. Vao `/store/invoices/create`, chon chi nhanh, nhap so tien, tick hanh dong xanh.
 3. Tao hoa don va copy `qr_token`.
 4. Dang nhap `user@greencredit.test`.
@@ -88,10 +91,19 @@ Hien co test cho wallet auto-create, store staff tao invoice, scan QR thanh cong
 
 ## Phan mo phong
 
-- QR hien bang token/text demo thay vi camera scanner that.
-- Financial offers la mo phong uu dai lai suat theo Green Score.
-- Recommendations la rule-based, khong dung AI that.
-- Dashboard chart/report o muc MVP, du lieu lay tu database seeded.
+- QR hiển thị bằng token để dễ trình bày, không dùng camera scanner thật.
+- Lá Xanh Coffee, Eco Milk Tea, Green Mart, Organic Food Corner và The Green House đều là thương hiệu giả lập.
+- Eco Voucher Partner, Green Finance Partner và Eco Wallet Simulation Partner đều là đối tác giả lập.
+- Financial offers chỉ mô phỏng ưu đãi theo Green Score, không kết nối ngân hàng hoặc xét duyệt khoản vay thật.
+- Recommendations dùng luật nghiệp vụ, không sử dụng AI thật.
+
+## Khả năng tích hợp trong tương lai
+
+- API hóa đơn/POS từ cửa hàng thật.
+- QR scanner bằng camera và chữ ký số chống giả mạo.
+- API voucher từ thương hiệu đối tác.
+- Ví điện tử hoặc ngân hàng sau khi đáp ứng yêu cầu pháp lý và bảo mật.
+- Hệ thống gợi ý thông minh dựa trên dữ liệu hành vi đã được người dùng đồng ý.
 
 ## Screenshot placeholders
 

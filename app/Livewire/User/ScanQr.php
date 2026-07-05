@@ -17,6 +17,9 @@ class ScanQr extends Component
     public function mount(?string $token = null): void
     {
         $this->token = $token ?? '';
+        if ($this->token) {
+            $this->scan(app(QrInvoiceService::class));
+        }
     }
 
     public function scan(QrInvoiceService $service): void

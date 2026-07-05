@@ -6,9 +6,8 @@ Description: SEO & Digital Marketing Agency PHP Template
 Version: 1.0.0
 */
 /*CSS Table Of Content Ends Here*/
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 :root {
   --body: #fff;
   --black: #000;
@@ -40,7 +39,7 @@ Version: 1.0.0
   position: relative;
   z-index: 1;
   border-radius: 6px;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   overflow: hidden;
 }
 .theme-btn i {
@@ -111,7 +110,7 @@ Version: 1.0.0
   color: var(--theme-color);
   text-transform: capitalize;
   display: inline-block;
-  font-family: "DM Sans";
+  font-family: "Plus Jakarta Sans";
   margin-top: 10px;
 }
 .link-btn:hover {
@@ -164,7 +163,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   margin: 0px;
   padding: 0;
   color: var(--header);
@@ -292,7 +291,7 @@ p {
   }
 }
 .preloader .animation-preloader .txt-loading {
-  font: bold 5em "Outfit", sans-serif, "Inter", sans-serif;
+  font: bold 5em "Plus Jakarta Sans", sans-serif, "Inter", sans-serif;
   text-align: center;
   user-select: none;
 }
@@ -332,7 +331,7 @@ p {
   content: attr(data-text-preloader);
   left: 0;
   opacity: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   position: absolute;
   top: -3px;
   transform: rotateY(-90deg);
@@ -2622,7 +2621,7 @@ p {
 }
 .choose-us-wrapper .choose-us-content .icon-box-items .icon-box .content h6 {
   color: #F05454;
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 .choose-us-wrapper .choose-us-content .icon-box-items .icon-box .content h6 br {
   display: block;
@@ -5047,7 +5046,7 @@ p {
   margin: 0 0;
   position: relative;
   color: var(--header);
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   position: relative;
   padding-left: 40px;
 }
@@ -5725,7 +5724,7 @@ p {
   font-size: 15px;
   font-weight: 500;
   color: #FF792E;
-  font-family: "DM Sans";
+  font-family: "Plus Jakarta Sans";
 }
 .team-items-2 .team-content h3 {
   font-size: 24px;
@@ -6295,7 +6294,7 @@ p {
 }
 .cta-call-wrapper .cta-button .pricing-text {
   color: var(--white);
-  font-family: "DM Sans";
+  font-family: "Plus Jakarta Sans";
   font-size: 15px;
   display: inline-block;
   font-weight: 900;
@@ -6962,7 +6961,7 @@ p {
   color: var(--white);
   font-size: 26px;
   line-height: 1.4;
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 400;
   padding: 60px;
   text-align: center;
@@ -7497,7 +7496,7 @@ p {
   padding: 17px 20px;
   line-height: 1;
   font-size: 16px;
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   display: block;
   margin-bottom: 12px;
   font-weight: 600;
@@ -8537,4 +8536,23 @@ p.sticky-label {
 }
 .char-animation {
   visibility: visible !important;
+}
+
+/* ===== Green Credit – Active nav link override ===== */
+.header-main .main-menu ul li.active > a,
+.header-main .main-menu ul li.active > a:hover {
+  color: var(--theme-color) !important;
+  font-weight: 700;
+}
+
+/* Underline indicator for active link */
+.header-main .main-menu ul li.active > a::after {
+  content: '';
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--theme-color);
+  border-radius: 2px;
 }

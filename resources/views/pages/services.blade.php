@@ -55,7 +55,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
                     <div class="service-icon-box-items-2">
                         <div class="icon">
-                            <i class="flaticon-email-tiêu dùng xanh-1"></i>
+                            <i class="flaticon-email-marketing-1"></i>
                             <div class="icon-bg">
                                 <img src="{{ asset('frontend/assets/img/service/icon-bg-2.png') }}" alt="img">
                             </div>
@@ -94,7 +94,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
                     <div class="service-icon-box-items-2">
                         <div class="icon">
-                            <i class="flaticon-email-tiêu dùng xanh"></i>
+                            <i class="flaticon-email-marketing"></i>
                             <div class="icon-bg">
                                 <img src="{{ asset('frontend/assets/img/service/icon-bg-4.png') }}" alt="img">
                             </div>
@@ -133,7 +133,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
                     <div class="service-icon-box-items-2">
                         <div class="icon">
-                            <i class="flaticon-email-tiêu dùng xanh-1"></i>
+                            <i class="flaticon-email-marketing-1"></i>
                             <div class="icon-bg">
                                 <img src="{{ asset('frontend/assets/img/service/icon-bg-6.png') }}" alt="img">
                             </div>
@@ -172,7 +172,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
                     <div class="service-icon-box-items-2">
                         <div class="icon">
-                            <i class="flaticon-email-tiêu dùng xanh"></i>
+                            <i class="flaticon-email-marketing"></i>
                             <div class="icon-bg">
                                 <img src="{{ asset('frontend/assets/img/service/icon-bg-8.png') }}" alt="img">
                             </div>
