@@ -44,6 +44,23 @@
                             <img src="{{ asset('frontend/assets/img/hero/box-shape.png') }}" alt="img">
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tính năng Section Start -->
+    <section class="service-section fix section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="wow fadeInUp">Chào mừng đến Green Credit</span>
+                <h2 class="char-animation">Mỗi hành động nhỏ<br>Tạo nên tương lai xanh</h2>
+                <p class="mt-3 wow fadeInUp" data-wow-delay=".4s">Green Credit là nền tảng tiên phong giúp kết nối người dùng, cửa hàng đối tác và nhà tài trợ <br> nhằm thúc đẩy lối sống xanh, giảm thiểu rác thải nhựa và hướng tới mục tiêu phát thải ròng bằng không (Net Zero).</p>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="service-card-items-1 item_right_1">
+                        <div class="service-icon">
                             <i class="flaticon-market-analysis"></i>
                         </div>
                         <div class="service-content">
