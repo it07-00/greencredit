@@ -122,24 +122,24 @@
                                 <span class="wow fadeInUp">Về Green Credit</span>
                                 <h2 class="char-animation">Vì sao nên tham gia<br>Green Credit?</h2>
                             </div>
-                            <p class="about-text wow fadeInUp" data-wow-delay=".4s">Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and tiêu dùng bền vững solutions with our proven expertise</p>
+                            <p class="about-text wow fadeInUp" data-wow-delay=".4s">Chúng tôi đồng hành cùng bạn trên hành trình kiến tạo cuộc sống bền vững, mang lại những giải pháp thiết thực để tích điểm từ thói quen tiêu dùng hàng ngày.</p>
                             <div class="icon-items wow fadeInUp" data-wow-delay=".2s">
                                 <div class="icon">
                                     <i class="flaticon-pie-chart"></i>
                                 </div>
                                 <div class="content">
                                     <h3>Đổi voucher xanh</h3>
-                                    <p>Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and tiêu dùng bền vững solutions.</p>
+                                    <p>Quy đổi điểm tích lũy của bạn thành các voucher mua sắm hấp dẫn từ hàng trăm thương hiệu đối tác đồng hành.</p>
                                 </div>
                             </div>
                             <ul class="list-items wow fadeInUp" data-wow-delay=".4s">
                                 <li>
                                     <i class="flaticon-check"></i>
-                                    Competitive online business, the higher the position
+                                    Tích lũy Green Points nhanh chóng qua QR Code hóa đơn
                                 </li>
                                 <li>
                                     <i class="flaticon-check"></i>
-                                    Identify converted customers who reached your business
+                                    Nâng hạng Green Score để nhận các đặc quyền tài chính ưu đãi
                                 </li>
                             </ul>
                             <a href="{{ route('about') }}" class="theme-btn wow fadeInUp" data-wow-delay=".6s">
@@ -168,7 +168,7 @@
                         </div>
                         <div class="service-content">
                             <h3><a href="service-details.html">Quét QR hóa đơn xanh</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations. Our approach is centered on understanding.</p>
+                            <p>Quét QR trên hóa đơn mua sắm tại các cửa hàng đối tác để tự động tích lũy điểm xanh tương ứng với hành động bảo vệ môi trường.</p>
                             <a href="service-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
@@ -182,7 +182,7 @@
                         </div>
                         <div class="service-content">
                             <h3><a href="service-details.html">Green Wallet & lịch sử điểm</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations. Our approach is centered on understanding.</p>
+                            <p>Quản lý số dư Green Points, xem lịch sử nhận và đổi điểm chi tiết theo thời gian thực một cách minh bạch và an toàn.</p>
                             <a href="service-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
@@ -196,7 +196,7 @@
                         </div>
                         <div class="service-content">
                             <h3><a href="service-details.html">Green Score & cấp độ xanh</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations. Our approach is centered on understanding.</p>
+                            <p>Đánh giá mức độ sống xanh của bạn dựa trên 5 tiêu chí: hành vi, tính nhất quán, tính đa dạng, xác thực và cộng đồng.</p>
                             <a href="service-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
@@ -210,7 +210,7 @@
                         </div>
                         <div class="service-content">
                             <h3><a href="service-details.html">Voucher & Net Zero Planner</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations. Our approach is centered on understanding.</p>
+                            <p>Quy đổi điểm xanh thành voucher quà tặng hấp dẫn và thiết lập lộ trình giảm thiểu phát thải CO2, rác thải nhựa cá nhân hàng tháng.</p>
                             <a href="service-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
@@ -290,17 +290,17 @@
                     <div class="col-lg-6">
                         <div class="choose-us-content">
                             <div class="section-title">
-                                <span class="wow fadeInUp">Why Choose Us</span>
+                                <span class="wow fadeInUp">Tại sao chọn chúng tôi</span>
                                 <h2 class="char-animation">Minh bạch dữ liệu, tạo tác động bền vững</h2>
                             </div>
-                            <p class="choose-us-text wow fadeInUp" data-wow-delay=".4s">Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and <br> tiêu dùng bền vững solutions with our proven expertise</p>
+                            <p class="choose-us-text wow fadeInUp" data-wow-delay=".4s">Green Credit mang lại sự tin cậy tuyệt đối thông qua hệ thống ghi nhận minh bạch và những phần quà thiết thực hướng tới cộng đồng sống xanh bền vững.</p>
                             <div class="icon-box-items">
                                 <div class="icon-box wow fadeInUp" data-wow-delay=".2s">
                                     <div class="icon">
                                         <i class="flaticon-mission"></i>
                                     </div>
                                     <div class="content">
-                                        <h6>Our Mission</h6>
+                                        <h6>Sứ mệnh của chúng tôi</h6>
                                         <h5>Chúng tôi không chỉ cung cấp điểm thưởng<br>mà còn xây dựng một cộng đồng sống xanh đáng tin cậy.</h5>
                                     </div>
                                 </div>
@@ -309,7 +309,7 @@
                                         <i class="flaticon-vision"></i>
                                     </div>
                                     <div class="content">
-                                        <h6>Our Vision</h6>
+                                        <h6>Tầm nhìn của chúng tôi</h6>
                                         <h5>Mỗi người dùng và doanh nghiệp đều có thể<br>đo lường, cải thiện tác động môi trường của mình.</h5>
                                     </div>
                                 </div>
@@ -324,8 +324,8 @@
                                         <i class="far fa-phone-alt"></i>
                                     </div>
                                     <div class="content">
-                                        <p>Mail Us</p>
-                                        <h5>(704) 555-0127</h5>
+                                        <p>Email liên hệ</p>
+                                        <h5>hello@greencredit.vn</h5>
                                     </div>
                                 </div>
                             </div>
@@ -350,8 +350,8 @@
                         <i class="flaticon-expertise"></i>
                     </div>
                     <div class="content">
-                        <h2><span class="odometer" data-count="45">00</span>+</h2>
-                        <p>Industry Experience</p>
+                        <h2><span class="odometer" data-count="350">00</span>+</h2>
+                        <p>Đối tác liên kết</p>
                     </div>
                 </div>
                 <div class="counter-items style-2 wow fadeInUp" data-wow-delay=".4s">
@@ -359,8 +359,8 @@
                         <i class="flaticon-file"></i>
                     </div>
                     <div class="content">
-                        <h2><span class="odometer" data-count="568">00</span>+</h2>
-                        <p>Project Completed</p>
+                        <h2><span class="odometer" data-count="25000">00</span>+</h2>
+                        <p>Người dùng sống xanh</p>
                     </div>
                 </div>
                 <div class="counter-items style-3 wow fadeInUp" data-wow-delay=".6s">
@@ -368,8 +368,8 @@
                         <i class="flaticon-medal"></i>
                     </div>
                     <div class="content">
-                        <h2><span class="odometer" data-count="73">00</span>+</h2>
-                        <p>Awards Wined</p>
+                        <h2><span class="odometer" data-count="12">00</span>M+</h2>
+                        <p>Điểm tích lũy</p>
                     </div>
                 </div>
                 <div class="counter-items style-4 wow fadeInUp" data-wow-delay=".8s">
@@ -377,8 +377,8 @@
                         <i class="flaticon-hire"></i>
                     </div>
                     <div class="content">
-                        <h2><span class="odometer" data-count="67">00</span>K</h2>
-                        <p>Global Clients</p>
+                        <h2><span class="odometer" data-count="18">00</span>Tấn</h2>
+                        <p>Nhựa & CO2 giảm thiểu</p>
                     </div>
                 </div>
             </div>
@@ -392,15 +392,14 @@
                 <span class="wow fadeInUp">Hệ thống cấp độ xanh</span>
                 <h2 class="char-animation">Nâng hạng Green Score, mở khóa thêm quyền lợi</h2>
                 <p class="mt-3 wow fadeInUp" data-wow-delay=".4s">
-                    Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and tiêu dùng bền vững solutions. With <br> our proven expertise and innovative strategies the digital landscape.
+                    Mỗi cấp độ xanh mở ra những đặc quyền lớn hơn từ các đối tác liên kết tài chính, voucher quà tặng và cơ hội tham gia các chiến dịch sống xanh lớn.
                 </p>
                 <div class="d-flex justify-content-center mt-3 mt-md-0">
                     <div class="pricing-two__tab">
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="pt-1-tab" data-bs-toggle="tab" data-bs-target="#pt-1" type="button" role="tab" aria-controls="pt-1" aria-selected="true">Monthly</button>
-                                <button class="nav-link" id="pt-2-tab" data-bs-toggle="tab" data-bs-target="#pt-2" type="button" role="tab" aria-controls="pt-2" aria-selected="false" tabindex="-1">Yearly</button>
-
+                                <button class="nav-link active" id="pt-1-tab" data-bs-toggle="tab" data-bs-target="#pt-1" type="button" role="tab" aria-controls="pt-1" aria-selected="true">Cấp độ cơ bản</button>
+                                <button class="nav-link" id="pt-2-tab" data-bs-toggle="tab" data-bs-target="#pt-2" type="button" role="tab" aria-controls="pt-2" aria-selected="false" tabindex="-1">Cấp độ nâng cao</button>
                             </div>
                         </nav>
                     </div>
@@ -418,34 +417,34 @@
                                             <h2>0 - 199<sub> điểm</sub></h2>
                                         </div>
                                         <p>Tích lũy điểm từ hành động xanh và mở khóa các quyền lợi phù hợp với cấp độ của bạn.</p>
-                                        <a href="pricing.html" class="theme-btn">
-                                            Join This Plan
+                                        <a href="{{ route('green-score.public') }}" class="theme-btn">
+                                            Xem chi tiết
                                             <i class="far fa-arrow-right"></i>
                                         </a>
                                         <ul class="pricing-list">
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Complete Website Auditing
+                                                Tích lũy điểm từ hóa đơn
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Error Fix of the Website for Needs
+                                                Theo dõi ví điểm và lịch sử
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Keyword Research & Analysis
+                                                Tham gia thử thách cộng đồng
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Power Link Building
+                                                Đổi các voucher cơ bản
                                             </li>
                                             <li>
                                                 <i class="far fa-times-circle"></i>
-                                                Complete One-Page Optimization
+                                                Ưu đãi lãi suất tài chính xanh
                                             </li>
                                             <li>
                                                 <i class="far fa-times-circle"></i>
-                                                24/7 Our online support
+                                                Nhận quà tặng hiện vật đặc biệt
                                             </li>
                                         </ul>
                                     </div>
@@ -457,34 +456,34 @@
                                             <h2>200 - 399<sub> điểm</sub></h2>
                                         </div>
                                         <p>Tích lũy điểm từ hành động xanh và mở khóa các quyền lợi phù hợp với cấp độ của bạn.</p>
-                                        <a href="pricing.html" class="theme-btn">
-                                            Join This Plan
+                                        <a href="{{ route('green-score.public') }}" class="theme-btn">
+                                            Xem chi tiết
                                             <i class="far fa-arrow-right"></i>
                                         </a>
                                         <ul class="pricing-list">
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Complete Website Auditing
+                                                Tích lũy điểm từ hóa đơn
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Error Fix of the Website for Needs
+                                                Theo dõi ví điểm và lịch sử
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Keyword Research & Analysis
+                                                Tham gia thử thách cộng đồng
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Power Link Building
+                                                Đổi các voucher nâng cao
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Báo cáo phân tích hành vi tiêu dùng
                                             </li>
                                             <li>
                                                 <i class="far fa-times-circle"></i>
-                                                Complete One-Page Optimization
-                                            </li>
-                                            <li>
-                                                <i class="far fa-times-circle"></i>
-                                                24/7 Our online support
+                                                Ưu đãi lãi suất tài chính xanh
                                             </li>
                                         </ul>
                                     </div>
@@ -492,38 +491,38 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
                                     <div class="pricing-box-items">
                                         <div class="pricing-header">
-                                            <h3>Cấp độ Seed</h3>
-                                            <h2>0 - 199<sub> điểm</sub></h2>
+                                            <h3>Cấp độ Tree</h3>
+                                            <h2>400 - 699<sub> điểm</sub></h2>
                                         </div>
                                         <p>Tích lũy điểm từ hành động xanh và mở khóa các quyền lợi phù hợp với cấp độ của bạn.</p>
-                                        <a href="pricing.html" class="theme-btn">
-                                            Join This Plan
+                                        <a href="{{ route('green-score.public') }}" class="theme-btn">
+                                            Xem chi tiết
                                             <i class="far fa-arrow-right"></i>
                                         </a>
                                         <ul class="pricing-list">
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Complete Website Auditing
+                                                Tích lũy điểm từ hóa đơn
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Error Fix of the Website for Needs
+                                                Theo dõi ví điểm và lịch sử
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Keyword Research & Analysis
+                                                Tham gia thử thách cộng đồng
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Power Link Building
+                                                Đổi các voucher đặc biệt
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                Complete One-Page Optimization
+                                                <i class="flaticon-check"></i>
+                                                Báo cáo phân tích hành vi tiêu dùng
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                24/7 Our online support
+                                                <i class="flaticon-check"></i>
+                                                Ưu đãi lãi suất tài chính xanh (0.5%)
                                             </li>
                                         </ul>
                                     </div>
@@ -537,38 +536,38 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6">
                                     <div class="pricing-box-items">
                                         <div class="pricing-header">
-                                            <h3>Cấp độ Seed</h3>
-                                            <h2>0 - 199<sub> điểm</sub></h2>
+                                            <h3>Cấp độ Forest</h3>
+                                            <h2>700 - 899<sub> điểm</sub></h2>
                                         </div>
                                         <p>Tích lũy điểm từ hành động xanh và mở khóa các quyền lợi phù hợp với cấp độ của bạn.</p>
-                                        <a href="pricing.html" class="theme-btn">
-                                            Join This Plan
+                                        <a href="{{ route('green-score.public') }}" class="theme-btn">
+                                            Xem chi tiết
                                             <i class="far fa-arrow-right"></i>
                                         </a>
                                         <ul class="pricing-list">
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Complete Website Auditing
+                                                Tích lũy điểm từ hóa đơn
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Error Fix of the Website for Needs
+                                                Theo dõi ví điểm và lịch sử
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Keyword Research & Analysis
+                                                Tham gia thử thách cộng đồng
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Power Link Building
+                                                Đổi các voucher cao cấp nhất
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                Complete One-Page Optimization
+                                                <i class="flaticon-check"></i>
+                                                Phân tích hành vi & gợi ý AI
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                24/7 Our online support
+                                                <i class="flaticon-check"></i>
+                                                Ưu đãi lãi suất tài chính xanh (1.0%)
                                             </li>
                                         </ul>
                                     </div>
@@ -576,38 +575,38 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6">
                                     <div class="pricing-box-items active">
                                         <div class="pricing-header">
-                                            <h3>Cấp độ Leaf</h3>
-                                            <h2>200 - 399<sub> điểm</sub></h2>
+                                            <h3>Cấp độ Net Zero Hero</h3>
+                                            <h2>900 - 1000<sub> điểm</sub></h2>
                                         </div>
                                         <p>Tích lũy điểm từ hành động xanh và mở khóa các quyền lợi phù hợp với cấp độ của bạn.</p>
-                                        <a href="pricing.html" class="theme-btn">
-                                            Join This Plan
+                                        <a href="{{ route('green-score.public') }}" class="theme-btn">
+                                            Xem chi tiết
                                             <i class="far fa-arrow-right"></i>
                                         </a>
                                         <ul class="pricing-list">
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Complete Website Auditing
+                                                Tất cả quyền lợi cấp Forest
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Error Fix of the Website for Needs
+                                                Ưu đãi tài chính xanh tốt nhất (1.5%)
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Keyword Research & Analysis
+                                                Nhận quà tặng hiện vật hàng tháng
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Power Link Building
+                                                Huy hiệu vinh danh Net Zero Hero
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                Complete One-Page Optimization
+                                                <i class="flaticon-check"></i>
+                                                Tham gia ban cố vấn cộng đồng xanh
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                24/7 Our online support
+                                                <i class="flaticon-check"></i>
+                                                Hỗ trợ ưu tiên 24/7 trực tiếp
                                             </li>
                                         </ul>
                                     </div>
@@ -615,38 +614,38 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6">
                                     <div class="pricing-box-items">
                                         <div class="pricing-header">
-                                            <h3>Cấp độ Seed</h3>
-                                            <h2>0 - 199<sub> điểm</sub></h2>
+                                            <h3>Đặc quyền đối tác</h3>
+                                            <h2>Dành cho Doanh nghiệp</h2>
                                         </div>
-                                        <p>Tích lũy điểm từ hành động xanh và mở khóa các quyền lợi phù hợp với cấp độ của bạn.</p>
-                                        <a href="pricing.html" class="theme-btn">
-                                            Join This Plan
+                                        <p>Liên kết với Green Credit để đồng hành cùng khách hàng trong hành trình sống xanh.</p>
+                                        <a href="{{ route('contact') }}" class="theme-btn">
+                                            Liên kết ngay
                                             <i class="far fa-arrow-right"></i>
                                         </a>
                                         <ul class="pricing-list">
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Complete Website Auditing
+                                                Quảng bá thương hiệu sống xanh
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Error Fix of the Website for Needs
+                                                Ghi nhận phát thải giảm thiểu
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Keyword Research & Analysis
+                                                Tạo chiến dịch voucher độc quyền
                                             </li>
                                             <li>
                                                 <i class="flaticon-check"></i>
-                                                Power Link Building
+                                                Tiếp cận tệp khách hàng xanh
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                Complete One-Page Optimization
+                                                <i class="flaticon-check"></i>
+                                                Báo cáo phân tích hành vi tiêu dùng
                                             </li>
                                             <li>
-                                                <i class="far fa-times-circle"></i>
-                                                24/7 Our online support
+                                                <i class="flaticon-check"></i>
+                                                Xuất dữ liệu báo cáo ESG chuẩn hóa
                                             </li>
                                         </ul>
                                     </div>
@@ -670,18 +669,18 @@
                     <span class="wow fadeInUp">Green Score của bạn</span>
                     <h2 class="text-white char-animation">Hiểu rõ mức độ sống xanh</h2>
                     <p class="mt-3 text-white  wow fadeInUp" data-wow-delay=".4s">
-                        Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and digital <br> tiêu dùng xanh solutions. With our proven expertise.
+                        Nhập thông tin của bạn để nhận báo cáo phân tích Green Score cá nhân hóa và các gợi ý hành động xanh phù hợp nhất.
                     </p>
                 </div>
                 <form action="#">
                     <div class="form-clt wow fadeInUp" data-wow-delay=".3s">
-                        <input type="text" name="name" id="website" placeholder="Website URL">
+                        <input type="text" name="name" id="website" placeholder="Họ và tên">
                     </div>
                     <div class="form-clt wow fadeInUp" data-wow-delay=".5s">
-                        <input type="text" name="name" id="email" placeholder="Email Address">
+                        <input type="text" name="name" id="email" placeholder="Địa chỉ Email">
                     </div>
                     <button class="theme-btn wow fadeInUp" type="submit" data-wow-delay=".7s">
-                        Check Now
+                        Kiểm tra ngay
                         <i class="far fa-arrow-right"></i>
                     </button>
                 </form>
@@ -693,7 +692,7 @@
     <section class="project-section-3 fix section-padding">
         <div class="container">
             <div class="section-title text-center">
-                <span class="wow fadeInUp">Our Case Study</span>
+                <span class="wow fadeInUp">Nghiên cứu & Thực tiễn</span>
                 <h2 class="char-animation">Những tác động xanh<br>được ghi nhận minh bạch</h2>
             </div>
             <div class="project-wrapper">
@@ -702,7 +701,7 @@
 
                     <div class="content">
                         <h4><a href="project-details.html">QR & Green Points</a></h4>
-                        <p>Comprehensive Green Credit and tiêu dùng bền vững solutions for your needs strategies.</p>
+                        <p>Ghi nhận chính xác hành động tiêu dùng xanh của khách hàng thông qua QR Code hóa đơn.</p>
                     </div>
                 </div>
                 <div class="project-image-items wow fadeInUp" data-wow-delay=".2s">
@@ -710,7 +709,7 @@
 
                     <div class="content">
                         <h4><a href="project-details.html">Tiêu dùng bền vững</a></h4>
-                        <p>Comprehensive Green Credit and tiêu dùng bền vững solutions for your needs strategies.</p>
+                        <p>Khuyến khích sử dụng sản phẩm thân thiện với môi trường, hạn chế rác thải nhựa một lần.</p>
                     </div>
                 </div>
                 <div class="project-image-items wow fadeInUp" data-wow-delay=".4s">
@@ -718,7 +717,7 @@
 
                     <div class="content">
                         <h4><a href="project-details.html">Green Wallet</a></h4>
-                        <p>Comprehensive Green Credit and tiêu dùng bền vững solutions for your needs strategies.</p>
+                        <p>Ví điểm thông minh giúp quản lý điểm thưởng tích lũy và thực hiện các giao dịch đổi quà.</p>
                     </div>
                 </div>
                 <div class="project-image-items wow fadeInUp" data-wow-delay=".6s">
@@ -726,7 +725,7 @@
 
                     <div class="content">
                         <h4><a href="project-details.html">Voucher xanh</a></h4>
-                        <p>Comprehensive Green Credit and tiêu dùng bền vững solutions for your needs strategies.</p>
+                        <p>Mạng lưới voucher đa dạng liên kết từ các đối tác dịch vụ, tiêu dùng và tài chính.</p>
                     </div>
                 </div>
                 <div class="project-image-items wow fadeInUp" data-wow-delay=".7s">
@@ -734,7 +733,7 @@
 
                     <div class="content">
                         <h4><a href="project-details.html">Net Zero Planner</a></h4>
-                        <p>Comprehensive Green Credit and tiêu dùng bền vững solutions for your needs strategies.</p>
+                        <p>Thiết lập mục tiêu giảm thiểu CO2 hàng tháng và theo dõi tiến trình thực hiện thực tế.</p>
                     </div>
                 </div>
 
@@ -743,7 +742,7 @@
 
                     <div class="content">
                         <h4><a href="project-details.html">Phát hiện gian lận</a></h4>
-                        <p>Comprehensive Green Credit and tiêu dùng bền vững solutions for your needs strategies.</p>
+                        <p>Thuật toán giám sát giúp phát hiện các hành vi quét trùng lặp, lạm dụng hệ thống tích điểm.</p>
                     </div>
                 </div>
             </div>
@@ -754,7 +753,7 @@
     <section class="testimonial-section fix section-padding" style="background-image: url('{{ asset('frontend/assets/img/testimonial/testimonial-1-bg.jpg') }}');">
         <div class="container">
             <div class="section-title">
-                <span class="wow fadeInUp">Our Testimonial</span>
+                <span class="wow fadeInUp">Ý kiến cộng đồng</span>
                 <h2 class="char-animation">Cộng đồng nói gì về Green Credit</h2>
             </div>
             <div class="swiper testimonial-slider-3">
@@ -772,7 +771,7 @@
                                     </div>
                                     <img src="{{ asset('frontend/assets/img/testimonial/01.png') }}" alt="img">
                                 </div>
-                                <p>“Etiam viverra purus sed aliquet tincidunt diam auctor nibhe eget eget elementum lobortis ante massa quis dui suspendisse massa. Curabitur condimentum accumsan risus et porta nam ut nisi metus. Praesent orci ante cursus.”</p>
+                                <p>“Green Credit giúp tôi thay đổi thói quen hàng ngày. Việc mang bình nước cá nhân hay không dùng ống hút nhựa giờ đây trở thành một niềm vui nhỏ khi được tích điểm và đổi các voucher giảm giá đồ uống rất thiết thực.”</p>
                             </div>
                             <div class="client-info">
                                 <div class="client-img">
@@ -780,7 +779,7 @@
                                 </div>
                                 <div class="client-content">
                                     <h3>Nguyễn Minh Anh</h3>
-                                    <p>Digital Marketer</p>
+                                    <p>Học sinh</p>
                                 </div>
                             </div>
                         </div>
@@ -798,15 +797,15 @@
                                     </div>
                                     <img src="{{ asset('frontend/assets/img/testimonial/01.png') }}" alt="img">
                                 </div>
-                                <p>“Etiam viverra purus sed aliquet tincidunt diam auctor nibhe eget eget elementum lobortis ante massa quis dui suspendisse massa. Curabitur condimentum accumsan risus et porta nam ut nisi metus. Praesent orci ante cursus.”</p>
+                                <p>“Là một chủ quán cà phê đối tác, Green Credit giúp chúng tôi thu hút thêm lượng lớn khách hàng trẻ có lối sống văn minh, đồng thời định vị thương hiệu thân thiện với môi trường một cách rõ nét.”</p>
                             </div>
                             <div class="client-info">
                                 <div class="client-img">
                                     <img src="{{ asset('frontend/assets/img/testimonial/client-info-02.png') }}" alt="img">
                                 </div>
                                 <div class="client-content">
-                                    <h3>Nguyễn Minh Anh</h3>
-                                    <p>Digital Marketer</p>
+                                    <h3>Trần Quốc Bảo</h3>
+                                    <p>Chủ quán La Xanh Coffee</p>
                                 </div>
                             </div>
                         </div>
@@ -824,15 +823,15 @@
                                     </div>
                                     <img src="{{ asset('frontend/assets/img/testimonial/01.png') }}" alt="img">
                                 </div>
-                                <p>“Etiam viverra purus sed aliquet tincidunt diam auctor nibhe eget eget elementum lobortis ante massa quis dui suspendisse massa. Curabitur condimentum accumsan risus et porta nam ut nisi metus. Praesent orci ante cursus.”</p>
+                                <p>“Hệ thống chấm điểm Green Score rất thú vị! Nó không chỉ là những con số mà thực sự thúc đẩy tôi và gia đình cùng nhau thực hiện các hoạt động bảo vệ môi trường, hướng tới mục tiêu phát thải ròng bằng không.”</p>
                             </div>
                             <div class="client-info">
                                 <div class="client-img">
                                     <img src="{{ asset('frontend/assets/img/testimonial/client-info-03.png') }}" alt="img">
                                 </div>
                                 <div class="client-content">
-                                    <h3>Nguyễn Minh Anh</h3>
-                                    <p>Digital Marketer</p>
+                                    <h3>Phạm Thu Trang</h3>
+                                    <p>Nhân viên văn phòng</p>
                                 </div>
                             </div>
                         </div>
@@ -855,13 +854,13 @@
                     <div class="col-lg-6 mt-3 mt-lg-0">
                         <div class="cta-support-content">
                             <div class="section-title text-start">
-                                <span class="text-white wow fadeInUp">24/7 Support</span>
+                                <span class="text-white wow fadeInUp">Hỗ trợ 24/7</span>
                                 <h2 class="text-white char-animation">Green Credit đồng hành cùng bạn trên hành trình Net Zero</h2>
                             </div>
-                            <p class="cta-support-text wow fadeInUp" data-wow-delay=".4s">Chào mừng đến Green Credit your trusted partner for comprehensive Green Credit and tiêu dùng bền vững solutions with our proven expertise</p>
+                            <p class="cta-support-text wow fadeInUp" data-wow-delay=".4s">Bất kỳ khi nào bạn cần hỗ trợ về quét mã, lỗi ví điểm, hoặc muốn đăng ký hợp tác doanh nghiệp, đội ngũ chăm sóc khách hàng của chúng tôi luôn sẵn sàng đồng hành.</p>
                             <div class="cta-support-box wow fadeInUp" data-wow-delay=".6s">
                                 <a href="{{ route('contact') }}" class="theme-btn">
-                                    Liên hệ
+                                    Liên hệ ngay
                                     <i class="far fa-arrow-right"></i>
                                 </a>
                                 <div class="phone-box">
@@ -869,8 +868,8 @@
                                         <img src="{{ asset('frontend/assets/img/call.svg') }}" alt="img">
                                     </div>
                                     <div class="content">
-                                        <p>Mail Us</p>
-                                        <h5>(704) 555-0127</h5>
+                                        <p>Email liên hệ</p>
+                                        <h5>support@greencredit.vn</h5>
                                     </div>
                                 </div>
                             </div>
@@ -896,60 +895,60 @@
                                 <div class="accordion-item wow fadeInUp" data-wow-delay=".2s">
                                     <h5 class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
-                                            1. How long will it take before I see better rankings in google?
+                                            1. Làm thế nào để tôi có thể bắt đầu tích lũy Green Points?
                                         </button>
                                     </h5>
                                     <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordion">
                                         <div class="accordion-body">
-                                            The time it will take for your website's search engine rankings to begin improving depends on several of its characteristics prior to optimization. Older websites, with diverse backlink portfolios and more trust from search engines
+                                            Bạn chỉ cần mua sắm tại các cửa hàng đối tác liên kết của Green Credit, thực hiện các hành động sống xanh (như mang bình nước cá nhân, không dùng ly nhựa/ống hút) và quét mã QR in trên hóa đơn để nhận điểm vào ví.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item wow fadeInUp" data-wow-delay=".4s">
                                     <h5 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
-                                            2. How long do search engine results last?
+                                            2. Green Score là gì và được tính toán như thế nào?
                                         </button>
                                     </h5>
                                     <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="accordion-body">
-                                            The time it will take for your website's search engine rankings to begin improving depends on several of its characteristics prior to optimization. Older websites, with diverse backlink portfolios and more trust from search engines
+                                            Green Score là chỉ số sống xanh cá nhân được chấm dựa trên 5 khía cạnh cốt lõi: tần suất hành động sống xanh, tính nhất quán hàng tháng, sự đa dạng của các hoạt động bảo vệ môi trường, tính xác thực của hóa đơn đã quét và đóng góp chia sẻ cho cộng đồng.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item wow fadeInUp" data-wow-delay=".6s">
                                     <h5 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
-                                            Is travel insurance included in the package?
+                                            3. Làm cách nào để đổi voucher từ điểm xanh tích lũy?
                                         </button>
                                     </h5>
                                     <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="accordion-body">
-                                            The time it will take for your website's search engine rankings to begin improving depends on several of its characteristics prior to optimization. Older websites, with diverse backlink portfolios and more trust from search engines
+                                            Bạn có thể truy cập vào Chợ Voucher (Voucher Marketplace) trong ứng dụng, lựa chọn voucher phù hợp với nhu cầu từ các danh mục như Ẩm thực, Di chuyển xanh, Ví điện tử hoặc Ưu đãi tài chính, sau đó nhấn "Đổi ngay" bằng số điểm tương ứng.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item wow fadeInUp" data-wow-delay=".8s">
                                     <h5 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
-                                            4. Why should I choose Springboard Green Credit?
+                                            4. Tôi là chủ cửa hàng, làm cách nào để liên kết với Green Credit?
                                         </button>
                                     </h5>
                                     <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="accordion-body">
-                                            The time it will take for your website's search engine rankings to begin improving depends on several of its characteristics prior to optimization. Older websites, with diverse backlink portfolios and more trust from search engines
+                                            Hãy gửi thông tin đăng ký liên kết thông qua trang Liên hệ của chúng tôi. Đội ngũ Green Credit sẽ liên hệ hỗ trợ bạn thiết lập tài khoản chủ cửa hàng, tạo chi nhánh và cấp quyền cho nhân viên để bắt đầu phát hành hóa đơn xanh chứa QR Code tích điểm.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item mb-0 wow fadeInUp" data-wow-delay=".9s">
                                     <h5 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
-                                            5. How much does search engine optimization cost?
+                                            5. Có những cấp độ xanh nào trên nền tảng?
                                         </button>
                                     </h5>
                                     <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordion">
                                         <div class="accordion-body">
-                                            The time it will take for your website's search engine rankings to begin improving depends on several of its characteristics prior to optimization. Older websites, with diverse backlink portfolios and more trust from search engines
+                                            Green Credit có 5 cấp độ tiến trình sống xanh bao gồm: Cấp Seed (Mầm non), Cấp Leaf (Lá xanh), Cấp Tree (Cây xanh), Cấp Forest (Rừng xanh) và cấp cao nhất là Net Zero Hero. Mỗi cấp độ sẽ được mở khóa khi bạn đạt được số điểm Green Score tương ứng.
                                         </div>
                                     </div>
                                 </div>
@@ -976,27 +975,27 @@
                                 <div class="row g-4 align-items-center">
                                     <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
                                         <div class="form-clt">
-                                            <input type="text" name="name" id="name" placeholder="Name">
+                                            <input type="text" name="name" id="name" placeholder="Họ và tên">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
                                         <div class="form-clt">
-                                            <input type="text" name="email" id="email2" placeholder="Email address">
+                                            <input type="text" name="email" id="email2" placeholder="Địa chỉ Email">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
                                         <div class="form-clt">
-                                            <input type="text" name="phone" id="phone" placeholder="Phone number">
+                                            <input type="text" name="phone" id="phone" placeholder="Số điện thoại">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
                                         <div class="form-clt">
-                                            <input type="text" name="subject" id="subject" placeholder="Your subject">
+                                            <input type="text" name="subject" id="subject" placeholder="Tiêu đề">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 wow fadeInUp" data-wow-delay=".8s">
                                         <div class="form-clt">
-                                            <textarea name="message" id="message" placeholder="Write a message..."></textarea>
+                                            <textarea name="message" id="message" placeholder="Lời nhắn của bạn..."></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 wow fadeInUp" data-wow-delay=".9s">
@@ -1023,7 +1022,7 @@
     <section class="news-section section-padding fix">
         <div class="container">
             <div class="section-title text-center">
-                <span class="wow fadeInUp">Our News</span>
+                <span class="wow fadeInUp">Tin tức sống xanh</span>
                 <h2 class="char-animation">Kiến thức và cảm hứng sống xanh</h2>
             </div>
             <div class="row">
@@ -1036,15 +1035,15 @@
                             <ul class="post-date">
                                 <li>
                                     <i class="far fa-calendar-star"></i>
-                                    12 May, 2025
+                                    12 Tháng 5, 2026
                                 </li>
                                 <li>
                                     <i class="far fa-comments"></i>
-                                    23 Comments
+                                    12 bình luận
                                 </li>
                             </ul>
                             <h3><a href="news-details.html">Bắt đầu sống xanh từ những thay đổi nhỏ mỗi ngày</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations.</p>
+                            <p>Khám phá những bước đi đơn giản nhất để hình thành lối sống bảo vệ môi trường từ thói quen sinh hoạt.</p>
                             <a href="news-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
@@ -1060,15 +1059,15 @@
                             <ul class="post-date">
                                 <li>
                                     <i class="far fa-calendar-star"></i>
-                                    12 May, 2025
+                                    15 Tháng 5, 2026
                                 </li>
                                 <li>
                                     <i class="far fa-comments"></i>
-                                    23 Comments
+                                    8 bình luận
                                 </li>
                             </ul>
                             <h3><a href="news-details.html">Cách Green Score ghi nhận hành vi tiêu dùng bền vững</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations.</p>
+                            <p>Tìm hiểu chi tiết các khía cạnh đánh giá điểm Green Score và cách hệ thống tự động cập nhật tiến trình của bạn.</p>
                             <a href="news-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
@@ -1084,15 +1083,15 @@
                             <ul class="post-date">
                                 <li>
                                     <i class="far fa-calendar-star"></i>
-                                    12 May, 2025
+                                    18 Tháng 5, 2026
                                 </li>
                                 <li>
                                     <i class="far fa-comments"></i>
-                                    23 Comments
+                                    15 bình luận
                                 </li>
                             </ul>
                             <h3><a href="news-details.html">Vai trò của dữ liệu xanh trong hành trình hướng tới Net Zero</a></h3>
-                            <p>We pride ourselves on delivering a value proposition that goes beyond expectations.</p>
+                            <p>Hiểu rõ tầm quan trọng của việc thu thập và phân tích dữ liệu tiêu dùng xanh trong nỗ lực cắt giảm carbon quốc gia.</p>
                             <a href="news-details.html" class="link-btn">Xem chi tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
