@@ -24,7 +24,7 @@ class PartnerResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Đối tác';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
     public static function form(Schema $schema): Schema
     {

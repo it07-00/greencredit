@@ -3,17 +3,14 @@
 namespace App\Filament\Widgets;
 
 use App\Models\GreenTransaction;
-use Filament\Widgets\Widget;
+use Filament\Widgets\StatsOverviewWidget;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class GreenImpactWidget extends Widget
+class GreenImpactWidget extends StatsOverviewWidget
 {
-    protected string $view = 'filament.widgets.green-impact-widget';
-
-    protected int|string|array $columnSpan = 'full';
-
     protected static ?int $sort = 2;
 
-    public function getStats(): array
+    protected function getStats(): array
     {
         $totalPlastic = GreenTransaction::where('status', 'approved')->sum('plastic_saved_grams');
         $totalCo2     = GreenTransaction::where('status', 'approved')->sum('co2_saved_kg');
@@ -21,39 +18,25 @@ class GreenImpactWidget extends Widget
         $totalPoints  = GreenTransaction::where('points', '>', 0)->sum('points');
 
         return [
-            [
-                'label' => 'Nhựa đã giảm thiểu',
-                'value' => number_format($totalPlastic / 1000, 2) . ' kg',
-                'sub'   => number_format($totalPlastic) . 'g tổng cộng',
-                'bg'    => '#d1fae5',
-                'stroke'=> '#059669',
-                'type'  => 'beaker',
-            ],
-            [
-                'label' => 'CO₂ đã giảm',
-                'value' => number_format($totalCo2, 2) . ' kg',
-                'sub'   => 'Tương đương ' . number_format($totalCo2 / 21, 1) . ' cây xanh/năm',
-                'bg'    => '#e0f2fe',
-                'stroke'=> '#0284c7',
-                'type'  => 'cloud',
-            ],
-            [
-                'label' => 'Hành động xanh',
-                'value' => number_format($totalTx),
-                'sub'   => 'Lần quét QR thành công',
-                'bg'    => '#ecfccb',
-                'stroke'=> '#65a30d',
-                'type'  => 'qr',
-            ],
-            [
-                'label' => 'Green Points phát hành',
-                'value' => number_format($totalPoints),
-                'sub'   => 'Điểm tích lũy toàn hệ thống',
-                'bg'    => '#fef3c7',
-                'stroke'=> '#d97706',
-                'type'  => 'star',
-            ],
+            Stat::make('🧪 Nhựa đã giảm thiểu', number_format($totalPlastic / 1000, 2) . ' kg')
+                ->description(number_format($totalPlastic) . 'g tổng cộng')
+                ->descriptionIcon('heroicon-m-beaker')
+                ->color('success'),
+
+            Stat::make('☁ CO₂ đã giảm', number_format($totalCo2, 2) . ' kg')
+                ->description('Tương đương ' . number_format($totalCo2 / 21, 1) . ' cây xanh/năm')
+                ->descriptionIcon('heroicon-m-cloud')
+                ->color('info'),
+
+            Stat::make('📱 Hành động xanh', number_format($totalTx))
+                ->description('Lần quét QR thành công')
+                ->descriptionIcon('heroicon-m-qr-code')
+                ->color('success'),
+
+            Stat::make('⭐ Green Points phát hành', number_format($totalPoints))
+                ->description('Điểm tích lũy toàn hệ thống')
+                ->descriptionIcon('heroicon-m-star')
+                ->color('warning'),
         ];
     }
-
 }

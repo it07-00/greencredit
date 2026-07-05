@@ -24,7 +24,7 @@ class SystemSettingResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Cài đặt hệ thống';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
     public static function form(Schema $schema): Schema
     {

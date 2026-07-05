@@ -24,7 +24,7 @@ class FraudAlertResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Cảnh báo gian lận';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldExclamation;
 
     public static function form(Schema $schema): Schema
     {

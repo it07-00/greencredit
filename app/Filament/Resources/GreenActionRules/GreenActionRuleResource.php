@@ -24,7 +24,7 @@ class GreenActionRuleResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Quy tắc điểm xanh';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSparkles;
 
     public static function form(Schema $schema): Schema
     {

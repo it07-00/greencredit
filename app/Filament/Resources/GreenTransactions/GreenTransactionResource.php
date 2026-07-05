@@ -22,7 +22,7 @@ class GreenTransactionResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Giao dịch xanh';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
 
     public static function form(Schema $schema): Schema
     {

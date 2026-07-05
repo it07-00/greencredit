@@ -8,6 +8,11 @@ class Dashboard extends BaseDashboard
 {
     public function getColumns(): int|array
     {
-        return 2;
+        return [
+            'default' => 1,
+            'sm'      => 2,
+            'md'      => 4,
+            'xl'      => 4,
+        ];
     }
 }
