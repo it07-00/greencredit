@@ -51,8 +51,8 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="card border-0 shadow-sm p-4 h-100 bg-white" style="border-radius: 20px;">
                         <span class="text-muted fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 0.05em;">Quy đổi ước tính</span>
-                        <h2 class="fw-bold text-info my-2" style="font-size: 32px; font-weight: 800;">{{ number_format($wallet->current_balance * 10) }}đ</h2>
-                        <span class="text-muted small">Tỷ lệ: 100 điểm = 1.000đ</span>
+                        <h2 class="fw-bold text-info my-2" style="font-size: 32px; font-weight: 800;">{{ number_format($wallet->current_balance * 10, 0, ',', '.') }} VNĐ</h2>
+                        <span class="text-muted small">Tỷ lệ: 100 điểm = 1.000 VNĐ</span>
                     </div>
                 </div>
             </div>

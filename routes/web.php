@@ -15,6 +15,7 @@ use App\Livewire\Store\Invoices\Index as StoreInvoices;
 use App\Livewire\Store\Invoices\Show as StoreInvoiceShow;
 use App\Livewire\Store\Reports as StoreReports;
 use App\Livewire\Store\Staff\Index as StoreStaff;
+use App\Livewire\Store\Vouchers\Index as StoreVouchers;
 use App\Livewire\User\Dashboard as UserDashboard;
 use App\Livewire\User\GreenScore;
 use App\Livewire\User\GreenWallet;
@@ -50,12 +51,14 @@ Route::post('/login', function (Request $request) {
         $request->session()->regenerate();
         $role = $request->user()->role;
 
-        return redirect(match ($role) {
+        $fallback = match ($role) {
             'admin', 'super_admin' => '/admin',
             'store_owner', 'store_staff' => '/store/dashboard',
             'partner' => '/partner/dashboard',
             default => route('dashboard'),
-        });
+        };
+
+        return redirect()->intended($fallback);
     }
 
     return back()->withErrors(['email' => 'Email hoac mat khau khong dung.']);
@@ -105,6 +108,7 @@ Route::middleware(['auth', 'role:store_owner,store_staff'])->prefix('store')->na
     Route::get('/invoices/{invoice}', StoreInvoiceShow::class)->name('invoices.show');
     Route::get('/reports', StoreReports::class)->name('reports');
     Route::get('/reports/pdf', [\App\Http\Controllers\StoreReportController::class, 'exportPdf'])->name('reports.pdf');
+    Route::get('/vouchers', StoreVouchers::class)->name('vouchers');
 });
 
 Route::middleware(['auth', 'role:partner'])->prefix('partner')->name('partner.')->group(function () {
@@ -115,4 +119,5 @@ Route::middleware(['auth', 'role:partner'])->prefix('partner')->name('partner.')
     Route::get('/reports', PartnerReports::class)->name('reports');
 });
 
+Route::get('/api/sepay/webhook', [\App\Http\Controllers\SepayWebhookController::class, 'status']);
 Route::post('/api/sepay/webhook', [\App\Http\Controllers\SepayWebhookController::class, 'handle']);

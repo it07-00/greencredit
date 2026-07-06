@@ -15,12 +15,20 @@ class Index extends SimplePage
             : StoreStaff::where('user_id', auth()->id())->first()?->store;
         abort_unless($store, 403);
         $invoices = $store->invoices()->latest()->get();
-        $this->title = 'Danh sach hoa don xanh';
-        $this->description = 'Hoa don do cua hang cua ban tao.';
-        $this->cards = [['Tong hoa don', $invoices->count()], ['Pending', $invoices->where('status', 'pending')->count()], ['Used', $invoices->where('status', 'used')->count()]];
+        $this->title = 'Danh sách hóa đơn xanh';
+        $this->description = 'Hóa đơn xanh do cửa hàng của bạn tạo.';
+        $this->cards = [['Tổng hóa đơn', $invoices->count()], ['Chờ quét', $invoices->where('status', 'pending')->count() + $invoices->where('status', 'unpaid')->count()], ['Đã quét', $invoices->where('status', 'used')->count()]];
+
+        $statusMap = [
+            'unpaid' => 'Chưa thanh toán',
+            'pending' => 'Chờ quét',
+            'used' => 'Đã quét',
+            'expired' => 'Hết hạn',
+        ];
+
         $this->rows = $invoices->map(fn ($i) => [
             $i->invoice_code,
-            $i->status.' - '.$i->base_points.' điểm',
+            ($statusMap[$i->status] ?? $i->status) . ' - ' . $i->base_points . ' điểm',
             $i->created_at->format('d/m/Y H:i'),
             route('store.invoices.show', $i)
         ])->all();

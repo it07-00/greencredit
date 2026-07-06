@@ -115,10 +115,10 @@
                         <h5 class="fw-bold text-dark mb-3"><i class="far fa-leaf text-success me-2"></i>Hành động xanh tiêu biểu</h5>
                         <p class="text-muted small mb-4">Các hành động xanh được hệ thống hỗ trợ tích lũy điểm khi đi mua sắm tại cửa hàng đối tác:</p>
                         <div class="d-flex flex-column gap-2">
-                            @foreach ([['far fa-cup-straw text-danger','Hạn chế ống hút nhựa','+20 điểm'],['far fa-ban text-danger','Hạn chế cốc nhựa','+30 điểm'],['far fa-shopping-bag text-success','Sử dụng túi vải cá nhân','+25 điểm'],['far fa-tint text-success','Mang bình nước cá nhân','+25 điểm']] as $action)
-                                <div class="d-flex justify-content-between align-items-center p-3 rounded-3 bg-light">
-                                    <span class="fw-bold text-dark" style="font-size: 13px;"><i class="{{ $action[0] }} me-2"></i> {{ $action[1] }}</span>
-                                    <span class="badge bg-success text-white fw-bold" style="background-color: #15803d; border-radius: 6px;">{{ $action[2] }}</span>
+                            @foreach ($displayActions as $action)
+                                <div class="d-flex justify-content-between align-items-center p-3 rounded-3 bg-light animate-fade-in">
+                                    <span class="fw-bold text-dark" style="font-size: 13px;"><i class="{{ $action['icon'] }} me-2"></i> {{ $action['name'] }}</span>
+                                    <span class="badge bg-success text-white fw-bold" style="background-color: #15803d; border-radius: 6px;">+{{ $action['points'] }} điểm</span>
                                 </div>
                             @endforeach
                         </div>

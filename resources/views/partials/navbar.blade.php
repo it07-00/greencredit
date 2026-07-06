@@ -56,6 +56,7 @@
                                                 <li @class(['active' => request()->routeIs('store.dashboard')])><a href="{{ route('store.dashboard') }}">Dashboard</a></li>
                                                 <li @class(['active' => request()->routeIs('store.invoices.create')])><a href="{{ route('store.invoices.create') }}">POS Thu Ngân</a></li>
                                                 <li @class(['active' => request()->routeIs('store.invoices') && !request()->routeIs('store.invoices.create')])><a href="{{ route('store.invoices') }}">Hóa đơn xanh</a></li>
+                                                <li @class(['active' => request()->routeIs('store.vouchers')])><a href="{{ route('store.vouchers') }}">Đổi Voucher</a></li>
                                                 <li @class(['active' => request()->routeIs('store.branches')])><a href="{{ route('store.branches') }}">Chi nhánh</a></li>
                                                 @if(auth()->user()->role === 'store_owner')
                                                     <li @class(['active' => request()->routeIs('store.staff')])><a href="{{ route('store.staff') }}">Nhân viên</a></li>

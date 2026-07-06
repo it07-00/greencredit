@@ -274,4 +274,98 @@ class GreenCreditFlowTest extends TestCase
         $invoice->refresh();
         $this->assertSame('pending', $invoice->status);
     }
+
+    public function test_sepay_webhook_can_be_checked_from_a_browser(): void
+    {
+        $this->getJson('/api/sepay/webhook')
+            ->assertOk()
+            ->assertJson([
+                'status' => 'ok',
+                'method' => 'POST',
+            ]);
+    }
+
+    public function test_store_staff_can_access_and_redeem_vouchers_via_portal(): void
+    {
+        $this->actingAs($this->staff);
+
+        // Earn points and redeem a voucher first
+        app(GreenPointService::class)->earnPoints($this->user, 200, 'Test points');
+        app(GreenScoreService::class)->saveScoreHistory($this->user, 'test');
+        $voucher = Voucher::create([
+            'store_id' => $this->store->id,
+            'title' => 'Voucher dac biet',
+            'code' => 'STORE-VOUCHER',
+            'category' => 'cafe',
+            'required_points' => 100,
+            'discount_type' => 'fixed',
+            'discount_value' => 20000,
+            'quantity' => 10,
+            'status' => 'active',
+            'expired_at' => now()->addDay(),
+        ]);
+
+        $redemption = app(VoucherService::class)->redeemVoucher($this->user, $voucher);
+
+        // Test Livewire component
+        Livewire::test(\App\Livewire\Store\Vouchers\Index::class)
+            ->set('code', $redemption->redemption_code)
+            ->call('checkCode')
+            ->assertSet('error', null)
+            ->assertSet('redemption.id', $redemption->id)
+            ->call('confirmUse')
+            ->assertSet('success', 'Xác nhận sử dụng Voucher thành công! Vui lòng trao quà/ưu đãi cho khách hàng.');
+
+        $redemption->refresh();
+        $this->assertSame('used', $redemption->status);
+        $this->assertNotNull($redemption->used_at);
+    }
+
+    public function test_store_staff_can_apply_voucher_in_pos_invoice_creation(): void
+    {
+        $this->actingAs($this->staff);
+
+        // 1. Earn points and redeem a voucher
+        app(GreenPointService::class)->earnPoints($this->user, 200, 'Test points');
+        app(GreenScoreService::class)->saveScoreHistory($this->user, 'test');
+        $voucher = Voucher::create([
+            'store_id' => $this->store->id,
+            'title' => 'POS Voucher',
+            'code' => 'POS-VOUCHER',
+            'category' => 'cafe',
+            'required_points' => 100,
+            'discount_type' => 'fixed',
+            'discount_value' => 20000,
+            'quantity' => 10,
+            'status' => 'active',
+            'expired_at' => now()->addDay(),
+        ]);
+        $redemption = app(VoucherService::class)->redeemVoucher($this->user, $voucher);
+
+        // 2. Test Livewire POS Create Invoice component
+        Livewire::test(\App\Livewire\Store\Invoices\Create::class)
+            ->set('branch_id', $this->branch->id)
+            ->set('isCustomAmount', true)
+            ->set('customAmount', '50000') // base price: 50,000 VNĐ
+            ->set('actions', ['NO_STRAW'])
+            // Apply voucher
+            ->set('voucherCode', $redemption->redemption_code)
+            ->call('applyVoucher')
+            ->assertSet('appliedVoucherCode', $redemption->redemption_code)
+            ->assertSet('discountAmount', 20000.0)
+            ->assertSet('final_amount', 30000.0) // 50,000 - 20,000
+            // Create invoice
+            ->call('create')
+            ->assertHasNoErrors();
+
+        // 3. Assert invoice has discounted amount
+        $invoice = GreenInvoice::latest()->first();
+        $this->assertNotNull($invoice);
+        $this->assertEquals(30000.0, $invoice->amount);
+
+        // 4. Assert voucher status has been updated to used
+        $redemption->refresh();
+        $this->assertSame('used', $redemption->status);
+        $this->assertNotNull($redemption->used_at);
+    }
 }

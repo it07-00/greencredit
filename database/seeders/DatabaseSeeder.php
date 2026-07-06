@@ -202,16 +202,34 @@ class DatabaseSeeder extends Seeder
                 'finance' => 'frontend/assets/img/vouchers/voucher_finance.png',
             ];
 
+            $title = $voucherTitles[$i - 1];
+            $discountType = 'fixed';
+            $discountValue = 10000;
+
+            if (str_contains($title, '20%')) {
+                $discountType = 'percent';
+                $discountValue = 20;
+            } elseif (str_contains($title, '15%')) {
+                $discountType = 'percent';
+                $discountValue = 15;
+            } elseif (str_contains($title, '50.000')) {
+                $discountType = 'fixed';
+                $discountValue = 50000;
+            } elseif (str_contains($title, '20.000')) {
+                $discountType = 'fixed';
+                $discountValue = 20000;
+            }
+
             Voucher::create([
                 'partner_id' => $partners->random()->id,
-                'store_id' => $i <= 4 ? $stores->random()->id : null,
-                'title' => $voucherTitles[$i - 1],
+                'store_id' => ($i <= 3) ? $i : null,
+                'title' => $title,
                 'code' => 'GREEN'.$i,
                 'description' => 'Ưu đãi giả lập dành cho người dùng có hành vi tiêu dùng xanh.',
                 'category' => $category,
                 'required_points' => 30 + $i * 20,
-                'discount_type' => $i % 2 ? 'fixed' : 'percent',
-                'discount_value' => $i % 2 ? 10000 + $i * 1000 : 5 + $i,
+                'discount_type' => $discountType,
+                'discount_value' => $discountValue,
                 'quantity' => 100,
                 'min_green_score' => $i > 6 ? 300 : 0,
                 'started_at' => now()->subDays(3),
@@ -256,15 +274,15 @@ class DatabaseSeeder extends Seeder
                 'status' => 'active',
             ]);
         }
-        SystemSetting::create(['key' => 'point_exchange_rate', 'value' => '100 điểm = 1000 VND', 'type' => 'string', 'group' => 'wallet']);
-        SystemSetting::create(['key' => 'sepay_bank_id', 'value' => 'ACB', 'type' => 'string', 'group' => 'sepay']);
-        SystemSetting::create(['key' => 'sepay_account_no', 'value' => '20428571', 'type' => 'string', 'group' => 'sepay']);
-        SystemSetting::create(['key' => 'sepay_account_name', 'value' => 'TRUONG', 'type' => 'string', 'group' => 'sepay']);
-        SystemSetting::create(['key' => 'site_phone', 'value' => '028 1234 5678', 'type' => 'string', 'group' => 'contact']);
-        SystemSetting::create(['key' => 'site_hotline', 'value' => '1900 1000', 'type' => 'string', 'group' => 'contact']);
-        SystemSetting::create(['key' => 'site_email', 'value' => 'support@greencredit.vn', 'type' => 'string', 'group' => 'contact']);
-        SystemSetting::create(['key' => 'site_email_hello', 'value' => 'hello@greencredit.vn', 'type' => 'string', 'group' => 'contact']);
-        SystemSetting::create(['key' => 'site_address', 'value' => 'Khu Công nghệ cao, Quận 9, TP. HCM', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::updateOrCreate(['key' => 'point_exchange_rate'], ['value' => '100 điểm = 1000 VND', 'type' => 'string', 'group' => 'wallet']);
+        SystemSetting::updateOrCreate(['key' => 'sepay_bank_id'], ['value' => 'ACB', 'type' => 'string', 'group' => 'sepay']);
+        SystemSetting::updateOrCreate(['key' => 'sepay_account_no'], ['value' => '20428571', 'type' => 'string', 'group' => 'sepay']);
+        SystemSetting::updateOrCreate(['key' => 'sepay_account_name'], ['value' => 'TRUONG', 'type' => 'string', 'group' => 'sepay']);
+        SystemSetting::updateOrCreate(['key' => 'site_phone'], ['value' => '028 1234 5678', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::updateOrCreate(['key' => 'site_hotline'], ['value' => '1900 1000', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::updateOrCreate(['key' => 'site_email'], ['value' => 'support@greencredit.vn', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::updateOrCreate(['key' => 'site_email_hello'], ['value' => 'hello@greencredit.vn', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::updateOrCreate(['key' => 'site_address'], ['value' => 'Khu Công nghệ cao, Quận 9, TP. HCM', 'type' => 'string', 'group' => 'contact']);
         foreach (range(1, 10) as $index) {
             ActivityLog::create([
                 'user_id' => $users['superadmin@greencredit.test']->id,

@@ -72,14 +72,22 @@
                     <div class="row mb-4 align-items-center">
                         <div class="col-md-6 col-lg-4">
                             <div class="position-relative">
-                                <input wire:model.live="search" type="text" class="form-control ps-5 py-2 border-0 shadow-sm rounded-3" placeholder="Tìm sản phẩm...">
+                                <input wire:model.live.debounce.400ms="search" type="text" class="form-control ps-5 py-2 border-0 shadow-sm rounded-3" placeholder="Tìm sản phẩm...">
                                 <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
                             </div>
                         </div>
                     </div>
 
                     <!-- Danh sách thẻ sản phẩm -->
-                    <div class="row g-4">
+                    <div class="row g-4 position-relative">
+                        <!-- Product Grid Loading Overlay -->
+                        <div wire:loading wire:target="setCategory, search" class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(241, 245, 249, 0.7); z-index: 10; backdrop-filter: blur(1px);">
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                                <div class="spinner-border text-emerald" role="status" style="color: #10b981;">
+                                    <span class="visually-hidden">Đang tải...</span>
+                                </div>
+                            </div>
+                        </div>
                         @forelse ($filteredProducts as $index => $product)
                             <div class="col-md-6 col-lg-4 col-xl-3">
                                 <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100" style="transition: transform 0.2s; cursor: pointer;" onclick="document.getElementById('add-btn-{{ $index }}').click();">
@@ -92,7 +100,7 @@
                                             <p class="text-muted small mb-2">SKU: {{ $product['sku'] }}</p>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-2">
-                                            <h6 class="fw-bold text-success mb-0">{{ number_format($product['price']) }}đ</h6>
+                                            <h6 class="fw-bold text-success mb-0">{{ number_format($product['price'], 0, ',', '.') }} VNĐ</h6>
                                             <button wire:click.stop="addToCart({{ $index }})" id="add-btn-{{ $index }}" class="btn btn-emerald btn-icon rounded-circle shadow-sm" style="width: 32px; height: 32px; padding: 0; background-color: #10b981; color: #fff;">
                                                 <i class="bi bi-plus fs-5"></i>
                                             </button>
@@ -147,13 +155,21 @@
             </div>
 
             <!-- Danh sách vật phẩm trong giỏ hoặc nhập tiền tùy chỉnh -->
-            <div class="p-4 flex-grow-1 overflow-y-auto" style="max-height: 35vh;">
+            <div class="p-4 flex-grow-1 overflow-y-auto position-relative" style="max-height: 35vh;">
+                <!-- Cart Update Spinner Overlay -->
+                <div wire:loading wire:target="addToCart, incrementQty, decrementQty, removeFromCart" class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(255, 255, 255, 0.7); z-index: 10; backdrop-filter: blur(1px);">
+                    <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                        <div class="spinner-border text-emerald spinner-border-sm" role="status" style="color: #10b981;">
+                            <span class="visually-hidden">Đang xử lý...</span>
+                        </div>
+                    </div>
+                </div>
                 @if ($isCustomAmount)
                     <div class="py-3 animate-fade-in">
                         <label class="form-label small fw-semibold text-muted mb-2">Nhập số tiền hóa đơn thực tế</label>
                         <div class="input-group input-group-lg shadow-sm rounded-3 overflow-hidden border border-success-subtle">
                             <span class="input-group-text bg-light text-success border-0"><i class="bi bi-cash-coin fs-4"></i></span>
-                            <input wire:model.live="customAmount" type="number" class="form-control border-0 py-3 text-end fw-bold text-dark fs-4" placeholder="0" min="1000">
+                            <input wire:model.live.debounce.400ms="customAmount" type="number" class="form-control border-0 py-3 text-end fw-bold text-dark fs-4" placeholder="0" min="1000">
                             <span class="input-group-text bg-light text-muted border-0 fw-semibold">VND</span>
                         </div>
                         @error('amount')
@@ -183,7 +199,7 @@
                                     <tr class="border-bottom" style="border-bottom-style: dashed !important;">
                                         <td class="py-2">
                                             <div class="fw-semibold text-dark text-truncate" style="max-width: 140px;">{{ $item['name'] }}</div>
-                                            <div class="text-muted small">{{ number_format($item['price']) }}đ</div>
+                                            <div class="text-muted small">{{ number_format($item['price'], 0, ',', '.') }} VNĐ</div>
                                         </td>
                                         <td class="py-2 text-center">
                                             <div class="d-flex align-items-center justify-content-center gap-1 border rounded-3 p-1" style="background-color: #f8fafc;">
@@ -193,7 +209,7 @@
                                             </div>
                                         </td>
                                         <td class="py-2 text-end">
-                                            <div class="fw-bold text-dark">{{ number_format($item['price'] * $item['qty']) }}đ</div>
+                                            <div class="fw-bold text-dark">{{ number_format($item['price'] * $item['qty'], 0, ',', '.') }} VNĐ</div>
                                             <button wire:click="removeFromCart({{ $key }})" class="btn btn-link btn-sm p-0 text-danger" title="Xóa"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
@@ -209,16 +225,21 @@
                 <h6 class="fw-bold mb-3 text-emerald-800 d-flex align-items-center gap-2">
                     <i class="bi bi-leaf-fill"></i> Hành động xanh của khách
                 </h6>
-                <div class="row g-2">
+                <div class="row g-2" x-data="{ selectedActions: @entangle('actions').live }">
                     @foreach ($rules as $rule)
-                        @php
-                            $isSelected = in_array($rule->code, $actions);
-                        @endphp
                         <div class="col-6">
                             <label class="d-flex flex-column align-items-center justify-content-center p-2 rounded-3 border text-center cursor-pointer transition-all" 
-                                   style="margin-bottom: 0px; min-height: 65px; border-color: {{ $isSelected ? '#10b981' : '#e2e8f0' }}; background-color: {{ $isSelected ? '#ecfdf5' : '#ffffff' }};">
-                                <input type="checkbox" wire:model.live="actions" value="{{ $rule->code }}" class="d-none">
-                                <div class="small fw-bold {{ $isSelected ? 'text-success' : 'text-dark' }}" style="font-size: 12px; line-height: 1.2;">{{ $rule->name }}</div>
+                                   style="margin-bottom: 0px; min-height: 65px;"
+                                   :style="(selectedActions || []).includes('{{ $rule->code }}') 
+                                       ? 'border-color: #10b981; background-color: #ecfdf5;' 
+                                       : 'border-color: #e2e8f0; background-color: #ffffff;'"
+                            >
+                                <input type="checkbox" x-model="selectedActions" value="{{ $rule->code }}" class="d-none">
+                                <div class="small fw-bold" 
+                                     :class="(selectedActions || []).includes('{{ $rule->code }}') ? 'text-success' : 'text-dark'" 
+                                     style="font-size: 12px; line-height: 1.2;">
+                                     {{ $rule->name }}
+                                </div>
                                 <div class="text-success small mt-1" style="font-size: 10px; font-weight: 700;">+{{ $rule->points }} điểm</div>
                             </label>
                         </div>
@@ -231,15 +252,53 @@
                 @enderror
             </div>
 
+            <!-- Áp dụng Voucher giảm giá -->
+            <div class="p-4 bg-white border-top border-bottom" style="background-color: #fafafa !important;">
+                <h6 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2" style="font-size: 13px;">
+                    <i class="bi bi-ticket-perforated"></i> Áp dụng Voucher giảm giá
+                </h6>
+                @if ($appliedVoucherCode)
+                    <div class="p-2.5 rounded-3 d-flex align-items-center justify-content-between border border-success-subtle bg-success-subtle text-success mb-2" style="background-color: #ecfdf5; border-color: #a7f3d0 !important;">
+                        <div>
+                            <span class="small fw-bold d-block" style="font-size: 12px; color: #047857;">{{ $appliedVoucherCode }}</span>
+                            <span class="small" style="font-size: 11px; color: #065f46;">Giảm giá: -{{ number_format($discountAmount, 0, ',', '.') }} VNĐ</span>
+                        </div>
+                        <button type="button" wire:click="removeVoucher" class="btn btn-link text-danger p-0 border-0 text-decoration-none">
+                            <i class="bi bi-x-circle-fill fs-5"></i>
+                        </button>
+                    </div>
+                @else
+                    <div class="input-group input-group-sm">
+                        <input type="text" wire:model.defer="voucherCode" placeholder="Nhập mã voucher (VC-X...)" class="form-control" style="text-transform: uppercase; font-size: 12px;">
+                        <button type="button" wire:click="applyVoucher" class="btn text-white px-3" style="background-color: #10b981; border-color: #10b981; font-size: 12px;">
+                            ÁP DỤNG
+                        </button>
+                    </div>
+                    @if ($voucherError)
+                        <div class="text-danger mt-1 small" style="font-size: 11px;"><i class="bi bi-exclamation-circle-fill"></i> {{ $voucherError }}</div>
+                    @endif
+                @endif
+            </div>
+
             <!-- Tổng kết tiền & điểm -->
             <div class="p-4 bg-white border-top">
                 <div class="d-flex justify-content-between mb-2">
                     <span class="text-muted">Tổng tiền hàng:</span>
-                    <strong class="text-dark">{{ number_format($isCustomAmount ? (float)$customAmount : $amount) }}đ</strong>
+                    <strong class="text-dark">{{ number_format($isCustomAmount ? (float)$customAmount : $amount, 0, ',', '.') }} VNĐ</strong>
+                </div>
+                @if ($discountAmount > 0)
+                    <div class="d-flex justify-content-between mb-2 text-danger">
+                        <span class="small">Voucher giảm giá:</span>
+                        <span class="small fw-semibold">-{{ number_format($discountAmount, 0, ',', '.') }} VNĐ</span>
+                    </div>
+                @endif
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted fw-bold">Tổng thanh toán:</span>
+                    <strong class="text-dark" style="font-size: 18px; color: #059669;">{{ number_format($this->final_amount, 0, ',', '.') }} VNĐ</strong>
                 </div>
                 <div class="d-flex justify-content-between mb-3 text-success">
                     <span>Điểm xanh tích lũy dự kiến:</span>
-                    <strong class="fw-bold">+{{ $calculated['points'] }}đ ({{ $calculated['plastic_saved_grams'] }}g nhựa, {{ $calculated['co2_saved_kg'] }}kg CO2)</strong>
+                    <strong class="fw-bold">+{{ $calculated['points'] }} điểm ({{ $calculated['plastic_saved_grams'] }}g nhựa, {{ $calculated['co2_saved_kg'] }}kg CO2)</strong>
                 </div>
 
                 @error('amount')
@@ -289,14 +348,14 @@
                                     </div>
                                     <p class="text-muted small mt-2">
                                         Ngân hàng: <strong>{{ \App\Models\SystemSetting::get('sepay_bank_id', 'VietinBank') }}</strong><br>
-                                        Số tiền: <strong class="text-danger">{{ number_format($invoice->amount) }}đ</strong><br>
+                                        Số tiền: <strong class="text-danger">{{ number_format($invoice->amount, 0, ',', '.') }} VNĐ</strong><br>
                                         Nội dung CK: <strong class="text-primary">{{ $invoice->invoice_code }}</strong>
                                     </p>
                                 @else
                                     <div class="mx-auto p-3 rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center bg-success-subtle text-success" style="max-width: 240px; min-height: 200px; border: 2px dashed #22c55e;">
                                         <i class="bi bi-check-circle-fill text-success" style="font-size: 64px;"></i>
                                         <h5 class="fw-bold mt-2">ĐÃ THANH TOÁN</h5>
-                                        <span class="small text-muted">{{ number_format($invoice->amount) }}đ</span>
+                                        <span class="small text-muted">{{ number_format($invoice->amount, 0, ',', '.') }} VNĐ</span>
                                     </div>
                                     <p class="text-success small mt-2 fw-semibold">Giao dịch đã được ghi nhận qua SePay.</p>
                                 @endif

@@ -77,7 +77,13 @@
                                     <div class="row g-2 text-center bg-light rounded-3 p-3 mb-4">
                                         <div class="col-6 border-end" style="border-right: 1px solid #dee2e6 !important;">
                                             <span class="text-muted d-block small" style="font-size: 11px;">Mức giảm</span>
-                                            <strong class="text-success" style="font-size: 15px;">{{ $voucher->discount_value }}</strong>
+                                            <strong class="text-success" style="font-size: 15px;">
+                                                @if($voucher->discount_type === 'percent')
+                                                    {{ (int) $voucher->discount_value }}%
+                                                @else
+                                                    {{ number_format($voucher->discount_value, 0, ',', '.') }} VNĐ
+                                                @endif
+                                            </strong>
                                         </div>
                                         <div class="col-6">
                                             <span class="text-muted d-block small" style="font-size: 11px;">Yêu cầu Score</span>
@@ -109,4 +115,42 @@
             </div>
         </div>
     </section>
+
+    @push('scripts')
+    <script>
+        function copyVoucherCode(code, btn) {
+            navigator.clipboard.writeText(code).then(() => {
+                btn.innerHTML = '<i class="far fa-check-circle me-1"></i> Đã chép';
+                btn.style.backgroundColor = '#059669';
+                btn.style.borderColor = '#059669';
+                btn.style.color = '#ffffff';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="far fa-copy me-1"></i> Sao chép';
+                    btn.style.backgroundColor = 'transparent';
+                    btn.style.borderColor = '#10b981';
+                    btn.style.color = '#10b981';
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.Livewire) {
+                Livewire.on('swal', (event) => {
+                    const data = event[0] || event;
+                    Swal.fire({
+                        icon: data.type,
+                        title: data.title,
+                        text: data.text || '',
+                        html: data.html || '',
+                        confirmButtonText: 'Đồng ý',
+                        confirmButtonColor: '#10b981',
+                        customClass: {
+                            popup: 'rounded-4'
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    @endpush
 </div>

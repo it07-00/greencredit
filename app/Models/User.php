@@ -71,6 +71,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(GreenScoreHistory::class);
     }
 
+    public function getCurrentGreenScoreAttribute(): int
+    {
+        return (int) ($this->greenScoreHistories()->latest('calculated_at')->value('score') ?? 0);
+    }
+
     public function netZeroGoals(): HasMany
     {
         return $this->hasMany(NetZeroGoal::class);

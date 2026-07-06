@@ -27,8 +27,26 @@ class VoucherService
         return DB::transaction(function () use ($user, $voucher) {
             $voucher = Voucher::whereKey($voucher->id)->lockForUpdate()->firstOrFail();
 
-            if (! $this->canRedeem($user, $voucher)) {
-                throw new RuntimeException('Voucher đã hết hạn, hết lượt đổi hoặc số dư điểm không đủ.');
+            if ($voucher->status !== 'active') {
+                throw new RuntimeException('Voucher này đang không hoạt động.');
+            }
+
+            if ($voucher->expired_at && $voucher->expired_at->isPast()) {
+                throw new RuntimeException('Voucher này đã hết hạn sử dụng.');
+            }
+
+            if ($voucher->quantity !== null && $voucher->used_quantity >= $voucher->quantity) {
+                throw new RuntimeException('Voucher này đã hết lượt đổi thưởng.');
+            }
+
+            $balance = $this->points->getBalance($user);
+            if ($balance < $voucher->required_points) {
+                throw new RuntimeException("Số dư Green Points của bạn không đủ để đổi voucher này (yêu cầu {$voucher->required_points} điểm, hiện bạn có {$balance} điểm).");
+            }
+
+            $score = $this->scores->getCurrentScore($user);
+            if ($score < $voucher->min_green_score) {
+                throw new RuntimeException("Điểm Green Score của bạn chưa đạt yêu cầu tối thiểu của voucher (yêu cầu {$voucher->min_green_score} điểm, hiện bạn có {$score} điểm).");
             }
 
             $redemption = VoucherRedemption::create([

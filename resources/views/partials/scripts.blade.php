@@ -13,3 +13,4 @@
 <script src="{{ asset('frontend/assets/js/splitType.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/script-gsap.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

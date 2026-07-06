@@ -88,10 +88,12 @@
                                     @endif
                                 </td>
                                 <td class="px-3 py-3">
-                                    @if($row[1] === 'Đã quét' || $row[1] === 'Hoạt động')
+                                    @if(in_array($row[1], ['Đã quét', 'Hoạt động', 'Chưa sử dụng', 'Kích hoạt']))
                                         <span class="badge bg-success-subtle text-success border border-success-subtle px-2.5 py-1 rounded-pill">{{ $row[1] }}</span>
-                                    @elseif($row[1] === 'Chờ quét' || $row[1] === 'Chờ duyệt')
+                                    @elseif(in_array($row[1], ['Chờ quét', 'Chờ duyệt', 'Chưa thanh toán']))
                                         <span class="badge bg-warning-subtle text-warning border border-warning-subtle px-2.5 py-1 rounded-pill">{{ $row[1] }}</span>
+                                    @elseif(in_array($row[1], ['Hết hạn', 'Đã hủy']))
+                                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2.5 py-1 rounded-pill">{{ $row[1] }}</span>
                                     @else
                                         <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle px-2.5 py-1 rounded-pill">{{ $row[1] }}</span>
                                     @endif

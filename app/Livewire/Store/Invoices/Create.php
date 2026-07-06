@@ -29,6 +29,11 @@ class Create extends Component
     public bool $isCustomAmount = false;
     public string $customAmount = '';
 
+    // Voucher properties
+    public string $voucherCode = '';
+    public ?string $appliedVoucherCode = null;
+    public ?string $voucherError = null;
+
     public array $productsList = [
         ['name' => 'Americano Đá/Nóng', 'price' => 45000, 'category' => 'coffee', 'sku' => 'CF-AME-01', 'img' => 'images/img-22-D2w1zjf6.png'],
         ['name' => 'Cà phê Sữa Đá Sài Gòn', 'price' => 49000, 'category' => 'coffee', 'sku' => 'CF-MILK-02', 'img' => 'images/img-22-D2w1zjf6.png'],
@@ -63,6 +68,90 @@ class Create extends Component
     public function getCalculatedProperty(): array
     {
         return app(QrInvoiceService::class)->calculateInvoicePoints($this->actions);
+    }
+
+    public function getDiscountAmountProperty(): float
+    {
+        if (!$this->appliedVoucherCode) {
+            return 0.0;
+        }
+
+        $redemption = \App\Models\VoucherRedemption::where('redemption_code', $this->appliedVoucherCode)
+            ->with('voucher')
+            ->first();
+
+        if (!$redemption) {
+            return 0.0;
+        }
+
+        $voucher = $redemption->voucher;
+        $baseAmount = $this->isCustomAmount
+            ? (float) str_replace(',', '', $this->customAmount)
+            : collect($this->cart)->sum(fn($item) => $item['price'] * $item['qty']);
+
+        if ($voucher->discount_type === 'percent') {
+            return (float) round($baseAmount * ($voucher->discount_value / 100));
+        }
+
+        return (float) $voucher->discount_value;
+    }
+
+    public function getFinalAmountProperty(): float
+    {
+        $baseAmount = $this->isCustomAmount
+            ? (float) str_replace(',', '', $this->customAmount)
+            : collect($this->cart)->sum(fn($item) => $item['price'] * $item['qty']);
+
+        return max(0.0, $baseAmount - $this->discountAmount);
+    }
+
+    public function applyVoucher(): void
+    {
+        $this->voucherError = null;
+
+        if (empty($this->voucherCode)) {
+            $this->voucherError = 'Vui lòng nhập mã voucher.';
+            return;
+        }
+
+        $code = strtoupper(trim($this->voucherCode));
+        $redemption = \App\Models\VoucherRedemption::where('redemption_code', $code)
+            ->with('voucher')
+            ->first();
+
+        if (!$redemption) {
+            $this->voucherError = 'Mã voucher không tồn tại trên hệ thống.';
+            return;
+        }
+
+        if ($redemption->status !== 'issued') {
+            $statusText = $redemption->status === 'used' ? 'đã được sử dụng' : 'đã hết hạn';
+            $this->voucherError = "Voucher này {$statusText}.";
+            return;
+        }
+
+        if ($redemption->expired_at && $redemption->expired_at->isPast()) {
+            $this->voucherError = 'Voucher này đã hết hạn sử dụng.';
+            return;
+        }
+
+        $store = $this->store;
+        $voucher = $redemption->voucher;
+
+        if ($voucher->store_id && $voucher->store_id !== $store->id) {
+            $this->voucherError = 'Voucher này không áp dụng cho cửa hàng của bạn.';
+            return;
+        }
+
+        $this->appliedVoucherCode = $code;
+        $this->voucherError = null;
+    }
+
+    public function removeVoucher(): void
+    {
+        $this->appliedVoucherCode = null;
+        $this->voucherCode = '';
+        $this->voucherError = null;
     }
 
     // POS Cart functions
@@ -153,7 +242,7 @@ class Create extends Component
         ], [
             'amount.required' => 'Vui lòng nhập hoặc tính toán số tiền thanh toán.',
             'amount.numeric' => 'Số tiền thanh toán phải là số hợp lệ.',
-            'amount.min' => 'Số tiền hóa đơn tối thiểu phải từ 1.000đ.',
+            'amount.min' => 'Số tiền hóa đơn tối thiểu phải từ 1.000 VNĐ.',
             'actions.required' => 'Vui lòng chọn ít nhất một hành động xanh.',
             'branch_id.required' => 'Vui lòng chọn chi nhánh cửa hàng.',
         ]);
@@ -162,13 +251,28 @@ class Create extends Component
         abort_unless($store, 403);
         $branch = StoreBranch::where('store_id', $store->id)->findOrFail($this->branch_id);
 
-        $this->invoice = $service->createInvoice($store, $branch, auth()->user(), [
-            'amount' => $this->amount,
-            'payment_method' => $this->payment_method,
-            'actions' => $this->actions,
-        ]);
+        \Illuminate\Support\Facades\DB::transaction(function() use ($service, $store, $branch) {
+            $finalAmount = $this->final_amount;
 
-        $this->reset(['amount', 'actions', 'cart', 'customAmount', 'isCustomAmount']);
+            $this->invoice = $service->createInvoice($store, $branch, auth()->user(), [
+                'amount' => $finalAmount,
+                'payment_method' => $this->payment_method,
+                'actions' => $this->actions,
+            ]);
+
+            // Mark voucher as used if applied
+            if ($this->appliedVoucherCode) {
+                $redemption = \App\Models\VoucherRedemption::where('redemption_code', $this->appliedVoucherCode)->first();
+                if ($redemption) {
+                    app(\App\Services\VoucherService::class)->markAsUsed($redemption);
+                }
+            }
+        });
+
+        $this->reset([
+            'amount', 'actions', 'cart', 'customAmount', 'isCustomAmount',
+            'voucherCode', 'appliedVoucherCode', 'voucherError'
+        ]);
     }
 
     public function checkPaymentStatus(): void
@@ -206,6 +310,7 @@ class Create extends Component
             'rules' => GreenActionRule::where('is_active', true)->where('category', 'plastic_reduction')->get(),
             'calculated' => $this->calculated,
             'filteredProducts' => $filteredProducts,
+            'discountAmount' => $this->discountAmount,
         ])->layout('layouts.pos');
     }
 }
