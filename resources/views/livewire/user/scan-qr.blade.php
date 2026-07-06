@@ -1,96 +1,150 @@
 <div>
-    <section class="relative overflow-hidden bg-gradient-to-b from-white via-emerald-50/60 to-white">
-        <div class="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,rgba(21,128,61,.12),transparent)]"></div>
-        <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1fr_.95fr]">
-            <div class="relative z-10">
-                <div class="text-sm font-bold text-emerald-700">Trang chu <span class="mx-2 text-slate-300">›</span> Quet QR hoa don xanh</div>
-                <h1 class="mt-10 text-5xl font-black leading-tight text-emerald-950 md:text-6xl">Quet QR hoa don xanh</h1>
-                <p class="mt-6 max-w-2xl text-xl leading-9 text-slate-700">Xac thuc hoa don chi trong 1 giay, tich diem Green Points va cung nhau tao tac dong xanh moi ngay.</p>
-                <div class="mt-8 grid gap-3 sm:grid-cols-3">
-                    @foreach ([['⚡','Xac thuc nhanh chong'],['🛡','Minh bach - Tin cay chong gian lan'],['💳','Tich diem de dang vao Green Wallet']] as $pill)
-                        <div class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-emerald-100"><div class="text-2xl">{{ $pill[0] }}</div><p class="mt-2 text-sm font-bold text-emerald-950">{{ $pill[1] }}</p></div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="relative z-10 grid gap-5 md:grid-cols-[.95fr_.9fr]">
-                <div class="rounded-[2rem] bg-slate-950 p-4 text-white shadow-2xl shadow-emerald-950/20">
-                    <div class="flex items-center justify-between px-2 py-2 text-sm font-bold"><span>←</span><span>Quet QR hoa don</span><span>⚡</span></div>
-                    <div class="relative mt-4 grid aspect-[9/14] place-items-center overflow-hidden rounded-[1.5rem] bg-gradient-to-b from-slate-800 to-slate-950">
-                        <div class="absolute inset-x-8 top-24 bottom-24 rounded-2xl border-2 border-emerald-400"></div>
-                        <div class="grid h-40 w-40 place-items-center rounded-xl bg-white text-center text-xs font-black text-slate-950 shadow-xl">
-                            <div class="grid grid-cols-5 gap-1">
-                                @for ($i = 0; $i < 25; $i++)
-                                    <span class="h-4 w-4 {{ in_array($i, [0,1,3,5,6,8,11,12,13,16,18,20,21,23,24]) ? 'bg-slate-950' : 'bg-white' }}"></span>
-                                @endfor
-                            </div>
-                        </div>
-                        <div class="absolute bottom-4 text-sm text-slate-200">Dua ma QR vao khung hinh de quet</div>
-                    </div>
-                </div>
-                <div class="rounded-[2rem] bg-white p-6 text-center shadow-xl shadow-emerald-950/10 ring-1 ring-emerald-100">
-                    <div class="mx-auto grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-lime-300 to-emerald-600 text-5xl text-white shadow-inner">✓</div>
-                    <h2 class="mt-6 font-black text-emerald-950">Xac thuc thanh cong!</h2>
-                    <div class="mt-4 text-5xl font-black text-emerald-800">+125</div>
-                    <p class="font-bold text-emerald-900">Green Points</p>
-                    <div class="mt-5 rounded-2xl bg-emerald-50 p-4 text-sm text-emerald-900">Ban vua giup giam thieu <strong>0,28 kg CO2</strong> va <strong>0,12 kg nhua</strong></div>
-                    <a href="#scan-form" class="mt-5 inline-flex rounded-xl border border-emerald-600 px-4 py-2 font-bold text-emerald-800">Quet hoa don cua ban</a>
+    <!-- Breadcrumb-section Start -->
+    <section class="breadcrumb-section fix bg-cover" style="background-image: url('{{ asset('frontend/assets/img/breadcrumb.jpg') }}');">
+        <div class="container">
+            <div class="row">
+                <div class="page-heading">
+                    <ul class="breadcrumb-list wow fadeInUp" data-wow-delay=".5s">
+                        <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li><i class="far fa-angle-right"></i></li>
+                        <li>Tích điểm</li>
+                    </ul>
+                    <h2 class="wow fadeInUp" data-wow-delay=".3s">Quét QR hóa đơn xanh</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="scan-form" class="mx-auto max-w-7xl px-4 py-12">
-        <h2 class="text-center text-3xl font-black text-emerald-950">4 buoc tich diem Green Points</h2>
-        <div class="mt-8 grid gap-5 md:grid-cols-4">
-            @foreach ([['🏪','Mua hang tai cua hang doi tac','Chon san pham/dich vu tai hang nghin doi tac Green Credit.'],['🧾','Nhan hoa don xanh','Yeu cau hoa don co ma QR Green Credit tu cua hang.'],['📱','Quet QR xac thuc','Dung ung dung hoac website de quet ma QR va xac thuc.'],['👛','Nhan Green Points vao vi','Diem thuong duoc cong ngay vao Green Wallet.']] as $step)
-                <div class="relative rounded-3xl bg-white p-7 text-center shadow-sm ring-1 ring-slate-200">
-                    <span class="absolute -top-3 left-5 grid h-9 w-9 place-items-center rounded-full bg-emerald-700 font-black text-white">{{ $loop->iteration }}</span>
-                    <div class="mx-auto grid h-24 w-24 place-items-center rounded-3xl bg-emerald-50 text-5xl">{{ $step[0] }}</div>
-                    <h3 class="mt-5 text-lg font-black text-emerald-950">{{ $step[1] }}</h3>
-                    <p class="mt-3 text-sm leading-6 text-slate-600">{{ $step[2] }}</p>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="mt-8 grid gap-6 lg:grid-cols-3">
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h2 class="text-xl font-black text-emerald-950">Nhap QR token</h2>
-                <p class="mt-2 text-sm text-slate-600">Chap nhan token raw, GREEN-CREDIT:token hoac URL scan-qr/token.</p>
-                <form wire:submit="scan" class="mt-5">
-                    <input wire:model="token" class="w-full rounded-xl border-slate-200 px-4 py-3" placeholder="GREEN-CREDIT:..." autofocus>
-                    @error('token')<p class="mt-2 text-sm text-red-600">{{ $message }}</p>@enderror
-                    <button class="mt-4 w-full rounded-xl bg-emerald-700 px-5 py-3 font-black text-white">Xac thuc QR</button>
-                </form>
-                @if ($error)<div class="mt-5 rounded-2xl bg-red-50 p-4 text-red-800 ring-1 ring-red-100">{{ $error }}</div>@endif
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h2 class="text-xl font-black text-emerald-950">Diem nhan duoc</h2>
-                @if ($success)
-                    <div class="mt-5 text-center"><div class="text-6xl font-black text-emerald-800">{{ $success['points'] }}</div><p class="font-bold">Green Points</p></div>
-                    <div class="mt-5 grid grid-cols-2 gap-3">
-                        <div class="rounded-2xl bg-emerald-50 p-4 text-center"><strong>{{ $success['co2'] }} kg</strong><p class="text-xs text-slate-600">CO2 giam</p></div>
-                        <div class="rounded-2xl bg-emerald-50 p-4 text-center"><strong>{{ $success['plastic'] }} g</strong><p class="text-xs text-slate-600">Nhua giam</p></div>
+    <!-- Main Section -->
+    <section class="contact-section-6 section-padding bg-light">
+        <div class="container">
+            <div class="row g-4 align-items-stretch mb-5">
+                <!-- Left: Guide info -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm p-4 h-100 rounded-4 bg-white" style="border-radius: 20px;">
+                        <span class="text-success fw-bold text-uppercase mb-2" style="font-size: 12px;">Quy trình tích điểm</span>
+                        <h2 class="fw-bold text-dark mb-3">Tích điểm Green Points dễ dàng</h2>
+                        <p class="text-muted leading-relaxed mb-4">
+                            Xác thực hóa đơn mua sắm của bạn chỉ trong vài giây. Mỗi hành động bảo vệ môi trường được ghi nhận sẽ giúp tích lũy điểm thưởng và giảm phát thải CO₂.
+                        </p>
+                        <div class="row g-3 mt-2">
+                            @foreach ([['far fa-bolt text-success','Xác thực nhanh chóng','Hệ thống quét nhận điểm ngay lập tức.'],['far fa-shield-check text-primary','Minh bạch tin cậy','Cơ chế chống gian lận bảo vệ điểm thưởng của bạn.'],['far fa-wallet text-info','Tích lũy ví xanh','Điểm thưởng lưu trữ trực tiếp trong Green Wallet.']] as $pill)
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center gap-3 p-3 rounded-3 bg-light">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center bg-white shadow-sm" style="width: 44px; height: 44px; flex-shrink:0;">
+                                            <i class="{{ $pill[0] }} fs-5"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold mb-1 text-dark">{{ $pill[1] }}</h6>
+                                            <p class="text-muted small mb-0" style="font-size: 12px;">{{ $pill[2] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                @else
-                    <div class="mt-5 rounded-2xl bg-emerald-50 p-5 text-sm text-emerald-900">Sau khi xac thuc thanh cong, diem va tac dong moi truong se hien thi tai day.</div>
-                @endif
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h2 class="text-xl font-black text-emerald-950">Hanh dong xanh duoc ghi nhan</h2>
-                <div class="mt-5 space-y-3">
-                    @foreach ([['🧴','Khong dung ly nhua'],['🥤','Khong dung ong hut'],['🍶','Mang binh ca nhan']] as $action)
-                        <div class="flex items-center justify-between rounded-2xl bg-slate-50 p-4"><span class="font-bold">{{ $action[0] }} {{ $action[1] }}</span><span class="text-emerald-600">✓</span></div>
-                    @endforeach
+                </div>
+                
+                <!-- Right: Scan Simulation / Success Card -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm p-4 h-100 rounded-4 text-white" style="background: linear-gradient(135deg, #15803d 0%, #064e3b 100%); border-radius: 20px;">
+                        <div class="text-center py-4">
+                            <div class="rounded-circle bg-white bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3 shadow-lg" style="width: 80px; height: 80px; border: 2px dashed rgba(255,255,255,0.4);">
+                                <i class="far fa-qrcode text-white fs-1"></i>
+                            </div>
+                            <h3 class="fw-bold text-white mb-2">Quét mã nhận điểm</h3>
+                            <p class="text-white-50 small mb-4">Quét QR hoặc nhập mã Token bên dưới để tích lũy Green Points</p>
+                            
+                            <!-- Success view -->
+                            @if ($success)
+                                <div class="p-4 rounded-4 bg-white text-dark shadow text-center border-0 mb-3 mx-auto" style="max-width: 380px; border-radius: 20px;">
+                                    <div class="rounded-circle bg-success bg-opacity-10 text-success d-inline-flex align-items-center justify-content-center mb-3" style="width: 52px; height: 52px; background: #ecfdf5; color: #10b981;">
+                                        <i class="far fa-check-circle fs-3"></i>
+                                    </div>
+                                    <h5 class="fw-bold text-success mb-1">Xác thực thành công!</h5>
+                                    <h1 class="fw-bold text-success my-2" style="font-size: 40px; font-weight: 800;">+{{ $success['points'] }}</h1>
+                                    <p class="text-muted fw-bold small mb-3">Green Points</p>
+                                    <div class="p-3 bg-light rounded-3 text-start small">
+                                        <div class="d-flex justify-content-between mb-1"><span>Nhựa giảm thiểu:</span><strong>{{ $success['plastic'] }}g</strong></div>
+                                        <div class="d-flex justify-content-between mb-1"><span>CO₂ giảm thiểu:</span><strong>{{ $success['co2'] }}kg</strong></div>
+                                        <div class="d-flex justify-content-between"><span>Mã giao dịch:</span><span class="text-truncate" style="max-width: 140px;">{{ $success['code'] }}</span></div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="p-4 rounded-4 text-white text-center mb-3 mx-auto" style="max-width: 380px; background: rgba(255,255,255,0.06); border: 1px dashed rgba(255,255,255,0.2); border-radius: 20px;">
+                                    <div class="mb-2"><i class="far fa-file-invoice fs-2 text-white-50"></i></div>
+                                    <p class="small text-white-50 mt-2 mb-0">Sau khi xác thực thành công, điểm số và tác động môi trường sẽ hiển thị tại đây.</p>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-8 rounded-3xl bg-white p-7 shadow-sm ring-1 ring-slate-200">
-            <h2 class="text-center text-2xl font-black text-emerald-950">Chong gian lan - Xac thuc minh bach</h2>
-            <div class="mt-6 grid gap-4 md:grid-cols-4">
-                @foreach ([['▦','QR duy nhat','Moi hoa don co mot QR duy nhat, khong the sao chep.'],['🔒','Ma hoa an toan','Du lieu duoc ma hoa va lien ket voi he thong.'],['⏱','Xac thuc thoi gian thuc','Kiem tra truc tiep voi he thong.'],['🛡','Bao ve nguoi dung','Dam bao diem thuong minh bach va cong bang.']] as $item)
-                    <div class="rounded-2xl bg-emerald-50 p-5"><div class="text-3xl">{{ $item[0] }}</div><h3 class="mt-3 font-black text-emerald-950">{{ $item[1] }}</h3><p class="mt-2 text-sm text-slate-600">{{ $item[2] }}</p></div>
-                @endforeach
+            <!-- Steps & Input Token Form -->
+            <div class="row g-4 align-items-start">
+                <!-- Left form: Input token -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm p-4 rounded-4 bg-white" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3"><i class="far fa-keyboard text-success me-2"></i>Nhập mã QR Token</h5>
+                        <p class="text-muted small mb-4">Nhập mã định danh token của hóa đơn (hỗ trợ định dạng `GREEN-CREDIT:token` hoặc URL chứa mã token).</p>
+                        
+                        <form wire:submit="scan">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted">Mã Token</label>
+                                <input wire:model="token" type="text" class="form-control rounded-3 p-3" placeholder="GREEN-CREDIT:..." autofocus style="border: 1.5px solid #e2e8f0; border-radius: 10px;">
+                                @error('token') <span class="text-danger small mt-1 d-block">{{ $message }}</span> @enderror
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success w-100 py-3 rounded-3 fw-bold shadow-sm" style="background-color: #15803d; border-color: #15803d; border-radius: 10px;">
+                                <i class="far fa-shield-check me-2"></i>Xác thực mã QR
+                            </button>
+                        </form>
+
+                        @if ($error)
+                            <div class="alert alert-danger rounded-3 mt-4 mb-0 small">
+                                <i class="far fa-exclamation-triangle me-2"></i>{{ $error }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <!-- Middle: Green actions -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm p-4 rounded-4 bg-white h-100" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3"><i class="far fa-leaf text-success me-2"></i>Hành động xanh tiêu biểu</h5>
+                        <p class="text-muted small mb-4">Các hành động xanh được hệ thống hỗ trợ tích lũy điểm khi đi mua sắm tại cửa hàng đối tác:</p>
+                        <div class="d-flex flex-column gap-2">
+                            @foreach ([['far fa-cup-straw text-danger','Hạn chế ống hút nhựa','+20 điểm'],['far fa-ban text-danger','Hạn chế cốc nhựa','+30 điểm'],['far fa-shopping-bag text-success','Sử dụng túi vải cá nhân','+25 điểm'],['far fa-tint text-success','Mang bình nước cá nhân','+25 điểm']] as $action)
+                                <div class="d-flex justify-content-between align-items-center p-3 rounded-3 bg-light">
+                                    <span class="fw-bold text-dark" style="font-size: 13px;"><i class="{{ $action[0] }} me-2"></i> {{ $action[1] }}</span>
+                                    <span class="badge bg-success text-white fw-bold" style="background-color: #15803d; border-radius: 6px;">{{ $action[2] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Rules info -->
+                <div class="col-md-12 col-lg-4">
+                    <div class="card border-0 shadow-sm p-4 rounded-4 bg-white h-100" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3"><i class="far fa-info-circle text-success me-2"></i>Quy tắc xác thực</h5>
+                        <ul class="list-unstyled small text-muted leading-relaxed">
+                            <li class="mb-3 d-flex align-items-start gap-2">
+                                <i class="far fa-check-circle text-success mt-1"></i>
+                                <span>Mỗi mã QR chỉ được quét và nhận điểm **một lần duy nhất** cho mỗi khách hàng.</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start gap-2">
+                                <i class="far fa-check-circle text-success mt-1"></i>
+                                <span>Mã hóa đơn xanh có hiệu lực tích điểm trong vòng **7 ngày** kể từ ngày in hóa đơn.</span>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start gap-2">
+                                <i class="far fa-check-circle text-success mt-1"></i>
+                                <span>Hệ thống áp dụng AI chống gian lận nhằm bảo vệ cộng đồng tiêu dùng xanh công bằng.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

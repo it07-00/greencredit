@@ -18,6 +18,13 @@ class Index extends SimplePage
         $this->title = 'Danh sach hoa don xanh';
         $this->description = 'Hoa don do cua hang cua ban tao.';
         $this->cards = [['Tong hoa don', $invoices->count()], ['Pending', $invoices->where('status', 'pending')->count()], ['Used', $invoices->where('status', 'used')->count()]];
-        $this->rows = $invoices->map(fn ($i) => [$i->invoice_code, $i->status.' - '.$i->base_points.' diem', $i->created_at->format('d/m/Y H:i')])->all();
+        $this->rows = $invoices->map(fn ($i) => [
+            $i->invoice_code,
+            $i->status.' - '.$i->base_points.' điểm',
+            $i->created_at->format('d/m/Y H:i'),
+            route('store.invoices.show', $i)
+        ])->all();
+        $this->actionUrl = route('store.invoices.create');
+        $this->actionText = 'Mở POS Thu Ngân';
     }
 }

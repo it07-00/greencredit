@@ -19,14 +19,14 @@
 @section('content')
     <section class="breadcrumb-section fix bg-cover" style="background-image: url('{{ asset('frontend/assets/img/breadcrumb.jpg') }}');">
         <div class="container">
-            <div class="breadcrumb-wrapper">
-                <div class="breadcrumb-content">
-                    <h2 class="wow fadeInUp" data-wow-delay=".3s">Bắt đầu hành trình xanh</h2>
+            <div class="row">
+                <div class="page-heading">
                     <ul class="breadcrumb-list wow fadeInUp" data-wow-delay=".5s">
                         <li><a href="{{ route('home') }}">Trang chủ</a></li>
                         <li><i class="far fa-angle-right"></i></li>
                         <li>Đăng ký</li>
                     </ul>
+                    <h2 class="wow fadeInUp" data-wow-delay=".3s">Bắt đầu hành trình xanh</h2>
                 </div>
             </div>
         </div>

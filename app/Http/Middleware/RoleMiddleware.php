@@ -13,13 +13,13 @@ class RoleMiddleware
         $user = $request->user();
 
         if (! $user || $user->status !== 'active') {
-            abort(403, 'Ban khong co quyen truy cap.');
+            abort(403, 'Bạn không có quyền truy cập.');
         }
 
         if ($user->role === 'super_admin' || in_array($user->role, $roles, true)) {
             return $next($request);
         }
 
-        abort(403, 'Ban khong co quyen truy cap.');
+        abort(403, 'Bạn không có quyền truy cập.');
     }
 }

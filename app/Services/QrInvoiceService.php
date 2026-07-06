@@ -40,7 +40,7 @@ class QrInvoiceService
                 'base_points' => $calculated['points'],
                 'plastic_saved_grams' => $calculated['plastic_saved_grams'],
                 'co2_saved_kg' => $calculated['co2_saved_kg'],
-                'status' => 'pending',
+                'status' => in_array($data['payment_method'] ?? 'cash', ['bank', 'vietqr', 'sepay']) ? 'unpaid' : 'pending',
                 'expired_at' => now()->addDays(7),
             ]);
 
@@ -92,8 +92,8 @@ class QrInvoiceService
         $invoice = GreenInvoice::where('qr_token', $token)->first();
 
         if (! $invoice) {
-            $this->fraud->createAlert($user, null, 'invalid_qr', 'Nguoi dung nhap QR token khong ton tai.', 50);
-            throw new RuntimeException('Ma QR khong hop le.');
+            $this->fraud->createAlert($user, null, 'invalid_qr', 'Người dùng nhập QR token không tồn tại.', 50);
+            throw new RuntimeException('Mã QR không hợp lệ.');
         }
 
         return $invoice;
@@ -110,16 +110,19 @@ class QrInvoiceService
 
         $preflight = GreenInvoice::where('qr_token', $token)->first();
         if (! $preflight) {
-            $this->fraud->createAlert($user, null, 'invalid_qr', 'Nguoi dung nhap QR token khong ton tai.', 50);
-            throw new RuntimeException('Ma QR khong hop le.');
+            $this->fraud->createAlert($user, null, 'invalid_qr', 'Người dùng nhập QR token không tồn tại.', 50);
+            throw new RuntimeException('Mã QR không hợp lệ.');
         }
         if ($preflight->status === 'used' || $preflight->used_by) {
-            $this->fraud->createAlert($user, $preflight, 'duplicate_scan', 'Nguoi dung quet lai hoa don da su dung.', 80);
-            throw new RuntimeException('Hoa don nay da duoc su dung.');
+            $this->fraud->createAlert($user, $preflight, 'duplicate_scan', 'Người dùng quét lại hóa đơn đã sử dụng.', 80);
+            throw new RuntimeException('Hóa đơn này đã được sử dụng.');
+        }
+        if ($preflight->status === 'unpaid') {
+            throw new RuntimeException('Hóa đơn này chưa được thanh toán. Vui lòng thanh toán trước khi tích điểm.');
         }
         if ($preflight->expired_at && $preflight->expired_at->isPast()) {
-            $this->fraud->createAlert($user, $preflight, 'expired_invoice_attempt', 'Nguoi dung quet hoa don da het han.', 70);
-            throw new RuntimeException('Hoa don da het han.');
+            $this->fraud->createAlert($user, $preflight, 'expired_invoice_attempt', 'Người dùng quét hóa đơn đã hết hạn.', 70);
+            throw new RuntimeException('Hóa đơn đã hết hạn.');
         }
 
         return DB::transaction(function () use ($token, $user) {
@@ -127,7 +130,7 @@ class QrInvoiceService
 
             $inspection = $this->fraud->inspectInvoiceScan($user, $invoice);
             if (! $inspection['allowed'] || $invoice->status !== 'pending') {
-                throw new RuntimeException($inspection['messages'][0] ?? 'Hoa don khong the xac thuc.');
+                throw new RuntimeException($inspection['messages'][0] ?? 'Hóa đơn không thể xác thực.');
             }
 
             $transaction = GreenTransaction::create([
@@ -140,18 +143,18 @@ class QrInvoiceService
                 'points' => $invoice->base_points,
                 'plastic_saved_grams' => $invoice->plastic_saved_grams,
                 'co2_saved_kg' => $invoice->co2_saved_kg,
-                'description' => "Quet hoa don {$invoice->invoice_code}",
+                'description' => "Quét hóa đơn {$invoice->invoice_code}",
                 'status' => $inspection['risk_score'] >= 80 ? 'suspicious' : 'approved',
                 'metadata' => ['actions' => $invoice->eco_actions],
             ]);
 
-            $this->points->earnPoints($user, $invoice->base_points, 'Nhan diem tu hoa don xanh', $transaction);
+            $this->points->earnPoints($user, $invoice->base_points, 'Nhận điểm từ hóa đơn xanh', $transaction);
 
             $invoice->update(['status' => 'used', 'used_at' => now(), 'used_by' => $user->id]);
             $this->netZero->updateProgressFromTransaction($transaction);
             $this->scores->saveScoreHistory($user, 'invoice_scan');
 
-            ActivityLog::create(['user_id' => $user->id, 'action' => 'scan_invoice', 'description' => "Quet hoa don {$invoice->invoice_code}"]);
+            ActivityLog::create(['user_id' => $user->id, 'action' => 'scan_invoice', 'description' => "Quét hóa đơn {$invoice->invoice_code}"]);
 
             return $transaction;
         });

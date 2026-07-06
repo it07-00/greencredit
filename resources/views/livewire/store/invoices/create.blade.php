@@ -117,6 +117,12 @@
                 <h5 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
                     <i class="bi bi-receipt text-success"></i> Hóa đơn hiện tại
                 </h5>
+
+                <!-- Chọn chế độ nhập tiền -->
+                <div class="nav nav-pills nav-fill bg-light p-1 rounded-3 mb-3 animate-fade-in" style="font-size: 13px;">
+                    <button wire:click="$set('isCustomAmount', false)" class="nav-link py-2 rounded-2 fw-semibold {{ !$isCustomAmount ? 'bg-white text-success shadow-sm' : 'text-muted' }}" type="button" style="font-size: 12px; border: none;">Chọn sản phẩm</button>
+                    <button wire:click="$set('isCustomAmount', true)" class="nav-link py-2 rounded-2 fw-semibold {{ $isCustomAmount ? 'bg-white text-success shadow-sm' : 'text-muted' }}" type="button" style="font-size: 12px; border: none;">Nhập số tiền</button>
+                </div>
                 
                 <!-- Chọn chi nhánh -->
                 <div class="mb-3">
@@ -130,55 +136,71 @@
                     @error('branch_id') <span class="text-danger small">{{ $message }}</span> @enderror
                 </div>
 
-                <!-- Phương thức thanh toán -->
+                 <!-- Phương thức thanh toán -->
                 <div>
                     <label class="form-label small fw-semibold text-muted">Phương thức thanh toán</label>
                     <div class="d-flex gap-2">
-                        <button wire:click="$set('payment_method', 'cash')" class="btn btn-sm flex-fill border py-2 rounded-3 {{ $payment_method === 'cash' ? 'bg-emerald-50 text-emerald-800 border-emerald-600 fw-semibold' : 'btn-light' }}">Tiền mặt</button>
-                        <button wire:click="$set('payment_method', 'card')" class="btn btn-sm flex-fill border py-2 rounded-3 {{ $payment_method === 'card' ? 'bg-emerald-50 text-emerald-800 border-emerald-600 fw-semibold' : 'btn-light' }}">Thẻ ngân hàng</button>
-                        <button wire:click="$set('payment_method', 'wallet')" class="btn btn-sm flex-fill border py-2 rounded-3 {{ $payment_method === 'wallet' ? 'bg-emerald-50 text-emerald-800 border-emerald-600 fw-semibold' : 'btn-light' }}">Ví điện tử</button>
+                        <button wire:click="$set('payment_method', 'cash')" class="btn btn-sm flex-fill border py-2 rounded-3 {{ $payment_method === 'cash' ? 'bg-emerald-50 text-emerald-800 border-emerald-600 fw-semibold' : 'btn-light' }}"><i class="bi bi-cash me-1"></i> Tiền mặt</button>
+                        <button wire:click="$set('payment_method', 'vietqr')" class="btn btn-sm flex-fill border py-2 rounded-3 {{ $payment_method === 'vietqr' ? 'bg-emerald-50 text-emerald-800 border-emerald-600 fw-semibold' : 'btn-light' }}"><i class="bi bi-qr-code me-1"></i> Chuyển khoản VietQR</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Danh sách vật phẩm trong giỏ -->
+            <!-- Danh sách vật phẩm trong giỏ hoặc nhập tiền tùy chỉnh -->
             <div class="p-4 flex-grow-1 overflow-y-auto" style="max-height: 35vh;">
-                @if (empty($cart))
-                    <div class="text-center py-5">
-                        <img src="{{ asset('theme-pos/images/no-order-CCjZwO4J.svg') }}" style="max-width: 90px;" class="mb-3 opacity-75">
-                        <p class="text-muted small">Chưa có sản phẩm nào. Hãy click vào sản phẩm ở menu bên trái.</p>
+                @if ($isCustomAmount)
+                    <div class="py-3 animate-fade-in">
+                        <label class="form-label small fw-semibold text-muted mb-2">Nhập số tiền hóa đơn thực tế</label>
+                        <div class="input-group input-group-lg shadow-sm rounded-3 overflow-hidden border border-success-subtle">
+                            <span class="input-group-text bg-light text-success border-0"><i class="bi bi-cash-coin fs-4"></i></span>
+                            <input wire:model.live="customAmount" type="number" class="form-control border-0 py-3 text-end fw-bold text-dark fs-4" placeholder="0" min="1000">
+                            <span class="input-group-text bg-light text-muted border-0 fw-semibold">VND</span>
+                        </div>
+                        @error('amount')
+                            <span class="text-danger small mt-2 d-block fw-semibold"><i class="bi bi-exclamation-circle-fill me-1"></i> {{ $message }}</span>
+                        @enderror
+                        <p class="text-muted small mt-3 mb-0">
+                            <i class="bi bi-info-circle-fill text-success"></i> Sử dụng chế độ này khi bạn chỉ muốn nhập tổng giá trị hóa đơn từ phần mềm bán hàng chính mà không cần chọn từng món.
+                        </p>
                     </div>
                 @else
-                    <table class="table table-borderless align-middle table-sm">
-                        <thead>
-                            <tr class="text-muted small border-bottom">
-                                <th>Sản phẩm</th>
-                                <th class="text-center" style="width: 100px;">SL</th>
-                                <th class="text-end" style="width: 80px;">Tổng</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cart as $key => $item)
-                                <tr class="border-bottom" style="border-bottom-style: dashed !important;">
-                                    <td class="py-2">
-                                        <div class="fw-semibold text-dark text-truncate" style="max-width: 140px;">{{ $item['name'] }}</div>
-                                        <div class="text-muted small">{{ number_format($item['price']) }}đ</div>
-                                    </td>
-                                    <td class="py-2 text-center">
-                                        <div class="d-flex align-items-center justify-content-center gap-1 border rounded-3 p-1" style="background-color: #f8fafc;">
-                                            <button wire:click="decrementQty({{ $key }})" class="btn btn-link btn-sm p-0 m-0 text-dark decoration-none" style="width: 20px;"><i class="bi bi-minus"></i></button>
-                                            <span class="fw-semibold px-2 small">{{ $item['qty'] }}</span>
-                                            <button wire:click="incrementQty({{ $key }})" class="btn btn-link btn-sm p-0 m-0 text-dark decoration-none" style="width: 20px;"><i class="bi bi-plus"></i></button>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 text-end">
-                                        <div class="fw-bold text-dark">{{ number_format($item['price'] * $item['qty']) }}đ</div>
-                                        <button wire:click="removeFromCart({{ $key }})" class="btn btn-link btn-sm p-0 text-danger" title="Xóa"><i class="bi bi-trash"></i></button>
-                                    </td>
+                    @if (empty($cart))
+                        <div class="text-center py-5">
+                            <img src="{{ asset('theme-pos/images/no-order-CCjZwO4J.svg') }}" style="max-width: 90px;" class="mb-3 opacity-75">
+                            <p class="text-muted small">Chưa có sản phẩm nào. Hãy click vào sản phẩm ở menu bên trái.</p>
+                        </div>
+                    @else
+                        <table class="table table-borderless align-middle table-sm">
+                            <thead>
+                                <tr class="text-muted small border-bottom">
+                                    <th>Sản phẩm</th>
+                                    <th class="text-center" style="width: 100px;">SL</th>
+                                    <th class="text-end" style="width: 80px;">Tổng</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($cart as $key => $item)
+                                    <tr class="border-bottom" style="border-bottom-style: dashed !important;">
+                                        <td class="py-2">
+                                            <div class="fw-semibold text-dark text-truncate" style="max-width: 140px;">{{ $item['name'] }}</div>
+                                            <div class="text-muted small">{{ number_format($item['price']) }}đ</div>
+                                        </td>
+                                        <td class="py-2 text-center">
+                                            <div class="d-flex align-items-center justify-content-center gap-1 border rounded-3 p-1" style="background-color: #f8fafc;">
+                                                <button wire:click="decrementQty({{ $key }})" class="btn btn-link btn-sm p-0 m-0 text-dark decoration-none" style="width: 20px;"><i class="bi bi-minus"></i></button>
+                                                <span class="fw-semibold px-2 small">{{ $item['qty'] }}</span>
+                                                <button wire:click="incrementQty({{ $key }})" class="btn btn-link btn-sm p-0 m-0 text-dark decoration-none" style="width: 20px;"><i class="bi bi-plus"></i></button>
+                                            </div>
+                                        </td>
+                                        <td class="py-2 text-end">
+                                            <div class="fw-bold text-dark">{{ number_format($item['price'] * $item['qty']) }}đ</div>
+                                            <button wire:click="removeFromCart({{ $key }})" class="btn btn-link btn-sm p-0 text-danger" title="Xóa"><i class="bi bi-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 @endif
             </div>
 
@@ -202,19 +224,29 @@
                         </div>
                     @endforeach
                 </div>
-                @error('actions') <p class="text-danger small mt-2 mb-0">{{ $message }}</p> @enderror
+                @error('actions')
+                    <div class="alert alert-danger p-2 rounded-3 small mt-3 mb-0" role="alert" style="font-size: 11px;">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <!-- Tổng kết tiền & điểm -->
             <div class="p-4 bg-white border-top">
                 <div class="d-flex justify-content-between mb-2">
                     <span class="text-muted">Tổng tiền hàng:</span>
-                    <strong class="text-dark">{{ number_format($amount) }}đ</strong>
+                    <strong class="text-dark">{{ number_format($isCustomAmount ? (float)$customAmount : $amount) }}đ</strong>
                 </div>
                 <div class="d-flex justify-content-between mb-3 text-success">
                     <span>Điểm xanh tích lũy dự kiến:</span>
                     <strong class="fw-bold">+{{ $calculated['points'] }}đ ({{ $calculated['plastic_saved_grams'] }}g nhựa, {{ $calculated['co2_saved_kg'] }}kg CO2)</strong>
                 </div>
+
+                @error('amount')
+                    <div class="alert alert-danger p-2 rounded-3 small mb-3" role="alert" style="font-size: 11px;">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> {{ $message }}
+                    </div>
+                @enderror
 
                 <button wire:click="create" class="btn btn-emerald w-100 py-3 rounded-3 text-white fw-bold shadow d-flex align-items-center justify-content-center gap-2" style="background-color: #059669; border-color: #059669;">
                     <i class="bi bi-qr-code-scan"></i> THANH TOÁN & XUẤT QR CODE
@@ -225,7 +257,7 @@
 
     <!-- Modal Kết Quả Hoá Đơn & Mã QR Tích Điểm -->
     @if ($invoice)
-        <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0, 0, 0, 0.6); z-index: 1050; backdrop-filter: blur(4px);">
+        <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0, 0, 0, 0.6); z-index: 1050; backdrop-filter: blur(4px);" wire:poll.3s="checkPaymentStatus">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
                     <!-- Header -->
@@ -238,32 +270,61 @@
                     <!-- Body -->
                     <div class="modal-body p-4">
                         <div class="text-center mb-4">
-                            <p class="text-muted mb-1">Mã hóa đơn</p>
-                            <h4 class="fw-bold text-dark mb-0">{{ $invoice->invoice_code }}</h4>
+                            <p class="text-muted mb-1 font-semibold small">Mã hóa đơn</p>
+                            <h4 class="fw-bold text-dark mb-0" style="font-family: 'Plus Jakarta Sans', sans-serif;">{{ $invoice->invoice_code }}</h4>
+                            <span class="badge {{ $invoice->status === 'unpaid' ? 'bg-warning text-dark' : 'bg-success text-white' }} px-3 py-2 rounded-pill mt-2">
+                                <i class="far {{ $invoice->status === 'unpaid' ? 'fa-spinner fa-spin' : 'fa-check-circle' }} me-1"></i>
+                                {{ $invoice->status === 'unpaid' ? 'Chờ thanh toán qua SePay...' : 'Đã thanh toán thành công' }}
+                            </span>
                         </div>
 
                         <!-- Side by Side QR Codes -->
                         <div class="row g-4 justify-content-center mb-4">
                             <!-- VietQR Payment (Left) -->
                             <div class="col-md-6 text-center border-end">
-                                <h6 class="fw-bold text-dark mb-3"><i class="bi bi-wallet2 text-primary"></i> 1. Quét Thanh Toán (VietQR)</h6>
-                                <div class="mx-auto p-3 bg-light rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center" style="max-width: 240px; border: 1px solid #e2e8f0;">
-                                    <img src="https://img.vietqr.io/image/tcb-1006200076-compact.png?amount={{ $invoice->amount }}&addInfo=GC%20{{ $invoice->invoice_code }}&accountName=GREEN%20CREDIT%20STORE" alt="VietQR Payment" class="img-fluid rounded-2 shadow-sm" style="max-height: 180px;">
-                                </div>
-                                <p class="text-muted small mt-2">Ngân hàng: Techcombank<br>Số tiền: <strong>{{ number_format($invoice->amount) }}đ</strong></p>
+                                <h6 class="fw-bold text-dark mb-3"><i class="bi bi-wallet2 text-primary"></i> 1. Thanh toán VietQR (SePay)</h6>
+                                @if($invoice->status === 'unpaid')
+                                    <div class="mx-auto p-3 bg-light rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center" style="max-width: 240px; border: 1px solid #e2e8f0; min-height: 200px;">
+                                        <img src="https://img.vietqr.io/image/{{ \App\Models\SystemSetting::get('sepay_bank_id', 'VietinBank') }}-{{ \App\Models\SystemSetting::get('sepay_account_no', '102873849182') }}-compact2.png?amount={{ (int)$invoice->amount }}&addInfo={{ $invoice->invoice_code }}&accountName={{ urlencode(\App\Models\SystemSetting::get('sepay_account_name', 'CONG TY GREEN CREDIT')) }}" alt="VietQR Payment" class="img-fluid rounded-2 shadow-sm" style="max-height: 180px;">
+                                    </div>
+                                    <p class="text-muted small mt-2">
+                                        Ngân hàng: <strong>{{ \App\Models\SystemSetting::get('sepay_bank_id', 'VietinBank') }}</strong><br>
+                                        Số tiền: <strong class="text-danger">{{ number_format($invoice->amount) }}đ</strong><br>
+                                        Nội dung CK: <strong class="text-primary">{{ $invoice->invoice_code }}</strong>
+                                    </p>
+                                @else
+                                    <div class="mx-auto p-3 rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center bg-success-subtle text-success" style="max-width: 240px; min-height: 200px; border: 2px dashed #22c55e;">
+                                        <i class="bi bi-check-circle-fill text-success" style="font-size: 64px;"></i>
+                                        <h5 class="fw-bold mt-2">ĐÃ THANH TOÁN</h5>
+                                        <span class="small text-muted">{{ number_format($invoice->amount) }}đ</span>
+                                    </div>
+                                    <p class="text-success small mt-2 fw-semibold">Giao dịch đã được ghi nhận qua SePay.</p>
+                                @endif
                             </div>
 
                             <!-- Green Credit (Right) -->
                             <div class="col-md-6 text-center">
                                 <h6 class="fw-bold text-success mb-3"><i class="bi bi-leaf-fill"></i> 2. Quét Nhận Điểm Xanh</h6>
-                                <div class="mx-auto p-4 bg-dark rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center" style="max-width: 240px; aspect-ratio: 1; background-color: #0f172a; height: 206px;">
-                                    <span class="text-white small mb-2 tracking-widest fw-semibold" style="font-size: 10px;">QUÉT MÃ TÍCH ĐIỂM</span>
-                                    <div class="p-2 bg-white rounded-3 shadow">
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode(route('user.scan-qr', ['token' => $invoice->qr_token])) }}" alt="QR Code" style="width: 120px; height: 120px;">
+                                @if($invoice->status === 'unpaid')
+                                    <div class="mx-auto p-4 bg-dark rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center position-relative" style="max-width: 240px; aspect-ratio: 1; background-color: #1e293b; height: 206px;">
+                                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center rounded-4" style="background: rgba(15, 23, 42, 0.95); z-index: 10;">
+                                            <i class="bi bi-lock-fill text-warning fa-bounce mb-2" style="font-size: 32px;"></i>
+                                            <span class="text-warning small fw-bold px-2 text-center" style="font-size: 11px;">MÃ KHÓA TÍCH ĐIỂM<br><span class="text-white-50 font-normal">Vui lòng thanh toán trước</span></span>
+                                        </div>
                                     </div>
-                                    <span class="text-emerald-400 small mt-2 fw-bold" style="font-size: 10px;">GREEN CREDIT PLATFORM</span>
-                                </div>
-                                <p class="text-success small mt-2">Phần thưởng: <strong>+{{ $invoice->points_awarded }} Green Points</strong></p>
+                                    <p class="text-muted small mt-2">Phần thưởng: <strong>+{{ $invoice->base_points }} Green Points</strong></p>
+                                    <button wire:click="markAsPaid" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold mt-1"><i class="bi bi-cash-coin me-1"></i> Xác nhận đã thu tiền mặt</button>
+                                @else
+                                    <div class="mx-auto p-4 bg-dark rounded-4 mb-2 d-flex flex-column align-items-center justify-content-center" style="max-width: 240px; aspect-ratio: 1; background-color: #0f172a; height: 206px;">
+                                        <span class="text-white small mb-2 tracking-widest fw-semibold" style="font-size: 10px;">QUÉT MÃ TÍCH ĐIỂM</span>
+                                        <div class="p-2 bg-white rounded-3 shadow">
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode(route('user.scan-qr', ['token' => $invoice->qr_token])) }}" alt="QR Code" style="width: 120px; height: 120px;">
+                                        </div>
+                                        <span class="text-emerald-400 small mt-2 fw-bold" style="font-size: 10px;">GREEN CREDIT PLATFORM</span>
+                                    </div>
+                                    <p class="text-success small mt-2">Phần thưởng: <strong>+{{ $invoice->base_points }} Green Points</strong></p>
+                                    <span class="badge bg-success-subtle text-success border border-success-200 rounded-pill px-3 py-1 fw-bold"><i class="bi bi-unlock-fill me-1"></i> Mã đã mở khóa</span>
+                                @endif
                             </div>
                         </div>
 
@@ -274,6 +335,9 @@
                     </div>
                     <!-- Footer -->
                     <div class="modal-footer p-4 border-0 bg-light d-flex justify-content-end gap-2">
+                        <a href="{{ route('store.invoices.show', $invoice) }}" class="btn btn-outline-dark px-4 py-2 fw-bold rounded-3">
+                            XEM CHI TIẾT HÓA ĐƠN
+                        </a>
                         <button wire:click="resetInvoice" class="btn btn-emerald px-4 py-2 text-white fw-bold rounded-3" style="background-color: #047857; border-color: #047857;">
                             BÁN ĐƠN HÀNG MỚI <i class="bi bi-arrow-right"></i>
                         </button>

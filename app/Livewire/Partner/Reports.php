@@ -8,9 +8,9 @@ class Reports extends SimplePage
 {
     public function mount(): void
     {
-        $this->title = 'Partner Reports';
-        $this->description = 'Bao cao hieu qua voucher theo phan khuc Green Score.';
-        $this->cards = [['Segmentation', 'Ready'], ['Conversion', 'Ready'], ['Top voucher', 'Ready']];
-        $this->rows = [['Forest users', 'High value', 'Segment'], ['Leaf users', 'Growth', 'Segment']];
+        $this->title = 'Báo cáo Đối tác';
+        $this->description = 'Báo cáo hiệu quả voucher theo phân khúc Green Score.';
+        $this->cards = [['Phân khúc', 'Sẵn sàng'], ['Tỷ lệ chuyển đổi', 'Sẵn sàng'], ['Top voucher', 'Sẵn sàng']];
+        $this->rows = [['Thành viên Forest', 'Giá trị cao', 'Phân khúc'], ['Thành viên Leaf', 'Tăng trưởng', 'Phân khúc']];
     }
 }

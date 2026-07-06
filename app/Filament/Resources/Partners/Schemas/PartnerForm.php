@@ -14,21 +14,43 @@ class PartnerForm
         return $schema
             ->components([
                 Select::make('user_id')
-                    ->relationship('user', 'name'),
+                    ->relationship('user', 'name')
+                    ->label('Tài khoản liên kết')
+                    ->searchable()
+                    ->preload(),
                 TextInput::make('name')
+                    ->label('Tên đối tác')
                     ->required(),
-                TextInput::make('type')
+                Select::make('type')
+                    ->label('Loại đối tác')
+                    ->options([
+                        'voucher' => 'Đối tác voucher',
+                        'financial' => 'Đối tác tài chính',
+                        'wallet' => 'Đối tác ví điện tử',
+                        'other' => 'Khác',
+                    ])
                     ->required()
                     ->default('voucher'),
                 TextInput::make('contact_email')
+                    ->label('Email liên hệ')
                     ->email(),
                 TextInput::make('contact_phone')
+                    ->label('Số điện thoại liên hệ')
                     ->tel(),
-                TextInput::make('address'),
+                TextInput::make('address')
+                    ->label('Địa chỉ'),
                 Textarea::make('description')
+                    ->label('Mô tả')
                     ->columnSpanFull(),
-                TextInput::make('logo'),
-                TextInput::make('status')
+                TextInput::make('logo')
+                    ->label('Đường dẫn Logo'),
+                Select::make('status')
+                    ->label('Trạng thái')
+                    ->options([
+                        'active' => 'Hoạt động',
+                        'inactive' => 'Ngừng hoạt động',
+                        'pending' => 'Chờ duyệt',
+                    ])
                     ->required()
                     ->default('pending'),
             ]);

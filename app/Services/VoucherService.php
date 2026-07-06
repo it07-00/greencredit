@@ -28,7 +28,7 @@ class VoucherService
             $voucher = Voucher::whereKey($voucher->id)->lockForUpdate()->firstOrFail();
 
             if (! $this->canRedeem($user, $voucher)) {
-                throw new RuntimeException('Voucher da het han, het luot doi hoac so du diem khong du.');
+                throw new RuntimeException('Voucher đã hết hạn, hết lượt đổi hoặc số dư điểm không đủ.');
             }
 
             $redemption = VoucherRedemption::create([
@@ -40,7 +40,7 @@ class VoucherService
                 'expired_at' => now()->addDays(30),
             ]);
 
-            $this->points->redeemPoints($user, $voucher->required_points, 'Doi voucher '.$voucher->title, $redemption);
+            $this->points->redeemPoints($user, $voucher->required_points, 'Đổi voucher '.$voucher->title, $redemption);
             $voucher->increment('used_quantity');
 
             return $redemption;

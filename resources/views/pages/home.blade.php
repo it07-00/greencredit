@@ -49,47 +49,6 @@
         </div>
     </section>
 
-    <!-- Portals Section Start -->
-    <section class="portals-section fix section-padding bg-light pt-5 pb-5">
-        <div class="container">
-            <div class="section-title text-center mb-5">
-                <span class="wow fadeInUp text-success">Lối Đi Riêng Cho Bạn</span>
-                <h2 class="char-animation" style="font-size: 36px;">Cổng Đăng Nhập Hệ Sinh Thái</h2>
-                <p class="mt-2 wow fadeInUp" data-wow-delay=".2s">Vui lòng chọn vai trò phù hợp của bạn để tiếp tục hành trình chuyển đổi số xanh.</p>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <!-- Cổng Khách Hàng -->
-                <div class="col-lg-5 col-md-6">
-                    <div class="card border-0 shadow-sm p-4 text-center rounded-4 h-100" style="background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(21, 128, 61, 0.1) !important; transition: all 0.3s ease-in-out;">
-                        <div class="avatar mx-auto mb-3 bg-emerald-100 text-emerald-800 rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; font-size: 32px; background-color: #dcfce7; color: #15803d;">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <h3 class="mb-2 text-dark font-bold" style="font-size: 22px; font-family: 'Plus Jakarta Sans', sans-serif;">Khách Hàng / Thành Viên</h3>
-                        <p class="text-muted mb-4 small" style="min-height: 48px;">Tích lũy Green Points, theo dõi chỉ số Green Score cá nhân, lập kế hoạch Net Zero và quy đổi các voucher ưu đãi hấp dẫn.</p>
-                        <div class="d-grid gap-2">
-                            <a href="{{ route('login') }}" class="theme-btn py-3 text-center d-block">Đăng nhập khách hàng</a>
-                            <a href="{{ route('register') }}" class="theme-btn style-2 py-3 text-center d-block" style="margin-top: 10px;">Đăng ký thành viên mới</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Cổng Đối Tác -->
-                <div class="col-lg-5 col-md-6">
-                    <div class="card border-0 shadow-sm p-4 text-center rounded-4 h-100" style="background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(108, 87, 210, 0.1) !important; transition: all 0.3s ease-in-out;">
-                        <div class="avatar mx-auto mb-3 bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; font-size: 32px; background-color: #e0e7ff; color: #4f46e5;">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <h3 class="mb-2 text-dark font-bold" style="font-size: 22px; font-family: 'Plus Jakarta Sans', sans-serif;">Cửa Hàng / Đối Tác</h3>
-                        <p class="text-muted mb-4 small" style="min-height: 48px;">Sử dụng hệ thống POS tích điểm cho khách, quản lý nhân viên, phát hành voucher xanh quảng bá thương hiệu và xem báo cáo tác động.</p>
-                        <div class="d-grid gap-2">
-                            <a href="{{ route('login') }}" class="theme-btn py-3 text-center d-block bg-header">Đăng nhập đối tác / POS</a>
-                            <a href="{{ route('contact') }}" class="theme-btn style-2 py-3 text-center d-block" style="margin-top: 10px;">Đăng ký hợp tác doanh nghiệp</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Tính năng Section Start -->
     <section class="service-section fix section-padding">
         <div class="container">
@@ -366,7 +325,7 @@
                                     </div>
                                     <div class="content">
                                         <p>Email liên hệ</p>
-                                        <h5>hello@greencredit.vn</h5>
+                                        <h5>{{ \App\Models\SystemSetting::get('site_email_hello', 'hello@greencredit.vn') }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -910,7 +869,7 @@
                                     </div>
                                     <div class="content">
                                         <p>Email liên hệ</p>
-                                        <h5>support@greencredit.vn</h5>
+                                        <h5>{{ \App\Models\SystemSetting::get('site_email', 'support@greencredit.vn') }}</h5>
                                     </div>
                                 </div>
                             </div>

@@ -46,7 +46,7 @@ class GreenPointService
     public function redeemPoints(User $user, int $points, string $description, ?Model $reference = null): GreenPoint
     {
         if ($this->getBalance($user) < $points) {
-            throw new RuntimeException('So du Green Points khong du.');
+            throw new RuntimeException('Số dư Green Points không đủ.');
         }
 
         return $this->writeLedger($user, 'redeem', -abs($points), $description, $reference);
@@ -72,7 +72,7 @@ class GreenPointService
             $after = $before + $points;
 
             if ($after < 0) {
-                throw new RuntimeException('So du Green Points khong du.');
+                throw new RuntimeException('Số dư Green Points không đủ.');
             }
 
             if ($points > 0) {

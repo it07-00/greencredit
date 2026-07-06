@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ($users as $user) {
-            $user->profile()->create(['city' => 'TP.HCM', 'district' => 'Quan 1', 'green_interests' => ['plastic', 'transport', 'recycling']]);
+            $user->profile()->create(['city' => 'TP.HCM', 'district' => 'Quận 1', 'green_interests' => ['plastic', 'transport', 'recycling']]);
             app(GreenPointService::class)->ensureWallet($user);
         }
 
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ([['seed', 'Seed', 0, 199], ['leaf', 'Leaf', 200, 399], ['tree', 'Tree', 400, 699], ['forest', 'Forest', 700, 899], ['net_zero_hero', 'Net Zero Hero', 900, 1000]] as $i => [$code, $name, $min, $max]) {
-            GreenLevel::create(['code' => $code, 'name' => $name, 'min_score' => $min, 'max_score' => $max, 'sort_order' => $i + 1, 'description' => 'Cap do '.$name, 'benefits' => ['badge' => $name]]);
+            GreenLevel::create(['code' => $code, 'name' => $name, 'min_score' => $min, 'max_score' => $max, 'sort_order' => $i + 1, 'description' => 'Cấp độ '.$name, 'benefits' => ['badge' => $name]]);
         }
 
         $stores = collect(['Lá Xanh Coffee', 'Eco Milk Tea', 'Green Mart', 'Organic Food Corner', 'The Green House'])->map(function ($name, $i) use ($users) {
@@ -95,9 +95,9 @@ class DatabaseSeeder extends Seeder
                 'type' => ['cafe', 'restaurant', 'supermarket', 'milk_tea', 'other'][$i],
                 'email' => Str::slug($name).'@greencredit.test',
                 'phone' => '09000000'.$i,
-                'address' => ($i + 1).' Nguyen Hue',
+                'address' => ($i + 1).' Nguyễn Huệ',
                 'city' => 'TP.HCM',
-                'district' => 'Quan '.($i + 1),
+                'district' => 'Quận '.($i + 1),
                 'status' => 'active',
                 'is_active' => true,
             ]);
@@ -106,13 +106,13 @@ class DatabaseSeeder extends Seeder
         $branches = collect();
         foreach ($stores as $store) {
             for ($i = 1; $i <= 2; $i++) {
-                $branches->push(StoreBranch::create(['store_id' => $store->id, 'name' => $store->name.' CN '.$i, 'address' => "{$i} Le Loi", 'city' => 'TP.HCM', 'district' => 'Quan '.$i, 'is_active' => true]));
+                $branches->push(StoreBranch::create(['store_id' => $store->id, 'name' => $store->name.' CN '.$i, 'address' => "{$i} Lê Lợi", 'city' => 'TP.HCM', 'district' => 'Quận '.$i, 'is_active' => true]));
             }
         }
 
         $staffEmails = ['staff1@greencredit.test', 'staff2@greencredit.test', 'staff3@greencredit.test', 'staff4@greencredit.test'];
         foreach ($staffEmails as $i => $email) {
-            StoreStaff::create(['store_id' => $stores[$i % $stores->count()]->id, 'branch_id' => $branches[$i]->id, 'user_id' => $users[$email]->id, 'position' => 'Nhan vien xanh']);
+            StoreStaff::create(['store_id' => $stores[$i % $stores->count()]->id, 'branch_id' => $branches[$i]->id, 'user_id' => $users[$email]->id, 'position' => 'Nhân viên xanh']);
         }
 
         $partners = collect([
@@ -163,12 +163,12 @@ class DatabaseSeeder extends Seeder
                     'points' => $invoice->base_points,
                     'plastic_saved_grams' => $invoice->plastic_saved_grams,
                     'co2_saved_kg' => $invoice->co2_saved_kg,
-                    'description' => 'Quet hoa don demo',
+                    'description' => 'Quét hóa đơn demo',
                     'status' => 'approved',
                     'metadata' => ['actions' => $invoice->eco_actions],
                     'created_at' => now()->subDays(rand(0, 25)),
                 ]);
-                $pointService->earnPoints($user, $invoice->base_points, 'Nhan diem demo', $tx);
+                $pointService->earnPoints($user, $invoice->base_points, 'Nhận điểm demo', $tx);
             }
         }
 
@@ -193,13 +193,22 @@ class DatabaseSeeder extends Seeder
         ];
 
         for ($i = 1; $i <= 10; $i++) {
+            $category = ['cafe', 'milk_tea', 'supermarket', 'wallet', 'finance'][($i - 1) % 5];
+            $imageMap = [
+                'cafe' => 'frontend/assets/img/vouchers/voucher_cafe.png',
+                'milk_tea' => 'frontend/assets/img/vouchers/voucher_milktea.png',
+                'supermarket' => 'frontend/assets/img/vouchers/voucher_supermarket.png',
+                'wallet' => 'frontend/assets/img/vouchers/voucher_wallet.png',
+                'finance' => 'frontend/assets/img/vouchers/voucher_finance.png',
+            ];
+
             Voucher::create([
                 'partner_id' => $partners->random()->id,
                 'store_id' => $i <= 4 ? $stores->random()->id : null,
                 'title' => $voucherTitles[$i - 1],
                 'code' => 'GREEN'.$i,
                 'description' => 'Ưu đãi giả lập dành cho người dùng có hành vi tiêu dùng xanh.',
-                'category' => ['cafe', 'milk_tea', 'supermarket', 'wallet', 'finance'][($i - 1) % 5],
+                'category' => $category,
                 'required_points' => 30 + $i * 20,
                 'discount_type' => $i % 2 ? 'fixed' : 'percent',
                 'discount_value' => $i % 2 ? 10000 + $i * 1000 : 5 + $i,
@@ -208,7 +217,8 @@ class DatabaseSeeder extends Seeder
                 'started_at' => now()->subDays(3),
                 'expired_at' => now()->addMonths(2),
                 'status' => 'active',
-                'terms' => 'Ap dung mot lan cho moi nguoi dung.',
+                'terms' => 'Áp dụng một lần cho mỗi người dùng.',
+                'image' => $imageMap[$category],
             ]);
         }
 
@@ -218,7 +228,7 @@ class DatabaseSeeder extends Seeder
             $voucher->increment('used_quantity');
         }
 
-        foreach ([['TOO_MANY_SCANS', 'Qua nhieu lan quet', 60, '10'], ['DUPLICATE_SCAN', 'Quet trung QR', 80, '1'], ['EXPIRED_INVOICE', 'Quet hoa don het han', 70, 'expired']] as [$code, $name, $risk, $threshold]) {
+        foreach ([['TOO_MANY_SCANS', 'Quá nhiều lần quét', 60, '10'], ['DUPLICATE_SCAN', 'Quét trùng QR', 80, '1'], ['EXPIRED_INVOICE', 'Quét hóa đơn hết hạn', 70, 'expired']] as [$code, $name, $risk, $threshold]) {
             FraudRule::create(['code' => $code, 'name' => $name, 'risk_points' => $risk, 'threshold_value' => $threshold]);
         }
         foreach (['expired_invoice_attempt', 'duplicate_scan', 'too_many_scans_per_day', 'same_store_repeated', 'suspicious_pattern'] as $index => $type) {
@@ -232,7 +242,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Campaign::create(['partner_id' => $partners->first()->id, 'title' => 'Tuan le khong ong hut', 'description' => 'Tang diem khi khong dung ong hut.', 'type' => 'challenge', 'started_at' => now(), 'ended_at' => now()->addMonth(), 'status' => 'active', 'budget' => 5000000]);
+        Campaign::create(['partner_id' => $partners->first()->id, 'title' => 'Tuần lễ không ống hút', 'description' => 'Tặng điểm khi không dùng ống hút.', 'type' => 'challenge', 'started_at' => now(), 'ended_at' => now()->addMonth(), 'status' => 'active', 'budget' => 5000000]);
         for ($i = 1; $i <= 5; $i++) {
             FinancialOffer::create([
                 'partner_id' => $partners[1]->id,
@@ -246,7 +256,15 @@ class DatabaseSeeder extends Seeder
                 'status' => 'active',
             ]);
         }
-        SystemSetting::create(['key' => 'point_exchange_rate', 'value' => '100 diem = 1000 VND', 'type' => 'string', 'group' => 'wallet']);
+        SystemSetting::create(['key' => 'point_exchange_rate', 'value' => '100 điểm = 1000 VND', 'type' => 'string', 'group' => 'wallet']);
+        SystemSetting::create(['key' => 'sepay_bank_id', 'value' => 'ACB', 'type' => 'string', 'group' => 'sepay']);
+        SystemSetting::create(['key' => 'sepay_account_no', 'value' => '20428571', 'type' => 'string', 'group' => 'sepay']);
+        SystemSetting::create(['key' => 'sepay_account_name', 'value' => 'TRUONG', 'type' => 'string', 'group' => 'sepay']);
+        SystemSetting::create(['key' => 'site_phone', 'value' => '028 1234 5678', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::create(['key' => 'site_hotline', 'value' => '1900 1000', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::create(['key' => 'site_email', 'value' => 'support@greencredit.vn', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::create(['key' => 'site_email_hello', 'value' => 'hello@greencredit.vn', 'type' => 'string', 'group' => 'contact']);
+        SystemSetting::create(['key' => 'site_address', 'value' => 'Khu Công nghệ cao, Quận 9, TP. HCM', 'type' => 'string', 'group' => 'contact']);
         foreach (range(1, 10) as $index) {
             ActivityLog::create([
                 'user_id' => $users['superadmin@greencredit.test']->id,

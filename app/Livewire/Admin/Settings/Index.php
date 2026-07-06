@@ -11,7 +11,7 @@ class Index extends SimplePage
     {
         $settings = SystemSetting::latest()->get();
         $this->title = 'System Settings';
-        $this->description = 'Cau hinh he thong va quy doi diem.';
+        $this->description = 'Cấu hình hệ thống và quy đổi điểm.';
         $this->cards = [['Settings', $settings->count()], ['Groups', $settings->pluck('group')->unique()->count()], ['Type json', $settings->where('type', 'json')->count()]];
         $this->rows = $settings->map(fn ($s) => [$s->key, $s->value, $s->group])->all();
     }

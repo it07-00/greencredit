@@ -5,6 +5,7 @@ namespace App\Livewire\Store\Branches;
 use App\Models\ActivityLog;
 use App\Models\Store;
 use App\Models\StoreBranch;
+use App\Models\StoreStaff;
 use Livewire\Component;
 
 class Index extends Component
@@ -27,7 +28,16 @@ class Index extends Component
 
     private function store(): Store
     {
-        return Store::where('owner_id', auth()->id())->firstOrFail();
+        $user = auth()->user();
+        $store = $user->role === 'store_owner'
+            ? Store::where('owner_id', $user->id)->first()
+            : StoreStaff::where('user_id', $user->id)->first()?->store;
+
+        if (! $store) {
+            abort(404, 'Không tìm thấy cửa hàng liên kết.');
+        }
+
+        return $store;
     }
 
     public function edit(int $id): void

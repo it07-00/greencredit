@@ -26,6 +26,8 @@ class Create extends Component
     public string $search = '';
     public string $activeCategory = 'all';
     public array $cart = [];
+    public bool $isCustomAmount = false;
+    public string $customAmount = '';
 
     public array $productsList = [
         ['name' => 'Americano Đá/Nóng', 'price' => 45000, 'category' => 'coffee', 'sku' => 'CF-AME-01', 'img' => 'images/img-22-D2w1zjf6.png'],
@@ -66,6 +68,11 @@ class Create extends Component
     // POS Cart functions
     public function addToCart(int $index): void
     {
+        if ($this->isCustomAmount) {
+            $this->isCustomAmount = false;
+            $this->customAmount = '';
+        }
+
         $product = $this->productsList[$index] ?? null;
         if (!$product) return;
 
@@ -135,13 +142,20 @@ class Create extends Component
 
     public function create(QrInvoiceService $service): void
     {
+        if ($this->isCustomAmount) {
+            $this->amount = (float) str_replace(',', '', $this->customAmount);
+        }
+
         $this->validate([
             'amount' => ['required', 'numeric', 'min:1000'],
             'actions' => ['required', 'array', 'min:1'],
-            'branch_id' => ['required', 'exists:store_branches,id']
+            'branch_id' => ['required', 'exists:store_branches,id'],
         ], [
+            'amount.required' => 'Vui lòng nhập hoặc tính toán số tiền thanh toán.',
+            'amount.numeric' => 'Số tiền thanh toán phải là số hợp lệ.',
+            'amount.min' => 'Số tiền hóa đơn tối thiểu phải từ 1.000đ.',
             'actions.required' => 'Vui lòng chọn ít nhất một hành động xanh.',
-            'branch_id.required' => 'Vui lòng chọn chi nhánh cửa hàng.'
+            'branch_id.required' => 'Vui lòng chọn chi nhánh cửa hàng.',
         ]);
 
         $store = $this->store;
@@ -153,8 +167,23 @@ class Create extends Component
             'payment_method' => $this->payment_method,
             'actions' => $this->actions,
         ]);
-        
-        $this->reset(['amount', 'actions', 'cart']);
+
+        $this->reset(['amount', 'actions', 'cart', 'customAmount', 'isCustomAmount']);
+    }
+
+    public function checkPaymentStatus(): void
+    {
+        if ($this->invoice && $this->invoice->status === 'unpaid') {
+            $this->invoice->refresh();
+        }
+    }
+
+    public function markAsPaid(): void
+    {
+        if ($this->invoice && $this->invoice->status === 'unpaid') {
+            $this->invoice->update(['status' => 'pending']);
+            $this->invoice->refresh();
+        }
     }
 
     public function render()

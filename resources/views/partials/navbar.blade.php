@@ -12,12 +12,12 @@
                     </li>
                     <li>
                         <i class="fas fa-phone-alt"></i> Hỗ trợ: 
-                        <a href="tel:02812345678">028 1234 5678</a>
+                        <a href="tel:{{ str_replace(' ', '', \App\Models\SystemSetting::get('site_phone', '028 1234 5678')) }}">{{ \App\Models\SystemSetting::get('site_phone', '028 1234 5678') }}</a>
                     </li>
                     <li>
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:hello@greencredit.vn">
-                            hello@greencredit.vn
+                        <a href="mailto:{{ \App\Models\SystemSetting::get('site_email_hello', 'hello@greencredit.vn') }}">
+                            {{ \App\Models\SystemSetting::get('site_email_hello', 'hello@greencredit.vn') }}
                         </a>
                     </li>
                 </ul>
@@ -46,14 +46,39 @@
                                 <nav id="mobile-menu" aria-label="Điều hướng chính">
                                     <ul>
                                         <li @class(['active' => request()->routeIs('home')])><a href="{{ route('home') }}">Trang chủ</a></li>
-                                        <li @class(['active' => request()->routeIs('about')])><a href="{{ route('about') }}">Giới thiệu</a></li>
-                                        <li @class(['active' => request()->routeIs('services')])><a href="{{ route('services') }}">Tính năng</a></li>
-                                        <li @class(['active' => request()->routeIs('contact')])><a href="{{ route('contact') }}">Liên hệ</a></li>
+                                        @auth
+                                            @if(auth()->user()->role === 'user')
+                                                <li @class(['active' => request()->routeIs('dashboard')])><a href="{{ route('dashboard') }}">Trang cá nhân</a></li>
+                                                <li @class(['active' => request()->routeIs('user.scan-qr')])><a href="{{ route('user.scan-qr') }}">Tích điểm</a></li>
+                                                <li @class(['active' => request()->routeIs('user.vouchers')])><a href="{{ route('user.vouchers') }}">Cửa hàng đổi điểm</a></li>
+                                                <li @class(['active' => request()->routeIs('user.net-zero')])><a href="{{ route('user.net-zero') }}">Kế hoạch Net Zero</a></li>
+                                            @elseif(in_array(auth()->user()->role, ['store_owner', 'store_staff']))
+                                                <li @class(['active' => request()->routeIs('store.dashboard')])><a href="{{ route('store.dashboard') }}">Dashboard</a></li>
+                                                <li @class(['active' => request()->routeIs('store.invoices.create')])><a href="{{ route('store.invoices.create') }}">POS Thu Ngân</a></li>
+                                                <li @class(['active' => request()->routeIs('store.invoices') && !request()->routeIs('store.invoices.create')])><a href="{{ route('store.invoices') }}">Hóa đơn xanh</a></li>
+                                                <li @class(['active' => request()->routeIs('store.branches')])><a href="{{ route('store.branches') }}">Chi nhánh</a></li>
+                                                @if(auth()->user()->role === 'store_owner')
+                                                    <li @class(['active' => request()->routeIs('store.staff')])><a href="{{ route('store.staff') }}">Nhân viên</a></li>
+                                                @endif
+                                                <li @class(['active' => request()->routeIs('store.reports')])><a href="{{ route('store.reports') }}">Báo cáo</a></li>
+                                            @elseif(auth()->user()->role === 'partner')
+                                                <li @class(['active' => request()->routeIs('partner.dashboard')])><a href="{{ route('partner.dashboard') }}">Dashboard</a></li>
+                                                <li @class(['active' => request()->routeIs('partner.vouchers')])><a href="{{ route('partner.vouchers') }}">Quản lý Voucher</a></li>
+                                                <li @class(['active' => request()->routeIs('partner.campaigns')])><a href="{{ route('partner.campaigns') }}">Chiến dịch xanh</a></li>
+                                                <li @class(['active' => request()->routeIs('partner.financial-offers')])><a href="{{ route('partner.financial-offers') }}">Tài chính xanh</a></li>
+                                                <li @class(['active' => request()->routeIs('partner.reports')])><a href="{{ route('partner.reports') }}">Báo cáo</a></li>
+                                            @endif
+                                        @endauth
+                                        @if(!auth()->check())
+                                            <li @class(['active' => request()->routeIs('about')])><a href="{{ route('about') }}">Giới thiệu</a></li>
+                                            <li @class(['active' => request()->routeIs('services')])><a href="{{ route('services') }}">Tính năng</a></li>
+                                            <li @class(['active' => request()->routeIs('contact')])><a href="{{ route('contact') }}">Liên hệ</a></li>
+                                        @endif
                                     </ul>
                                 </nav>
                             </div>
                         </div>
-                        <div class="link-btn">Hỗ trợ: <a href="tel:02812345678">028 1234 5678</a></div>
+
                         @auth
                             @php $role = auth()->user()->role; @endphp
 
@@ -87,6 +112,9 @@
                                         <a href="{{ route('user.wallet') }}" style="display:flex;align-items:center;gap:10px;padding:11px 16px;color:#1e293b;text-decoration:none;font-size:14px;font-weight:500;border-top:1px solid #f3f4f6;">
                                             <i class="far fa-wallet" style="color:#15803d;width:16px;"></i> Green Wallet
                                         </a>
+                                        <a href="{{ route('user.vouchers') }}" style="display:flex;align-items:center;gap:10px;padding:11px 16px;color:#1e293b;text-decoration:none;font-size:14px;font-weight:500;border-top:1px solid #f3f4f6;">
+                                            <i class="far fa-gift" style="color:#15803d;width:16px;"></i> Cửa hàng đổi điểm
+                                        </a>
                                         <form method="post" action="{{ route('logout') }}" style="border-top:1px solid #f3f4f6;">
                                             @csrf
                                             <button type="submit" style="display:flex;align-items:center;gap:10px;padding:11px 16px;color:#dc2626;background:none;border:none;width:100%;text-align:left;font-size:14px;font-weight:500;cursor:pointer;">
@@ -108,19 +136,14 @@
                                     });
                                 </script>
 
-                            {{-- Cổng 2: Business Portal - tất cả role B2B dùng chung Filament panel /partner --}}
+                            {{-- Cổng 2: Business Portal --}}
                             @elseif(in_array($role, ['store_owner', 'store_staff', 'partner']))
                                 <div class="d-flex align-items-center gap-2 ms-3">
-                                    <a href="/partner"
-                                        class="theme-btn" style="white-space:nowrap;font-size:13px;padding:8px 18px;">
-                                        <i class="far fa-store me-1"></i>
-                                        {{ $role === 'store_owner' ? 'Quản lý cửa hàng' : ($role === 'store_staff' ? 'POS Cửa hàng' : 'Portal đối tác') }}
-                                    </a>
                                     <form method="post" action="{{ route('logout') }}" class="d-inline">
                                         @csrf
                                         <button type="submit" class="theme-btn style-2" title="Đăng xuất"
-                                            style="padding:8px 14px;font-size:13px;white-space:nowrap;">
-                                            <i class="far fa-sign-out-alt"></i>
+                                            style="padding:8px 18px;font-size:13px;white-space:nowrap;">
+                                            <i class="far fa-sign-out-alt me-1"></i> Đăng xuất
                                         </button>
                                     </form>
                                 </div>

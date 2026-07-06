@@ -52,7 +52,8 @@ Route::post('/login', function (Request $request) {
 
         return redirect(match ($role) {
             'admin', 'super_admin' => '/admin',
-            'store_owner', 'store_staff', 'partner' => '/partner',
+            'store_owner', 'store_staff' => '/store/dashboard',
+            'partner' => '/partner/dashboard',
             default => route('dashboard'),
         });
     }
@@ -96,5 +97,22 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:store_owner,store_staff'])->prefix('store')->name('store.')->group(function () {
+    Route::get('/dashboard', StoreDashboard::class)->name('dashboard');
+    Route::get('/branches', StoreBranches::class)->name('branches');
+    Route::get('/staff', StoreStaff::class)->name('staff');
+    Route::get('/invoices', StoreInvoices::class)->name('invoices');
     Route::get('/invoices/create', StoreInvoiceCreate::class)->name('invoices.create');
+    Route::get('/invoices/{invoice}', StoreInvoiceShow::class)->name('invoices.show');
+    Route::get('/reports', StoreReports::class)->name('reports');
+    Route::get('/reports/pdf', [\App\Http\Controllers\StoreReportController::class, 'exportPdf'])->name('reports.pdf');
 });
+
+Route::middleware(['auth', 'role:partner'])->prefix('partner')->name('partner.')->group(function () {
+    Route::get('/dashboard', PartnerDashboard::class)->name('dashboard');
+    Route::get('/vouchers', PartnerVouchers::class)->name('vouchers');
+    Route::get('/campaigns', PartnerCampaigns::class)->name('campaigns');
+    Route::get('/financial-offers', PartnerFinancialOffers::class)->name('financial-offers');
+    Route::get('/reports', PartnerReports::class)->name('reports');
+});
+
+Route::post('/api/sepay/webhook', [\App\Http\Controllers\SepayWebhookController::class, 'handle']);

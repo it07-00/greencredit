@@ -10,227 +10,264 @@
         $progressPct = $levelNext ? min(100, round(($score / $levelNext) * 100)) : 100;
     @endphp
 
-    <!-- Hero Banner -->
-    <section style="background: linear-gradient(135deg, #064e3b 0%, #065f46 40%, #047857 70%, #059669 100%); position: relative; overflow: hidden;">
-        <div style="position:absolute;inset:0;opacity:.08;background-image:radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px),radial-gradient(circle at 80% 20%, #fff 1px, transparent 1px);background-size:40px 40px;"></div>
-        <div class="mx-auto max-w-7xl px-4 py-10" style="position:relative;z-index:1;">
-            <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;">
-                <div>
-                    <p style="color:#a7f3d0;font-size:14px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;">Xin chào trở lại 👋</p>
-                    <h1 style="color:#fff;font-size:clamp(24px,4vw,36px);font-weight:900;margin-bottom:4px;">{{ $user->name }}</h1>
-                    <p style="color:#6ee7b7;font-size:14px;">{{ $user->email }}</p>
-                    <div style="display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;">
-                        <span style="background:rgba(255,255,255,.12);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 16px;color:#fff;font-size:13px;font-weight:700;">
-                            🌿 {{ $levelLabel }}
-                        </span>
-                        <span style="background:rgba(255,255,255,.12);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 16px;color:#fff;font-size:13px;font-weight:700;">
-                            🔥 {{ $streakDays }} ngày liên tiếp
-                        </span>
-                        <a href="{{ route('user.scan-qr') }}" style="background:#10b981;border-radius:999px;padding:8px 20px;color:#fff;font-size:13px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(16,185,129,.4);">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" /></svg>
-                            Quét QR tích điểm
-                        </a>
-                    </div>
+    <!-- Breadcrumb-section Start -->
+    <section class="breadcrumb-section fix bg-cover" style="background-image: url('{{ asset('frontend/assets/img/breadcrumb.jpg') }}');">
+        <div class="container">
+            <div class="row">
+                <div class="page-heading">
+                    <ul class="breadcrumb-list wow fadeInUp" data-wow-delay=".5s">
+                        <li>
+                            <a href="{{ route('home') }}">Trang chủ</a>
+                        </li>
+                        <li>
+                            <i class="far fa-angle-right"></i>
+                        </li>
+                        <li>Trang cá nhân</li>
+                    </ul>
+                    <h2 class="wow fadeInUp" data-wow-delay=".3s">Xin chào, {{ $user->name }}!</h2>
                 </div>
-                <!-- Points Big Number -->
-                <div style="text-align:center;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:24px 32px;min-width:180px;">
-                    <p style="color:#a7f3d0;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Green Points</p>
-                    <p style="color:#fff;font-size:52px;font-weight:900;line-height:1;">{{ number_format($balance) }}</p>
-                    <p style="color:#6ee7b7;font-size:12px;margin-top:4px;">Điểm khả dụng</p>
-                    <a href="{{ route('user.wallet') }}" style="display:inline-block;margin-top:10px;color:#34d399;font-size:12px;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(52,211,153,.4);">Xem ví →</a>
-                </div>
-            </div>
-
-            <!-- Green Level Progress Bar -->
-            <div style="margin-top:24px;background:rgba(255,255,255,.08);border-radius:12px;padding:12px 20px;display:flex;align-items:center;gap:16px;">
-                <div style="flex:1;">
-                    <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                        <span style="color:#a7f3d0;font-size:12px;font-weight:700;">Cấp độ: <span style="color:#fff;">{{ $levelLabel }}</span></span>
-                        <span style="color:#6ee7b7;font-size:12px;">{{ $score }}{{ $levelNext ? ' / ' . $levelNext . ' điểm' : ' (Cấp tối đa)' }}</span>
-                    </div>
-                    <div style="background:rgba(255,255,255,.15);border-radius:999px;height:8px;overflow:hidden;">
-                        <div style="background:linear-gradient(90deg,#34d399,#10b981);height:100%;border-radius:999px;width:{{ $progressPct }}%;transition:width .8s ease;"></div>
-                    </div>
-                </div>
-                @if ($levelNext)
-                    <div style="text-align:center;min-width:60px;">
-                        <p style="color:#6ee7b7;font-size:10px;">Còn lại</p>
-                        <p style="color:#fff;font-size:18px;font-weight:900;">{{ number_format($levelNext - $score) }}</p>
-                    </div>
-                @endif
             </div>
         </div>
     </section>
 
-    <!-- Stat Cards -->
-    <section class="mx-auto max-w-7xl px-4 py-8">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px;">
-            <!-- Green Score -->
-            <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-                    <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Green Score</span>
-                    <div style="width:36px;height:36px;background:#f0fdf4;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#16a34a" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
-                    </div>
-                </div>
-                <p style="font-size:36px;font-weight:900;color:#0f172a;line-height:1;">{{ number_format($score) }}</p>
-                <p style="font-size:12px;color:#16a34a;font-weight:700;margin-top:4px;">{{ $levelLabel }}</p>
-            </div>
-
-            <!-- Plastic Saved -->
-            <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-                    <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Nhựa đã giảm</span>
-                    <div style="width:36px;height:36px;background:#eff6ff;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#0284c7" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15M14.25 3.104c.251.023.501.05.75.082M19.8 15a2.25 2.25 0 0 1 .75 1.7v.9a2.25 2.25 0 0 1-2.25 2.25h-15A2.25 2.25 0 0 1 1.05 17.6v-.9a2.25 2.25 0 0 1 .75-1.7L5 14.5m14.8.5L14.25 10" /></svg>
-                    </div>
-                </div>
-                <p style="font-size:36px;font-weight:900;color:#0f172a;line-height:1;">{{ number_format($plastic / 1000, 2) }}</p>
-                <p style="font-size:12px;color:#0284c7;font-weight:700;margin-top:4px;">kg nhựa tránh được</p>
-            </div>
-
-            <!-- CO2 Saved -->
-            <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-                    <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">CO₂ đã giảm</span>
-                    <div style="width:36px;height:36px;background:#f0fdf4;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#15803d" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z" /></svg>
-                    </div>
-                </div>
-                <p style="font-size:36px;font-weight:900;color:#0f172a;line-height:1;">{{ number_format($co2, 2) }}</p>
-                <p style="font-size:12px;color:#15803d;font-weight:700;margin-top:4px;">kg CO₂ tránh phát thải</p>
-            </div>
-
-            <!-- Streak -->
-            <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-                    <span style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Chuỗi xanh</span>
-                    <div style="width:36px;height:36px;background:#fff7ed;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">🔥</div>
-                </div>
-                <p style="font-size:36px;font-weight:900;color:#0f172a;line-height:1;">{{ $streakDays }}</p>
-                <p style="font-size:12px;color:#ea580c;font-weight:700;margin-top:4px;">ngày hành động liên tiếp</p>
-            </div>
-        </div>
-
-        <!-- Main Content Grid -->
-        <div style="display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;" class="lg-grid">
-
-            <!-- Left: Chart + Transactions -->
-            <div style="display:flex;flex-direction:column;gap:20px;">
-
-                <!-- Points Chart -->
-                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-                        <div>
-                            <h2 style="font-size:16px;font-weight:800;color:#0f172a;margin:0;">Green Points theo tháng</h2>
-                            <p style="font-size:12px;color:#64748b;margin-top:2px;">6 tháng gần nhất</p>
+    <!-- Dashboard Content Start -->
+    <section class="contact-section-6 section-padding bg-light">
+        <div class="container">
+            <!-- Level and Point Box -->
+            <div class="card border-0 shadow-sm p-4 rounded-4 mb-4" style="background: linear-gradient(135deg, #15803d 0%, #064e3b 100%); color: #fff; border-radius: 20px;">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <span class="badge bg-white text-success px-3 py-2 rounded-pill fw-bold mb-3" style="font-size: 13px;"><i class="far fa-seedling me-1"></i> Cấp độ: {{ $levelLabel }}</span>
+                        <h3 class="fw-bold mb-2 text-white text-3xl">Hành trình sống xanh của bạn</h3>
+                        <p class="mb-0 text-white-50">Email: {{ $user->email }} | Chuỗi tích điểm: <strong>{{ $streakDays }} ngày liên tiếp</strong></p>
+                        
+                        <!-- Progress bar -->
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between mb-2 text-white fw-semibold" style="font-size: 13px;">
+                                <span>Tiến trình cấp độ</span>
+                                <span>{{ $score }}{{ $levelNext ? ' / ' . $levelNext . ' điểm' : ' (Cấp tối đa)' }}</span>
+                            </div>
+                            <div class="progress" style="height: 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.2);">
+                                <div class="progress-bar bg-white" role="progressbar" style="width: {{ $progressPct }}%; border-radius: 999px;" aria-valuenow="{{ $progressPct }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            @if ($levelNext)
+                                <div class="text-end text-white-50 mt-2 small" style="font-size: 11px;">Còn {{ number_format($levelNext - $score) }} điểm để lên cấp tiếp theo</div>
+                            @endif
                         </div>
-                        <a href="{{ route('user.transactions') }}" style="font-size:12px;color:#059669;font-weight:700;text-decoration:none;">Xem tất cả →</a>
                     </div>
-                    <canvas id="userPointsChart" height="100"></canvas>
-                </div>
-
-                <!-- Recent Transactions -->
-                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-                        <h2 style="font-size:16px;font-weight:800;color:#0f172a;margin:0;">Lịch sử giao dịch</h2>
-                        <a href="{{ route('user.transactions') }}" style="font-size:12px;color:#059669;font-weight:700;text-decoration:none;">Xem tất cả →</a>
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:8px;">
-                        @forelse ($transactions as $tx)
-                            <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:#f8fafc;transition:background .15s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">
-                                <div style="width:40px;height:40px;background:{{ $tx->points > 0 ? '#f0fdf4' : '#fef2f2' }};border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    @if ($tx->points > 0)
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#16a34a" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                                    @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#dc2626" style="width:18px;height:18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                                    @endif
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:13px;font-weight:600;color:#0f172a;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $tx->description }}</p>
-                                    <p style="font-size:11px;color:#94a3b8;margin-top:2px;">{{ $tx->created_at->diffForHumans() }}</p>
-                                </div>
-                                <div style="text-align:right;flex-shrink:0;">
-                                    <span style="font-size:15px;font-weight:800;color:{{ $tx->points > 0 ? '#16a34a' : '#dc2626' }};">{{ $tx->points > 0 ? '+' : '' }}{{ number_format($tx->points) }}</span>
-                                    <p style="font-size:10px;color:#94a3b8;margin-top:1px;">điểm</p>
-                                </div>
-                            </div>
-                        @empty
-                            <div style="text-align:center;padding:40px 20px;">
-                                <div style="font-size:40px;margin-bottom:12px;">🌱</div>
-                                <p style="color:#64748b;font-size:14px;">Chưa có giao dịch nào.<br>Hãy quét QR hóa đơn xanh đầu tiên!</p>
-                                <a href="{{ route('user.scan-qr') }}" style="display:inline-block;margin-top:16px;background:#059669;color:#fff;border-radius:12px;padding:10px 20px;font-size:13px;font-weight:700;text-decoration:none;">Quét QR ngay</a>
-                            </div>
-                        @endforelse
+                    
+                    <div class="col-md-4 text-center mt-4 mt-md-0">
+                        <div class="p-4 rounded-4 text-white" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px;">
+                            <span class="text-white-50 text-uppercase fw-bold tracking-wider" style="font-size: 11px;">Green Points</span>
+                            <h1 class="fw-black text-white display-4 my-2" style="font-size: 48px; font-weight: 900;">{{ number_format($balance) }}</h1>
+                            <p class="text-emerald-300 small mb-3">Điểm xanh khả dụng</p>
+                            <a href="{{ route('user.wallet') }}" class="btn btn-sm btn-light text-success fw-bold px-4 py-2 rounded-pill shadow-sm" style="font-size: 12px;">
+                                <i class="far fa-wallet me-1"></i> Xem ví điểm
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right: Quick Actions + Vouchers + Green Tips -->
-            <div style="display:flex;flex-direction:column;gap:20px;">
-
-                <!-- Quick Actions -->
-                <div style="background:linear-gradient(135deg,#064e3b,#065f46);border-radius:20px;padding:24px;">
-                    <h2 style="font-size:16px;font-weight:800;color:#fff;margin:0 0 16px;">Thao tác nhanh</h2>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                        <a href="{{ route('user.scan-qr') }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 10px;text-align:center;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
-                            <div style="font-size:22px;margin-bottom:6px;">📱</div>
-                            <p style="color:#fff;font-size:11px;font-weight:700;margin:0;">Quét QR</p>
-                        </a>
-                        <a href="{{ route('user.wallet') }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 10px;text-align:center;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
-                            <div style="font-size:22px;margin-bottom:6px;">💳</div>
-                            <p style="color:#fff;font-size:11px;font-weight:700;margin:0;">Green Wallet</p>
-                        </a>
-                        <a href="{{ route('user.vouchers') }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 10px;text-align:center;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
-                            <div style="font-size:22px;margin-bottom:6px;">🎁</div>
-                            <p style="color:#fff;font-size:11px;font-weight:700;margin:0;">Đổi Voucher</p>
-                        </a>
-                        <a href="{{ route('user.green-score') }}" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 10px;text-align:center;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
-                            <div style="font-size:22px;margin-bottom:6px;">⭐</div>
-                            <p style="color:#fff;font-size:11px;font-weight:700;margin:0;">Green Score</p>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Available Vouchers -->
-                @if ($vouchers->count() > 0)
-                <div style="background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                        <h2 style="font-size:16px;font-weight:800;color:#0f172a;margin:0;">Voucher gợi ý</h2>
-                        <a href="{{ route('user.vouchers') }}" style="font-size:12px;color:#059669;font-weight:700;text-decoration:none;">Xem tất cả →</a>
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        @foreach ($vouchers->take(3) as $v)
-                            <div style="display:flex;align-items:center;gap:12px;padding:12px;border:1px dashed #d1fae5;border-radius:12px;background:#f0fdf4;">
-                                <div style="width:44px;height:44px;background:#059669;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <span style="color:#fff;font-weight:900;font-size:12px;">-{{ $v->discount_percent ?? '?' }}%</span>
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:13px;font-weight:700;color:#0f172a;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $v->name }}</p>
-                                    <p style="font-size:11px;color:#059669;margin-top:2px;font-weight:600;">{{ number_format($v->points_required) }} điểm</p>
-                                </div>
+            <!-- Stats Grid -->
+            <div class="row g-4 mb-4">
+                <!-- Green Score -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm p-4 h-100 bg-white" style="border-radius: 20px;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 0.05em;">Green Score</span>
+                            <div class="p-2 rounded-3 text-success d-flex align-items-center justify-content-center" style="background: #ecfdf5; width: 38px; height: 38px;">
+                                <i class="far fa-leaf fs-5"></i>
                             </div>
-                        @endforeach
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1" style="font-size: 32px; font-weight: 800;">{{ number_format($score) }}</h2>
+                        <p class="text-success small mb-0 fw-semibold"><i class="far fa-chevron-up me-1"></i> {{ $levelLabel }}</p>
                     </div>
                 </div>
-                @endif
 
-                <!-- Green Tips -->
-                <div style="background:#fefce8;border:1px solid #fef08a;border-radius:20px;padding:20px;">
-                    <h2 style="font-size:15px;font-weight:800;color:#713f12;margin:0 0 12px;">💡 Gợi ý hành động hôm nay</h2>
-                    @foreach ([['🥤','Không dùng ống hút nhựa tại quán','Tiết kiệm ~3g nhựa'],['🎒','Mang túi vải khi đi chợ/siêu thị','Thay thế 2 túi nilon/lần'],['🚲','Đi xe đạp hoặc đi bộ gần nhà','Giảm ~0.2kg CO₂']] as $tip)
-                        <div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
-                            <span style="font-size:18px;flex-shrink:0;">{{ $tip[0] }}</span>
+                <!-- Plastic Saved -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm p-4 h-100 bg-white" style="border-radius: 20px;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 0.05em;">Nhựa đã giảm</span>
+                            <div class="p-2 rounded-3 text-primary d-flex align-items-center justify-content-center" style="background: #eff6ff; width: 38px; height: 38px;">
+                                <i class="far fa-recycle fs-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1" style="font-size: 32px; font-weight: 800;">{{ number_format($plastic / 1000, 2) }}</h2>
+                        <p class="text-primary small mb-0 fw-semibold">kg nhựa tránh được</p>
+                    </div>
+                </div>
+
+                <!-- CO2 Saved -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm p-4 h-100 bg-white" style="border-radius: 20px;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 0.05em;">CO₂ đã giảm</span>
+                            <div class="p-2 rounded-3 text-info d-flex align-items-center justify-content-center" style="background: #ecfeff; width: 38px; height: 38px;">
+                                <i class="far fa-cloud-share fs-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1" style="font-size: 32px; font-weight: 800;">{{ number_format($co2, 2) }}</h2>
+                        <p class="text-info small mb-0 fw-semibold">kg CO₂ phát thải giảm</p>
+                    </div>
+                </div>
+
+                <!-- Streak -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm p-4 h-100 bg-white" style="border-radius: 20px;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted fw-bold text-uppercase" style="font-size: 11px; letter-spacing: 0.05em;">Chuỗi xanh</span>
+                            <div class="p-2 rounded-3 text-warning d-flex align-items-center justify-content-center" style="background: #fff7ed; width: 38px; height: 38px;">
+                                <i class="far fa-fire fs-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-1" style="font-size: 32px; font-weight: 800;">{{ $streakDays }}</h2>
+                        <p class="text-warning small mb-0 fw-semibold">ngày hành động liên tiếp</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail Sections Grid -->
+            <div class="row g-4">
+                <!-- Left Section: Chart & History -->
+                <div class="col-lg-8">
+                    <!-- Points Graph Card -->
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-white" style="border-radius: 20px;">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
                             <div>
-                                <p style="font-size:12px;font-weight:700;color:#78350f;margin:0;">{{ $tip[1] }}</p>
-                                <p style="font-size:11px;color:#92400e;margin-top:2px;">{{ $tip[2] }}</p>
+                                <h5 class="fw-bold text-dark mb-0">Green Points tích lũy</h5>
+                                <span class="text-muted small">Thống kê điểm xanh nhận được trong 6 tháng gần nhất</span>
+                            </div>
+                            <a href="{{ route('user.transactions') }}" class="text-success fw-bold small text-decoration-none hover-underline">
+                                Xem lịch sử <i class="far fa-chevron-right ms-1"></i>
+                            </a>
+                        </div>
+                        <div style="position: relative; height: 300px; width: 100%;">
+                            <canvas id="userPointsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Transaction List Card -->
+                    <div class="card border-0 shadow-sm p-4 bg-white" style="border-radius: 20px;">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold text-dark mb-0">Lịch sử giao dịch gần đây</h5>
+                            <a href="{{ route('user.transactions') }}" class="text-success fw-bold small text-decoration-none hover-underline">
+                                Xem tất cả <i class="far fa-chevron-right ms-1"></i>
+                            </a>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            @forelse ($transactions as $tx)
+                                <div class="list-group-item d-flex align-items-center justify-content-between border-0 px-0 py-3 border-bottom border-dashed" style="border-bottom-style: dashed !important;">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-3 d-flex align-items-center justify-content-center {{ $tx->points > 0 ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger' }}" style="width: 42px; height: 42px; background: {{ $tx->points > 0 ? '#ecfdf5' : '#fef2f2' }}; color: {{ $tx->points > 0 ? '#10b981' : '#ef4444' }};">
+                                            <i class="far {{ $tx->points > 0 ? 'fa-plus-circle' : 'fa-minus-circle' }} fs-5"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold text-dark mb-0">{{ $tx->description }}</h6>
+                                            <span class="text-muted small">{{ $tx->created_at->diffForHumans() }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <h5 class="fw-bold mb-0 {{ $tx->points > 0 ? 'text-success' : 'text-danger' }}" style="color: {{ $tx->points > 0 ? '#15803d' : '#dc2626' }}; font-weight: 800;">
+                                            {{ $tx->points > 0 ? '+' : '' }}{{ number_format($tx->points) }}
+                                        </h5>
+                                        <span class="text-muted small" style="font-size: 11px;">điểm</span>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="text-center py-5">
+                                    <span class="fs-1 text-success"><i class="far fa-seedling"></i></span>
+                                    <h5 class="fw-bold text-dark mt-3 mb-2">Chưa có giao dịch tích điểm</h5>
+                                    <p class="text-muted small">Hãy mua hàng tại cửa hàng đối tác và quét mã QR hóa đơn để tích lũy điểm ngay!</p>
+                                    <a href="{{ route('user.scan-qr') }}" class="theme-btn mt-3 py-2 px-4 text-white" style="font-size: 13px;">Quét QR tích điểm ngay</a>
+                                </div>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Section: Quick Links & Tips -->
+                <div class="col-lg-4">
+                    <!-- Quick Actions -->
+                    <div class="card border-0 shadow-sm p-4 mb-4 text-white" style="background: linear-gradient(135deg, #15803d 0%, #064e3b 100%); border-radius: 20px;">
+                        <h5 class="fw-bold text-white mb-3">Thao tác nhanh</h5>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <a href="{{ route('user.scan-qr') }}" class="d-flex flex-column align-items-center justify-content-center p-3 text-decoration-none rounded-3 action-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s;">
+                                    <i class="far fa-qrcode text-white fs-3 mb-2"></i>
+                                    <span class="text-white fw-bold small" style="font-size: 11px;">Quét QR</span>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ route('user.wallet') }}" class="d-flex flex-column align-items-center justify-content-center p-3 text-decoration-none rounded-3 action-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s;">
+                                    <i class="far fa-wallet text-white fs-3 mb-2"></i>
+                                    <span class="text-white fw-bold small" style="font-size: 11px;">Ví Điểm</span>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ route('user.vouchers') }}" class="d-flex flex-column align-items-center justify-content-center p-3 text-decoration-none rounded-3 action-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s;">
+                                    <i class="far fa-ticket-alt text-white fs-3 mb-2"></i>
+                                    <span class="text-white fw-bold small" style="font-size: 11px;">Đổi Voucher</span>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ route('user.green-score') }}" class="d-flex flex-column align-items-center justify-content-center p-3 text-decoration-none rounded-3 action-btn" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s;">
+                                    <i class="far fa-star text-white fs-3 mb-2"></i>
+                                    <span class="text-white fw-bold small" style="font-size: 11px;">Chỉ Số</span>
+                                </a>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+
+                    <!-- Recommended Vouchers -->
+                    @if ($vouchers->count() > 0)
+                        <div class="card border-0 shadow-sm p-4 mb-4 bg-white" style="border-radius: 20px;">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="fw-bold text-dark mb-0">Quà tặng gợi ý</h5>
+                                <a href="{{ route('user.vouchers') }}" class="text-success small fw-bold text-decoration-none hover-underline">Tất cả</a>
+                            </div>
+                            <div class="d-flex flex-column gap-2">
+                                @foreach ($vouchers->take(3) as $v)
+                                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border border-dashed" style="border: 1px dashed #a7f3d0 !important; background: #f0fdf4;">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="bg-success text-white rounded-3 d-flex align-items-center justify-content-center fw-bold text-center" style="width: 42px; height: 42px; font-size: 11px; background-color: #15803d;">
+                                                -{{ $v->discount_percent ?? '10' }}%
+                                            </div>
+                                            <div style="min-width: 0;">
+                                                <h6 class="fw-bold mb-0 text-dark text-truncate" style="max-width: 140px;" title="{{ $v->name }}">{{ $v->name }}</h6>
+                                                <span class="text-success small fw-bold" style="font-size: 11px;">{{ number_format($v->points_required) }} điểm</span>
+                                            </div>
+                                        </div>
+                                        <a href="{{ route('user.vouchers') }}" class="btn btn-sm btn-success rounded-pill px-3 fw-bold" style="font-size: 11px; background-color: #15803d; border-color: #15803d;">Đổi</a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Green Action Recommendation Tips -->
+                    <div class="card border-0 shadow-sm p-4" style="border-radius: 20px; background-color: #fefce8; border: 1px solid #fef08a !important;">
+                        <h6 class="fw-bold text-warning-emphasis mb-3"><i class="far fa-lightbulb-on me-1 text-warning"></i> Hành động sống xanh hôm nay</h6>
+                        <div class="d-flex flex-column gap-3">
+                            @foreach ([['far fa-cup-straw','Hạn chế ống hút nhựa tại quán','Giảm bớt ~3g rác thải nhựa'],['far fa-shopping-bag','Dùng túi vải khi đi chợ','Tiết kiệm đến 2 túi nilon'],['far fa-bicycle','Đi bộ/Xe đạp ở cự ly ngắn','Giảm lượng khí thải carbon']] as $tip)
+                                <div class="d-flex align-items-start gap-2">
+                                    <span class="fs-5 text-warning-emphasis"><i class="{{ $tip[0] }} mt-1"></i></span>
+                                    <div>
+                                        <h6 class="fw-bold text-warning-emphasis mb-0" style="font-size: 13px;">{{ $tip[1] }}</h6>
+                                        <span class="text-muted small" style="font-size: 11px;">{{ $tip[2] }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Load Chart.js CDN explicitly -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -243,18 +280,19 @@
                 datasets: [{
                     label: 'Green Points',
                     data: {!! $chartData !!},
-                    borderColor: '#059669',
-                    backgroundColor: 'rgba(5,150,105,0.1)',
+                    borderColor: '#15803d',
+                    backgroundColor: 'rgba(21,128,61,0.06)',
                     borderWidth: 2.5,
                     fill: true,
                     tension: 0.4,
-                    pointBackgroundColor: '#059669',
+                    pointBackgroundColor: '#15803d',
                     pointRadius: 5,
                     pointHoverRadius: 7,
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
                     y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { color: '#94a3b8', font: { size: 11 } } },
@@ -266,8 +304,12 @@
     </script>
 
     <style>
-        @media (max-width: 1023px) {
-            .lg-grid { grid-template-columns: 1fr !important; }
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            transform: translateY(-2px);
+        }
+        .hover-zoom:hover {
+            transform: scale(1.02);
         }
     </style>
 </div>

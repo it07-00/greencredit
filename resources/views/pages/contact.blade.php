@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Email</h5>
-                                    <p>hello@greencredit.vn</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_email_hello', 'hello@greencredit.vn') }}</p>
                                 </div>
                             </li>
                             <li>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Địa chỉ</h5>
-                                    <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_address', 'Khu Công nghệ cao, Quận 9, TP. HCM') }}</p>
                                 </div>
                             </li>
                             <li>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Điện thoại</h5>
-                                    <p>1900 1000</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_hotline', '1900 1000') }}</p>
                                 </div>
                             </li>
                         </ul>
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Email</h5>
-                                    <p>partner@greencredit.vn</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_email_hello', 'partner@greencredit.vn') }}</p>
                                 </div>
                             </li>
                             <li>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Địa chỉ</h5>
-                                    <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_address', 'Khu Công nghệ cao, Quận 9, TP. HCM') }}</p>
                                 </div>
                             </li>
                             <li>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Điện thoại</h5>
-                                    <p>1900 1000</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_hotline', '1900 1000') }}</p>
                                 </div>
                             </li>
                         </ul>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Email</h5>
-                                    <p>support@greencredit.vn</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_email', 'support@greencredit.vn') }}</p>
                                 </div>
                             </li>
                             <li>
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Địa chỉ</h5>
-                                    <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_address', 'Khu Công nghệ cao, Quận 9, TP. HCM') }}</p>
                                 </div>
                             </li>
                             <li>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="content">
                                     <h5>Điện thoại</h5>
-                                    <p>1900 1000</p>
+                                    <p>{{ \App\Models\SystemSetting::get('site_hotline', '1900 1000') }}</p>
                                 </div>
                             </li>
                         </ul>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="content">
                         <h3>TP. Hồ Chí Minh</h3>
-                        <p>Khu Công nghệ cao, Quận 9, TP. HCM</p>
+                        <p>{{ \App\Models\SystemSetting::get('site_address', 'Khu Công nghệ cao, Quận 9, TP. HCM') }}</p>
                     </div>
                 </div>
                 <div class="icon-items wow fadeInUp" data-wow-delay=".5s">
@@ -247,7 +247,7 @@
                     </div>
                     <div class="content">
                         <h3>Hotline hỗ trợ</h3>
-                        <p><a href="tel:19001000">1900 1000</a></p>
+                        <p><a href="tel:{{ str_replace(' ', '', \App\Models\SystemSetting::get('site_hotline', '1900 1000')) }}">{{ \App\Models\SystemSetting::get('site_hotline', '1900 1000') }}</a></p>
                     </div>
                 </div>
                 <div class="icon-items wow fadeInUp" data-wow-delay=".7s">
@@ -256,7 +256,7 @@
                     </div>
                     <div class="content">
                         <h3>Email liên hệ</h3>
-                        <p><a href="mailto:support@greencredit.vn" class="link">support@greencredit.vn</a></p>
+                        <p><a href="mailto:{{ \App\Models\SystemSetting::get('site_email', 'support@greencredit.vn') }}" class="link">{{ \App\Models\SystemSetting::get('site_email', 'support@greencredit.vn') }}</a></p>
                     </div>
                 </div>
             </div>

@@ -73,20 +73,20 @@
                             <span>
                                 Địa chỉ:
                             </span>
-                            123 Đường Xanh, TP. Hồ Chí Minh
+                            {{ \App\Models\SystemSetting::get('site_address', 'Khu Công nghệ cao, Quận 9, TP. HCM') }}
                         </li>
                         <li>
                             <span>
                                 Hotline:
                             </span>
-                            <a href="tel:02812345678">028 1234 5678</a>
+                            <a href="tel:{{ str_replace(' ', '', \App\Models\SystemSetting::get('site_phone', '028 1234 5678')) }}">{{ \App\Models\SystemSetting::get('site_phone', '028 1234 5678') }}</a>
                         </li>
                         <li>
                             <span>
                                 Email:
                             </span>
-                            <a href="mailto:hello@greencredit.vn">
-                                hello@greencredit.vn
+                            <a href="mailto:{{ \App\Models\SystemSetting::get('site_email_hello', 'hello@greencredit.vn') }}">
+                                {{ \App\Models\SystemSetting::get('site_email_hello', 'hello@greencredit.vn') }}
                             </a>
                         </li>
                     </ul>

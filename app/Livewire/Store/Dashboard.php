@@ -12,15 +12,17 @@ class Dashboard extends SimplePage
     {
         $store = $this->currentStore();
         $invoices = $store?->invoices()->latest()->get() ?? collect();
-        $this->title = 'Store Dashboard';
-        $this->description = 'Tong quan hoa don xanh, diem da phat hanh va tac dong moi truong cua cua hang.';
+        $this->title = 'Dashboard Cửa hàng';
+        $this->description = 'Tổng quan hóa đơn xanh, điểm đã phát hành và tác động môi trường của cửa hàng.';
         $this->cards = [
-            ['Hoa don xanh', $invoices->count()],
-            ['Diem da phat hanh', $invoices->sum('base_points')],
-            ['Khach hang xanh', $invoices->whereNotNull('used_by')->pluck('used_by')->unique()->count()],
-            ['Nhua/CO2 giam', number_format($invoices->sum('plastic_saved_grams'), 0).'g / '.number_format($invoices->sum('co2_saved_kg'), 2).'kg'],
+            ['Hóa đơn xanh', $invoices->count()],
+            ['Điểm đã phát hành', $invoices->sum('base_points')],
+            ['Khách hàng xanh', $invoices->whereNotNull('used_by')->pluck('used_by')->unique()->count()],
+            ['Nhựa & CO₂ đã giảm', number_format($invoices->sum('plastic_saved_grams'), 0).'g / '.number_format($invoices->sum('co2_saved_kg'), 2).'kg'],
         ];
-        $this->rows = $invoices->take(10)->map(fn ($i) => [$i->invoice_code, $i->status, $i->created_at->format('d/m/Y H:i')])->all();
+        $this->rows = $invoices->take(10)->map(fn ($i) => [$i->invoice_code, $i->status === 'used' ? 'Đã quét' : ($i->status === 'pending' ? 'Chờ quét' : 'Hết hạn'), $i->created_at->format('d/m/Y H:i')])->all();
+        $this->actionUrl = route('store.invoices.create');
+        $this->actionText = 'Mở POS Thu Ngân';
     }
 
     private function currentStore(): ?Store

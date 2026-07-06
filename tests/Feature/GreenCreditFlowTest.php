@@ -232,4 +232,46 @@ class GreenCreditFlowTest extends TestCase
         $this->assertGreaterThanOrEqual(0, $history->score);
         $this->assertLessThanOrEqual(1000, $history->score);
     }
+
+    public function test_sepay_invoice_starts_as_unpaid_and_cannot_be_redeemed(): void
+    {
+        $invoice = app(QrInvoiceService::class)->createInvoice($this->store, $this->branch, $this->staff, [
+            'amount' => 50000,
+            'payment_method' => 'vietqr',
+            'actions' => ['NO_STRAW'],
+        ]);
+
+        $this->assertSame('unpaid', $invoice->status);
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Hóa đơn này chưa được thanh toán. Vui lòng thanh toán trước khi tích điểm.');
+
+        app(QrInvoiceService::class)->redeemInvoice($invoice->qr_token, $this->user);
+    }
+
+    public function test_sepay_webhook_updates_invoice_status_to_pending(): void
+    {
+        $invoice = app(QrInvoiceService::class)->createInvoice($this->store, $this->branch, $this->staff, [
+            'amount' => 50000,
+            'payment_method' => 'vietqr',
+            'actions' => ['NO_STRAW'],
+        ]);
+
+        $this->assertSame('unpaid', $invoice->status);
+
+        $expectedKey = env('SEPAY_API_KEY') ?: \App\Models\SystemSetting::get('sepay_api_key');
+        $response = $this->withHeaders([
+            'Authorization' => 'Apikey ' . $expectedKey,
+        ])->postJson('/api/sepay/webhook', [
+            'transactionContent' => "Chuyen khoan thanh toan don hang {$invoice->invoice_code}",
+            'body' => "Chuyen khoan thanh toan toan don hang {$invoice->invoice_code}",
+            'transferAmount' => 50000,
+        ]);
+
+        $response->assertStatus(200);
+        $response->assertJson(['status' => 'success']);
+
+        $invoice->refresh();
+        $this->assertSame('pending', $invoice->status);
+    }
 }

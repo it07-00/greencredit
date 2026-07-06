@@ -8,9 +8,9 @@ class ContactPage extends SimplePage
 {
     public function mount(): void
     {
-        $this->title = 'Lien he';
-        $this->description = 'Thong tin lien he demo cho doi ngu Green Credit.';
-        $this->cards = [['Email', 'hello@greencredit.test'], ['Hotline', '1900 0000'], ['Dia diem', 'TP.HCM']];
-        $this->rows = [['Ho tro cua hang', 'Dang nhan yeu cau', '24h'], ['Hop tac voucher', 'Dang mo', '2026'], ['Bao cao gian lan', 'Admin Portal', 'Realtime']];
+        $this->title = 'Liên hệ';
+        $this->description = 'Thông tin liên hệ demo cho đội ngũ Green Credit.';
+        $this->cards = [['Email', 'hello@greencredit.test'], ['Hotline', '1900 0000'], ['Địa điểm', 'TP.HCM']];
+        $this->rows = [['Hỗ trợ cửa hàng', 'Đang nhận yêu cầu', '24h'], ['Hợp tác voucher', 'Đang mở', '2026'], ['Báo cáo gian lận', 'Admin Portal', 'Thời gian thực']];
     }
 }

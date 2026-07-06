@@ -35,9 +35,9 @@ class NetZeroRecommendationService
     public function generateRecommendations(User $user): void
     {
         $items = [
-            ['Mang binh ca nhan them 3 lan tuan nay', 'Giam rac thai nhua va nhan them diem xanh.', 'plastic', 60],
-            ['Di bo hoac dap xe cho quang duong duoi 2km', 'Tang diem CO2 va giu chuoi ngay xanh.', 'transport', 40],
-            ['Thu hanh dong tai che hoac dung tui vai', 'Da dang hoa hanh vi de cai thien Green Score.', 'recycling', 45],
+            ['Mang bình cá nhân thêm 3 lần tuần này', 'Giảm rác thải nhựa và nhận thêm điểm xanh.', 'plastic', 60],
+            ['Đi bộ hoặc đạp xe cho quãng đường dưới 2km', 'Tăng điểm CO2 và giữ chuỗi ngày xanh.', 'transport', 40],
+            ['Thử hành động tái chế hoặc dùng túi vải', 'Đa dạng hóa hành vi để cải thiện Green Score.', 'recycling', 45],
         ];
 
         foreach ($items as [$title, $description, $category, $points]) {

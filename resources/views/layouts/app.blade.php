@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,17 @@
     <link rel="shortcut icon" href="{{ asset('frontend/assets/img/favicon.svg') }}">
     @include('partials.styles')
     @stack('styles')
+    @livewireStyles
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body>
     @include('partials.header')
-    <main>@yield('content')</main>
+    <main>@yield('content'){{ $slot ?? '' }}</main>
     @include('partials.footer')
     @include('partials.scripts')
     @stack('scripts')
+    @livewireScripts
 </body>
+
 </html>

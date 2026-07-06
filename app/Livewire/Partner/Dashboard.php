@@ -11,9 +11,9 @@ class Dashboard extends SimplePage
     {
         $partner = Partner::where('user_id', auth()->id())->first();
         abort_unless($partner, 403);
-        $this->title = 'Partner Dashboard';
-        $this->description = 'Tong quan voucher, campaign va uu dai tai chinh.';
-        $this->cards = [['Voucher da tao', $partner->vouchers()->count()], ['Da doi', $partner->vouchers()->sum('used_quantity')], ['Campaign active', $partner->campaigns()->where('status', 'active')->count()]];
-        $this->rows = $partner->vouchers()->latest()->get()->map(fn ($v) => [$v->title, $v->required_points.' diem', $v->status])->all();
+        $this->title = 'Dashboard Đối tác';
+        $this->description = 'Tổng quan voucher, chiến dịch và ưu đãi tài chính.';
+        $this->cards = [['Voucher đã tạo', $partner->vouchers()->count()], ['Đã đổi', $partner->vouchers()->sum('used_quantity')], ['Chiến dịch hoạt động', $partner->campaigns()->where('status', 'active')->count()]];
+        $this->rows = $partner->vouchers()->latest()->get()->map(fn ($v) => [$v->title, $v->required_points.' điểm', $v->status === 'active' ? 'Hoạt động' : 'Ngừng hoạt động'])->all();
     }
 }

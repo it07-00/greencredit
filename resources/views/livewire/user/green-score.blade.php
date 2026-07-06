@@ -1,135 +1,171 @@
 <div>
-    <section class="relative overflow-hidden rounded-b-[2rem] bg-gradient-to-br from-emerald-50 via-white to-lime-50">
-        <div class="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(to_top,rgba(21,128,61,.12),transparent)]"></div>
-        <div class="relative mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-[.9fr_1.1fr]">
-            <div class="self-center">
-                <h1 class="text-5xl font-black leading-tight text-emerald-950 md:text-6xl">Green Score & Net Zero Planner</h1>
-                <p class="mt-5 max-w-xl text-lg leading-8 text-slate-700">Theo doi hanh vi xanh, nang diem Green Score va tien gan hon den muc tieu Net Zero cua ban.</p>
-                <div class="mt-8 inline-flex items-center gap-4 rounded-3xl bg-white/80 p-4 shadow-sm ring-1 ring-emerald-100">
-                    <span class="grid h-14 w-14 place-items-center rounded-2xl bg-emerald-100 text-3xl">🌿</span>
-                    <div><p class="text-sm text-slate-500">Hanh trinh cua ban</p><p class="font-black text-emerald-950">Vi mot tuong lai xanh</p></div>
-                </div>
-            </div>
-            <div class="grid gap-4 lg:grid-cols-[1fr_1fr_.7fr]">
-                <div class="rounded-[2rem] bg-white p-6 text-center shadow-xl shadow-emerald-950/10 ring-1 ring-emerald-100">
-                    <p class="font-bold text-slate-600">Green Score hien tai</p>
-                    <div class="mx-auto mt-5 grid h-44 w-44 place-items-center rounded-full bg-[conic-gradient(#16a34a_0_82%,#e5f3e8_82%_100%)] p-4">
-                        <div class="grid h-full w-full place-items-center rounded-full bg-white">
-                            <div><p class="text-5xl font-black text-emerald-950">{{ $history->score }}</p><p class="text-slate-500">/1000</p></div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-xl font-black text-emerald-900">🌱 Rat tot</p>
-                    <p class="mt-2 text-sm font-bold text-emerald-700">↑ 120 diem so voi thang truoc</p>
-                </div>
-                <div class="rounded-[2rem] bg-white p-6 shadow-xl shadow-emerald-950/10 ring-1 ring-emerald-100">
-                    <div class="flex items-center justify-between"><div><p class="text-sm text-slate-500">Xin chao</p><h2 class="text-2xl font-black">Ban</h2></div><div class="grid h-14 w-14 place-items-center rounded-full bg-emerald-100">👤</div></div>
-                    <div class="mt-6 space-y-5">
-                        <div class="flex gap-4"><span class="text-4xl">🌳</span><div><p class="text-sm text-slate-500">Cap do hien tai</p><p class="text-xl font-black text-emerald-950">{{ $history->level_code ?: 'seed' }}</p></div></div>
-                        <div class="flex gap-4"><span class="text-4xl">🔥</span><div><p class="text-sm text-slate-500">Chuoi ngay xanh</p><p class="text-xl font-black text-emerald-950">28 ngay</p></div></div>
-                    </div>
-                </div>
-                <div class="grid gap-4">
-                    @foreach ([['🔁','Hanh dong xanh','128 lan'],['🌫','CO2 giam','128 kg'],['🧴','Nhua giam','3,6 kg'],['🍃','Diem tuan nay','+86 diem']] as $kpi)
-                        <div class="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-emerald-100"><div class="flex gap-3"><span class="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-50 text-2xl">{{ $kpi[0] }}</span><div><p class="text-xs text-slate-500">{{ $kpi[1] }}</p><p class="text-xl font-black text-emerald-900">{{ $kpi[2] }}</p></div></div></div>
-                    @endforeach
+    <!-- Breadcrumb-section Start -->
+    <section class="breadcrumb-section fix bg-cover" style="background-image: url('{{ asset('frontend/assets/img/breadcrumb.jpg') }}');">
+        <div class="container">
+            <div class="row">
+                <div class="page-heading">
+                    <ul class="breadcrumb-list wow fadeInUp" data-wow-delay=".5s">
+                        <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                        <li><i class="far fa-angle-right"></i></li>
+                        <li>Green Score</li>
+                    </ul>
+                    <h2 class="wow fadeInUp" data-wow-delay=".3s">Chỉ số sống xanh (Green Score)</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 py-10">
-        <div class="grid gap-4 md:grid-cols-5">
-            @foreach ([['👥','25.000+','nguoi dung'],['🏪','350+','cua hang doi tac'],['🍃','1,2 trieu','diem xanh da tao'],['🧴','18 tan','nhua giam thieu'],['☁','2.8 tan','CO2 giam thieu']] as $stat)
-                <div class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-emerald-100"><div class="text-3xl">{{ $stat[0] }}</div><p class="mt-3 text-2xl font-black text-emerald-800">{{ $stat[1] }}</p><p class="text-sm text-slate-500">{{ $stat[2] }}</p></div>
-            @endforeach
-        </div>
-
-        <h2 class="mt-10 text-center text-3xl font-black text-emerald-950">Phan tich hanh vi xanh cua ban 🌱</h2>
-        <div class="mt-6 grid gap-5 lg:grid-cols-3">
-            @foreach ([['Xu huong diem xanh', $history->score.' diem', '↑ 120 diem so voi 6 thang truoc', 'from-emerald-200 to-emerald-600'], ['Luong CO2 giam', '128 kg', '↑ 18 kg so voi thang truoc', 'from-lime-200 to-green-600'], ['Luong nhua giam', '3,6 kg', '↑ 0,8 kg so voi thang truoc', 'from-teal-200 to-emerald-500']] as $chart)
-                <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                    <div class="flex items-start justify-between"><div><h3 class="font-black text-emerald-950">{{ $chart[0] }}</h3><p class="mt-3 text-3xl font-black text-emerald-900">{{ $chart[1] }}</p><p class="mt-1 text-sm font-bold text-emerald-700">{{ $chart[2] }}</p></div><span class="rounded-xl bg-slate-50 px-3 py-2 text-xs">6 thang</span></div>
-                    <div class="mt-8 flex h-32 items-end gap-3 border-b border-l border-slate-100 px-3">
-                        @foreach ([35,48,42,70,62,82] as $bar)
-                            <div class="w-full rounded-t-xl bg-gradient-to-t {{ $chart[3] }}" style="height: {{ $bar }}%"></div>
-                        @endforeach
+    <!-- Main Section -->
+    <section class="contact-section-6 section-padding bg-light">
+        <div class="container">
+            <!-- Top Summary Card -->
+            <div class="card border-0 shadow-sm p-4 rounded-4 mb-4" style="background: linear-gradient(135deg, #15803d 0%, #064e3b 100%); color: #fff; border-radius: 20px;">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <span class="badge bg-white text-success px-3 py-2 rounded-pill fw-bold mb-3" style="font-size: 13px;"><i class="far fa-seedling me-1"></i> Điểm Green Score</span>
+                        <h3 class="fw-bold mb-2 text-white text-3xl">Đánh giá chỉ số sống xanh cá nhân</h3>
+                        <p class="mb-0 text-white-50">Điểm Green Score được tính toán dựa trên mức độ tích cực tham gia các hoạt động bảo vệ môi trường, giảm thiểu nhựa và CO₂.</p>
                     </div>
-                </div>
-            @endforeach
-        </div>
-
-        <div class="mt-6 grid gap-5 lg:grid-cols-[1.1fr_.9fr]">
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h3 class="font-black text-emerald-950">Ty le hanh dong xanh</h3>
-                <div class="mt-6 grid gap-6 md:grid-cols-[.7fr_1fr]">
-                    <div class="grid place-items-center"><div class="grid h-44 w-44 place-items-center rounded-full bg-[conic-gradient(#15803d_0_78%,#dcfce7_78%_100%)] p-5"><div class="grid h-full w-full place-items-center rounded-full bg-white"><strong class="text-4xl text-emerald-900">78%</strong></div></div></div>
-                    <div class="space-y-4">
-                        @foreach ([['Giao thong xanh','86%'],['Tieu dung ben vung','74%'],['Tiet kiem nang luong','70%'],['Giam thieu rac thai','82%']] as $ratio)
-                            <div><div class="flex justify-between text-sm font-bold"><span>{{ $ratio[0] }}</span><span>{{ $ratio[1] }}</span></div><div class="mt-2 h-2 rounded-full bg-emerald-50"><div class="h-2 rounded-full bg-emerald-600" style="width: {{ $ratio[1] }}"></div></div></div>
-                        @endforeach
+                    
+                    <div class="col-md-4 text-center mt-4 mt-md-0">
+                        <div class="p-4 rounded-4 text-white" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; display: inline-block; min-width: 220px;">
+                            <span class="text-white-50 text-uppercase fw-bold tracking-wider" style="font-size: 11px;">Green Score</span>
+                            <h1 class="fw-black text-white display-4 my-2" style="font-size: 48px; font-weight: 900;">{{ $history->score }}</h1>
+                            <p class="text-emerald-300 small mb-0"><i class="far fa-chevron-up me-1"></i> Tăng 120 điểm tháng này</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <div class="flex justify-between"><h3 class="font-black text-emerald-950">Top thoi quen xanh</h3><span class="text-sm font-bold text-emerald-700">Xem tat ca</span></div>
-                <div class="mt-5 divide-y">
-                    @foreach ([['🍶','Mang binh ca nhan','28 lan','+28 diem'],['🥤','Khong dung ong hut','25 lan','+25 diem'],['🚲','Di bo / Xe dap','18 lan','+18 diem'],['♻','Tai che rac thai','15 lan','+15 diem'],['🛍','Dung tui vai','14 lan','+14 diem']] as $habit)
-                        <div class="grid grid-cols-[auto_1fr_auto_auto] items-center gap-3 py-3 text-sm"><span class="text-2xl">{{ $habit[0] }}</span><span>{{ $habit[1] }}</span><span>{{ $habit[2] }}</span><strong class="text-emerald-700">{{ $habit[3] }}</strong></div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
 
-        <h2 class="mt-10 text-center text-3xl font-black text-emerald-950">Lo trinh Net Zero ca nhan 🌿</h2>
-        <div class="mt-6 grid gap-4 md:grid-cols-5">
-            @foreach ([['Thang 5','Nhan thuc','Xay dung thoi quen xanh hang ngay'],['Thang 6','Tiet giam','Giam tieu thu nhua va rac thai'],['Thang 7','Toi uu','Toi uu nang luong va di chuyen'],['Thang 8','Bu dap','Tham gia trong cay, bu dap CO2'],['Thang 9','Net Zero','Duy tri loi song xanh dat Net Zero']] as $road)
-                <div class="rounded-3xl bg-white p-5 ring-1 ring-emerald-100"><p class="text-sm font-bold text-emerald-700">{{ $road[0] }}</p><h3 class="mt-3 font-black text-emerald-950">{{ $road[1] }}</h3><p class="mt-2 text-sm text-slate-600">{{ $road[2] }}</p></div>
-            @endforeach
-        </div>
+            <!-- 5 Thẻ chỉ số kpi -->
+            <div class="row g-3 mb-4">
+                @foreach ([['far fa-users text-success','25.000+','Người dùng xanh'],['far fa-store text-primary','350+','Cửa hàng đối tác'],['far fa-leaf text-success','1,2 triệu','Điểm xanh đã tạo'],['far fa-recycle text-info','18 tấn','Nhựa giảm thiểu'],['far fa-cloud-share text-warning','2.8 tấn','CO₂ giảm thiểu']] as $stat)
+                    <div class="col-md-6 col-lg">
+                        <div class="card border-0 shadow-sm p-3 bg-white h-100 text-center" style="border-radius: 15px;">
+                            <div class="mb-2 text-muted"><i class="{{ $stat[0] }} fs-4"></i></div>
+                            <h4 class="fw-bold text-dark mb-1" style="font-size: 20px;">{{ $stat[1] }}</h4>
+                            <span class="text-muted small" style="font-size: 11px;">{{ $stat[2] }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
 
-        <div class="mt-6 grid gap-5 lg:grid-cols-2">
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h3 class="font-black text-emerald-950">Muc tieu thang nay</h3>
-                <div class="mt-5 space-y-4">
-                    @foreach ([['Mang binh ca nhan them 3 lan','2/3','66%','+15 diem'],['Khong dung ong hut them 5 lan','3/5','60%','+20 diem'],['Di bo hoac dap xe 10 km','6/10 km','60%','+20 diem'],['Tai che rac thai 2 lan','1/2','50%','+15 diem']] as $goal)
-                        <div><div class="flex justify-between text-sm font-bold"><span>{{ $goal[0] }}</span><span>{{ $goal[1] }} {{ $goal[3] }}</span></div><div class="mt-2 h-2 rounded-full bg-slate-100"><div class="h-2 rounded-full bg-emerald-600" style="width: {{ $goal[2] }}"></div></div></div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h3 class="font-black text-emerald-950">De xuat danh rieng cho ban <span class="rounded bg-emerald-100 px-2 py-1 text-xs text-emerald-700">AI</span></h3>
-                <div class="mt-5 space-y-3">
-                    @foreach (['Thu mang hop dung khi mua do an mang ve de giam rac thai nhua.', 'Ban co the di bo gan hon 2 km thay vi di chuyen bang xe may.', 'Hay tat cac thiet bi dien khi khong su dung de tiet kiem dien nang.'] as $tip)
-                        <div class="flex items-center justify-between gap-3 rounded-2xl border border-slate-100 p-4"><span class="text-sm text-slate-700">{{ $tip }}</span><button class="rounded-xl border border-emerald-300 px-4 py-2 text-sm font-bold text-emerald-700">Ap dung</button></div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+            <div class="row g-4">
+                <!-- Left: Analytics Charts & Habits -->
+                <div class="col-lg-8">
+                    <!-- Behavior Analytics columns -->
+                    <div class="row g-3 mb-4">
+                        @foreach ([['Xu hướng điểm xanh', $history->score.' điểm', '↑ 120 điểm so với 6 tháng trước', 'from-emerald-200 to-emerald-600', '#10b981'], ['Lượng CO₂ giảm', '128 kg', '↑ 18 kg so với tháng trước', 'from-lime-200 to-green-600', '#84cc16'], ['Lượng nhựa giảm', '3,6 kg', '↑ 0,8 kg so với tháng trước', 'from-teal-200 to-emerald-500', '#0d9488']] as $chart)
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm p-4 bg-white h-100" style="border-radius: 20px;">
+                                    <h6 class="fw-bold text-dark mb-1" style="font-size: 13px;">{{ $chart[0] }}</h6>
+                                    <h3 class="fw-bold text-success my-2" style="color: {{ $chart[4] }} !important; font-size: 24px; font-weight: 850;">{{ $chart[1] }}</h3>
+                                    <p class="text-muted small mb-3" style="font-size: 11px;">{{ $chart[2] }}</p>
+                                    
+                                    <!-- Bar Chart simulation -->
+                                    <div class="d-flex align-items-end justify-content-between border-start border-bottom px-2 pt-3" style="height: 100px; border-color: #f1f5f9 !important; border-left: 1px solid #f1f5f9 !important; border-bottom: 1px solid #f1f5f9 !important;">
+                                        @foreach ([35,48,42,70,62,82] as $bar)
+                                            <div class="rounded-top" style="width: 12%; height: {{ $bar }}%; background-color: {{ $chart[4] }}; opacity: 0.7;"></div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
-        <div class="mt-6 grid gap-5 lg:grid-cols-3">
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h3 class="font-black text-emerald-950">Hang cap Green Score</h3>
-                <div class="mt-5 grid grid-cols-5 gap-2 text-center text-xs">
-                    @foreach ($levels as $level)
-                        <div class="rounded-2xl {{ $history->level_code === $level->code ? 'bg-emerald-50 ring-2 ring-emerald-400' : 'bg-slate-50' }} p-3"><div class="text-2xl">🌱</div><strong>{{ $level->name }}</strong><p>{{ $level->min_score }}-{{ $level->max_score }}</p></div>
-                    @endforeach
+                    <!-- Action ratio -->
+                    <div class="card border-0 shadow-sm p-4 bg-white mb-4" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-4">Tỷ lệ hành động xanh</h5>
+                        <div class="row g-4 align-items-center">
+                            <div class="col-md-4 text-center">
+                                <div class="position-relative d-inline-block p-4 rounded-circle" style="background: #f0fdf4; border: 4px solid #dcfce7; width: 140px; height: 140px; display: inline-flex !important; align-items: center; justify-content: center;">
+                                    <div>
+                                        <h3 class="fw-bold text-success mb-0" style="font-size: 28px; font-weight: 800;">78%</h3>
+                                        <span class="text-muted small" style="font-size: 10px;">Chỉ số tốt</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="d-flex flex-column gap-3">
+                                    @foreach ([['Giao thông xanh','86%','bg-success'],['Tiêu dùng bền vững','74%','bg-primary'],['Tiết kiệm năng lượng','70%','bg-info'],['Giảm thiểu rác thải','82%','bg-warning']] as $ratio)
+                                        <div>
+                                            <div class="d-flex justify-content-between small fw-bold mb-1">
+                                                <span>{{ $ratio[0] }}</span>
+                                                <span class="text-dark">{{ $ratio[1] }}</span>
+                                            </div>
+                                            <div class="progress" style="height: 8px; border-radius: 999px; background-color: #f1f5f9;">
+                                                <div class="progress-bar {{ $ratio[2] }}" role="progressbar" style="width: {{ $ratio[1] }}; border-radius: 999px;" aria-valuenow="{{ intval($ratio[1]) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top green habits -->
+                    <div class="card border-0 shadow-sm p-4 bg-white" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3">Top thói quen xanh tốt nhất</h5>
+                        <div class="list-group list-group-flush">
+                            @foreach ([['far fa-tint text-primary','Mang bình nước cá nhân','28 lần','+28 điểm'],['far fa-cup-straw text-danger','Hạn chế ống hút nhựa','25 lần','+25 điểm'],['far fa-bicycle text-success','Đi bộ / Xe đạp gần nhà','18 lần','+18 điểm'],['far fa-recycle text-info','Phân loại tái chế rác thải','15 lần','+15 điểm'],['far fa-shopping-bag text-warning','Sử dụng túi vải mua sắm','14 lần','+14 điểm']] as $habit)
+                                <div class="list-group-item d-flex align-items-center justify-content-between border-0 px-0 py-3 border-bottom border-dashed" style="border-bottom-style: dashed !important;">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="fs-5"><i class="{{ $habit[0] }}"></i></span>
+                                        <span class="fw-bold text-dark" style="font-size: 14px;">{{ $habit[1] }}</span>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-4">
+                                        <span class="text-muted small">{{ $habit[2] }}</span>
+                                        <strong class="text-success" style="font-weight: 750;">{{ $habit[3] }}</strong>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-5 h-3 rounded-full bg-emerald-50"><div class="h-3 rounded-full bg-emerald-600" style="width: {{ min(100, $history->score / 10) }}%"></div></div>
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h3 class="font-black text-emerald-950">Bang xep hang thang</h3>
-                <div class="mt-5 space-y-3 text-sm">
-                    @foreach ([['1','Minh Huy','1.050 diem'],['2','Ngoc Anh','980 diem'],['3','Hoang Nam','930 diem'],['4','Ban',''.$history->score.' diem']] as $rank)
-                        <div class="flex justify-between rounded-2xl {{ $rank[1] === 'Ban' ? 'bg-emerald-50 ring-1 ring-emerald-300' : 'bg-slate-50' }} p-3"><span>{{ $rank[0] }}. {{ $rank[1] }}</span><strong>{{ $rank[2] }}</strong></div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-                <h3 class="font-black text-emerald-950">Cot moc cua ban</h3>
-                <div class="mt-5 space-y-4 text-sm">
-                    @foreach ([['✓','Tham gia Green Credit','06/2024'],['✓','Dat cap Leaf','07/2024'],['✓','Dat cap Tree','03/2025'],['○','Dat cap Forest','Sap toi'],['○','Tro thanh Net Zero Hero','Sap toi']] as $milestone)
-                        <div class="flex justify-between"><span>{{ $milestone[0] }} {{ $milestone[1] }}</span><span class="text-slate-500">{{ $milestone[2] }}</span></div>
-                    @endforeach
+
+                <!-- Right: Rankings & Levels -->
+                <div class="col-lg-4">
+                    <!-- Level ranking list -->
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-white" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3">Hạng cấp Green Score</h5>
+                        <div class="d-flex flex-column gap-2 mb-3">
+                            @foreach ($levels as $level)
+                                <div class="p-2 rounded-3 d-flex justify-content-between align-items-center {{ $history->level_code === $level->code ? 'bg-success-subtle border border-success' : 'bg-light' }}" style="font-size: 13px; background-color: {{ $history->level_code === $level->code ? '#f0fdf4' : '#f8fafc' }} !important; border-color: {{ $history->level_code === $level->code ? '#22c55e' : 'transparent' }} !important;">
+                                    <span class="fw-bold text-dark"><i class="far fa-seedling text-success me-1"></i> {{ $level->name }}</span>
+                                    <span class="text-muted small">{{ $level->min_score }} - {{ $level->max_score }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="progress" style="height: 8px; border-radius: 999px; background-color: #f1f5f9;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ min(100, $history->score / 10) }}%; border-radius: 999px; background-color: #15803d !important;" aria-valuenow="{{ min(100, $history->score / 10) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Leaderboard -->
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-white" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3">Bảng xếp hạng tháng</h5>
+                        <div class="d-flex flex-column gap-2">
+                            @foreach ([['1','Minh Huy','1.050 điểm'],['2','Ngọc Anh','980 điểm'],['3','Hoàng Nam','930 điểm'],['4','Bạn',''.$history->score.' điểm']] as $rank)
+                                <div class="d-flex justify-content-between align-items-center p-3 rounded-3 {{ $rank[1] === 'Bạn' ? 'bg-success text-white' : 'bg-light' }}" style="background-color: {{ $rank[1] === 'Bạn' ? '#15803d' : '#f8fafc' }} !important; color: {{ $rank[1] === 'Bạn' ? '#fff' : '#1e293b' }} !important;">
+                                    <span class="fw-bold">{{ $rank[0] }}. {{ $rank[1] }}</span>
+                                    <strong class="small">{{ $rank[2] }}</strong>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Achievements/Milestones -->
+                    <div class="card border-0 shadow-sm p-4 bg-white" style="border-radius: 20px;">
+                        <h5 class="fw-bold text-dark mb-3">Cột mốc sống xanh</h5>
+                        <div class="d-flex flex-column gap-3 small">
+                            @foreach ([['far fa-check text-success','Tham gia Green Credit','06/2024'],['far fa-check text-success','Đạt cấp độ Leaf','07/2024'],['far fa-check text-success','Đạt cấp độ Tree','03/2025'],['far fa-circle text-muted','Đạt cấp độ Forest','Sắp tới'],['far fa-circle text-muted','Trở thành Net Zero Hero','Sắp tới']] as $milestone)
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom border-light">
+                                    <span class="text-dark"><i class="{{ $milestone[0] }} me-2"></i>{{ $milestone[1] }}</span>
+                                    <span class="text-muted small">{{ $milestone[2] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

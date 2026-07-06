@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class SystemSetting extends Model
 {
     protected $guarded = [];
+
+    public static function get(string $key, $default = null)
+    {
+        return self::where('key', $key)->first()?->value ?? $default;
+    }
 }
