@@ -25,6 +25,7 @@
                             <li><a href="{{ route('green-score.public') }}">Green Score</a></li>
                             <li><a href="{{ route('vouchers.public') }}">Voucher xanh</a></li>
                             <li><a href="{{ route('services') }}">Net Zero Planner</a></li>
+                            <li><a href="{{ route('news.index') }}">Tin tức sống xanh</a></li>
                         </ul>
                     </div>
                 </div>

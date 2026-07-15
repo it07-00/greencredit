@@ -43,6 +43,12 @@ Route::get('/stores', PublicStores::class)->name('stores');
 Route::get('/vouchers', PublicVouchers::class)->name('vouchers.public');
 Route::get('/green-score', GreenScoreInfo::class)->name('green-score.public');
 
+// Tin tức sống xanh
+Route::view('/tin-tuc', 'pages.news')->name('news.index');
+Route::get('/tin-tuc/{id}', function ($id) {
+    return view('pages.news-detail', ['id' => (int) $id]);
+})->name('news.show')->where('id', '[0-9]+');
+
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', function (Request $request) {
     $credentials = $request->validate(['email' => ['required', 'email'], 'password' => ['required']]);

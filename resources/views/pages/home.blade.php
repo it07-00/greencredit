@@ -221,66 +221,141 @@
         </div>
     </section>
 
-    <!-- brand Section Start -->
-    <div class="brand-section fix section-padding pt-0" style="background-image: url('{{ asset('frontend/assets/img/service/service-bg.jpg') }}');">
+    <!-- Brand / Partners Section Start -->
+    <div class="gc-partners-section fix section-padding pt-0" style="background-image: url('{{ asset('frontend/assets/img/service/service-bg.jpg') }}');">
         <div class="container">
-            <div class="section-title text-center mb-4 wow fadeInUp">
-                <p class="char-animation">Green Credit kết nối hơn <span>350+</span> cửa hàng đối tác</p>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/01.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/02.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/03.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/04.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/05.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".9s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/06.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/07.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/08.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/09.png') }}" alt="img">
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="brand-img">
-                        <img src="{{ asset('frontend/assets/img/brand/10.png') }}" alt="img">
-                    </div>
-                </div>
+            <div class="section-title text-center mb-5 wow fadeInUp">
+                <span>Đối tác liên kết</span>
+                <p class="char-animation mt-2">Green Credit kết nối hơn <span>350+</span> thương hiệu &amp; cửa hàng đối tác</p>
             </div>
         </div>
+
+        <!-- Marquee Row 1 - scroll left -->
+        <div class="gc-marquee-wrapper" style="overflow:hidden;position:relative;">
+            <!-- Fade edges -->
+            <div style="position:absolute;left:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,#0d1f0f,transparent);z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to left,#0d1f0f,transparent);z-index:2;pointer-events:none;"></div>
+
+            <div class="gc-marquee gc-marquee-left" style="display:flex;gap:20px;padding:10px 0;width:max-content;animation:gcMarqueeLeft 30s linear infinite;">
+                @php
+                $partners1 = [
+                    ['name' => 'The Coffee House', 'icon' => 'fa-coffee', 'color' => '#c0392b'],
+                    ['name' => 'Highlands Coffee', 'icon' => 'fa-mug-hot', 'color' => '#8B0000'],
+                    ['name' => 'Grab', 'icon' => 'fa-car', 'color' => '#00b14f'],
+                    ['name' => 'Vinmart', 'icon' => 'fa-shopping-basket', 'color' => '#0066cc'],
+                    ['name' => 'Circle K', 'icon' => 'fa-store', 'color' => '#e74c3c'],
+                    ['name' => 'GreenFeed', 'icon' => 'fa-leaf', 'color' => '#27ae60'],
+                    ['name' => 'Saigon Co.op', 'icon' => 'fa-shopping-cart', 'color' => '#e67e22'],
+                    ['name' => 'Lotte Mart', 'icon' => 'fa-building', 'color' => '#c0392b'],
+                    ['name' => 'Baemin', 'icon' => 'fa-bicycle', 'color' => '#00c3c3'],
+                    ['name' => 'Pharmacity', 'icon' => 'fa-pills', 'color' => '#2980b9'],
+                    ['name' => 'FPT Shop', 'icon' => 'fa-mobile-alt', 'color' => '#f39c12'],
+                    ['name' => 'Gojek', 'icon' => 'fa-motorcycle', 'color' => '#00aed6'],
+                ];
+                // Duplicate for seamless loop
+                $partners1 = array_merge($partners1, $partners1);
+                @endphp
+
+                @foreach($partners1 as $p)
+                <div class="gc-partner-card" style="
+                    background:#fff;
+                    border-radius:14px;
+                    padding:14px 22px;
+                    display:flex;
+                    align-items:center;
+                    gap:10px;
+                    min-width:180px;
+                    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+                    border:1px solid #e8f5e9;
+                    flex-shrink:0;
+                    white-space:nowrap;
+                ">
+                    <span style="width:34px;height:34px;border-radius:50%;background:{{ $p['color'] }}18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fas {{ $p['icon'] }}" style="color:{{ $p['color'] }};font-size:15px;"></i>
+                    </span>
+                    <span style="font-size:14px;font-weight:700;color:#1a1a2e;letter-spacing:-0.2px;">{{ $p['name'] }}</span>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Marquee Row 2 - scroll right (opposite direction) -->
+        <div class="gc-marquee-wrapper mt-4" style="overflow:hidden;position:relative;">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,#0d1f0f,transparent);z-index:2;pointer-events:none;"></div>
+            <div style="position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to left,#0d1f0f,transparent);z-index:2;pointer-events:none;"></div>
+
+            <div class="gc-marquee gc-marquee-right" style="display:flex;gap:20px;padding:10px 0;width:max-content;animation:gcMarqueeRight 35s linear infinite;">
+                @php
+                $partners2 = [
+                    ['name' => 'Thế Giới Di Động', 'icon' => 'fa-mobile-alt', 'color' => '#e74c3c'],
+                    ['name' => 'Viettel Pay', 'icon' => 'fa-credit-card', 'color' => '#e74c3c'],
+                    ['name' => 'MoMo', 'icon' => 'fa-wallet', 'color' => '#a50064'],
+                    ['name' => 'VinFast', 'icon' => 'fa-car-side', 'color' => '#0066cc'],
+                    ['name' => 'Sendo', 'icon' => 'fa-tags', 'color' => '#e74c3c'],
+                    ['name' => 'Lazada', 'icon' => 'fa-box', 'color' => '#0f146d'],
+                    ['name' => 'Tiki', 'icon' => 'fa-shopping-bag', 'color' => '#1a94ff'],
+                    ['name' => 'Green Farm', 'icon' => 'fa-seedling', 'color' => '#27ae60'],
+                    ['name' => 'Coconut Media', 'icon' => 'fa-broadcast-tower', 'color' => '#8e44ad'],
+                    ['name' => 'EcoMart', 'icon' => 'fa-recycle', 'color' => '#16a085'],
+                    ['name' => 'PetMart', 'icon' => 'fa-paw', 'color' => '#d35400'],
+                    ['name' => 'Fahasa', 'icon' => 'fa-book', 'color' => '#2c3e50'],
+                ];
+                $partners2 = array_merge($partners2, $partners2);
+                @endphp
+
+                @foreach($partners2 as $p)
+                <div class="gc-partner-card" style="
+                    background:#fff;
+                    border-radius:14px;
+                    padding:14px 22px;
+                    display:flex;
+                    align-items:center;
+                    gap:10px;
+                    min-width:180px;
+                    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+                    border:1px solid #e8f5e9;
+                    flex-shrink:0;
+                    white-space:nowrap;
+                ">
+                    <span style="width:34px;height:34px;border-radius:50%;background:{{ $p['color'] }}18;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="fas {{ $p['icon'] }}" style="color:{{ $p['color'] }};font-size:15px;"></i>
+                    </span>
+                    <span style="font-size:14px;font-weight:700;color:#1a1a2e;letter-spacing:-0.2px;">{{ $p['name'] }}</span>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        @push('styles')
+        <style>
+            .gc-partners-section {
+                padding-top: 60px;
+                padding-bottom: 80px;
+            }
+            @keyframes gcMarqueeLeft {
+                0%   { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            @keyframes gcMarqueeRight {
+                0%   { transform: translateX(-50%); }
+                100% { transform: translateX(0); }
+            }
+            .gc-partner-card {
+                transition: transform 0.2s, box-shadow 0.2s;
+                cursor: default;
+            }
+            .gc-partner-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 24px rgba(21,128,61,0.12) !important;
+                border-color: #bbf7d0 !important;
+            }
+            .gc-marquee:hover {
+                animation-play-state: paused;
+            }
+        </style>
+        @endpush
     </div>
+
 
     <!-- Why Choose Us Section Start -->
     <section class="choose-us-section fix section-padding">
@@ -1042,9 +1117,9 @@
                                     12 bình luận
                                 </li>
                             </ul>
-                            <h3><a href="news-details.html">Bắt đầu sống xanh từ những thay đổi nhỏ mỗi ngày</a></h3>
+                            <h3><a href="{{ route('news.show', 1) }}">Bắt đầu sống xanh từ những thay đổi nhỏ mỗi ngày</a></h3>
                             <p>Khám phá những bước đi đơn giản nhất để hình thành lối sống bảo vệ môi trường từ thói quen sinh hoạt.</p>
-                            <a href="news-details.html" class="link-btn">Xem chi tiết
+                            <a href="{{ route('news.show', 1) }}" class="link-btn">Xem Chi Tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1066,9 +1141,9 @@
                                     8 bình luận
                                 </li>
                             </ul>
-                            <h3><a href="news-details.html">Cách Green Score ghi nhận hành vi tiêu dùng bền vững</a></h3>
+                            <h3><a href="{{ route('news.show', 2) }}">Cách Green Score ghi nhận hành vi tiêu dùng bền vững</a></h3>
                             <p>Tìm hiểu chi tiết các khía cạnh đánh giá điểm Green Score và cách hệ thống tự động cập nhật tiến trình của bạn.</p>
-                            <a href="news-details.html" class="link-btn">Xem chi tiết
+                            <a href="{{ route('news.show', 2) }}" class="link-btn">Xem Chi Tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1090,14 +1165,19 @@
                                     15 bình luận
                                 </li>
                             </ul>
-                            <h3><a href="news-details.html">Vai trò của dữ liệu xanh trong hành trình hướng tới Net Zero</a></h3>
+                            <h3><a href="{{ route('news.show', 3) }}">Vai trò của dữ liệu xanh trong hành trình hướng tới Net Zero</a></h3>
                             <p>Hiểu rõ tầm quan trọng của việc thu thập và phân tích dữ liệu tiêu dùng xanh trong nỗ lực cắt giảm carbon quốc gia.</p>
-                            <a href="news-details.html" class="link-btn">Xem chi tiết
+                            <a href="{{ route('news.show', 3) }}" class="link-btn">Xem Chi Tiết
                                 <i class="far fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="text-center mt-5 wow fadeInUp">
+                <a href="{{ route('news.index') }}" class="theme-btn style-2">
+                    Xem tất cả tin tức <i class="far fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
