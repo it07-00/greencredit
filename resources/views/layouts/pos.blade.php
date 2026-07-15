@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hệ thống POS Tích Điểm Xanh | Green Credit</title>
-    <link rel="shortcut icon" href="{{ asset('frontend/assets/img/favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/img/logo/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('frontend/assets/img/logo/logo.png') }}">
     
     <!-- POS Theme Stylesheets -->
     <link rel="stylesheet" href="{{ asset('theme-pos/css/admin-Bly6avC4.css') }}">

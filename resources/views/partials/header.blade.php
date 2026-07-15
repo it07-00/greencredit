@@ -47,8 +47,9 @@
             <div class="offcanvas__content">
                 <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo">
-                        <a href="{{ route('home') }}">
-                            <strong style="font-size: 22px; color: #15803d;">Green Credit</strong>
+                        <a href="{{ route('home') }}" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
+                            <img src="{{ asset('frontend/assets/img/logo/logo.png') }}" alt="Green Credit" style="height:40px;width:40px;border-radius:10px;object-fit:cover;">
+                            <strong style="font-size: 20px; color: #15803d;">Green Credit</strong>
                         </a>
                     </div>
                     <div class="offcanvas__close">

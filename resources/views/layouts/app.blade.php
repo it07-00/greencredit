@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('meta_description', 'Green Credit - Sống xanh, tích điểm thông minh.')">
     <title>@yield('title', 'Green Credit')</title>
-    <link rel="shortcut icon" href="{{ asset('frontend/assets/img/favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend/assets/img/logo/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('frontend/assets/img/logo/logo.png') }}">
     @include('partials.styles')
     @stack('styles')
     @livewireStyles

@@ -36,8 +36,9 @@
             <div class="mega-menu-wrapper">
                 <div class="header-main">
                     <div class="header-left">
-                        <a href="{{ route('home') }}" class="header-logo1">
-                            <strong style="font-size: 24px; color: #15803d; white-space: nowrap;">Green Credit</strong>
+                        <a href="{{ route('home') }}" class="header-logo1" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
+                            <img src="{{ asset('frontend/assets/img/logo/logo.png') }}" alt="Green Credit" style="height:44px;width:44px;border-radius:12px;object-fit:cover;">
+                            <strong style="font-size: 20px; color: #15803d; white-space: nowrap; letter-spacing: -0.3px;">Green Credit</strong>
                         </a>
                     </div>
                     <div class="header-right d-flex justify-content-end align-items-center">
