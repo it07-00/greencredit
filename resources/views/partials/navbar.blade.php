@@ -74,6 +74,7 @@
                                         @if(!auth()->check())
                                             <li @class(['active' => request()->routeIs('about')])><a href="{{ route('about') }}">Giới thiệu</a></li>
                                             <li @class(['active' => request()->routeIs('services')])><a href="{{ route('services') }}">Tính năng</a></li>
+                                            <li @class(['active' => request()->routeIs('news.index', 'news.show')])><a href="{{ route('news.index') }}">Tin tức</a></li>
                                             <li @class(['active' => request()->routeIs('contact')])><a href="{{ route('contact') }}">Liên hệ</a></li>
                                         @endif
                                     </ul>
